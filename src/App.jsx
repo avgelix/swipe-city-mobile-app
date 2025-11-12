@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import SwipeCard from './components/SwipeCard';
+import MapBackground from './components/MapBackground';
 import ResultsPage from './components/ResultsPage';
 import { questions } from '../questions';
 
@@ -58,6 +59,7 @@ function App() {
   // Show question cards
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center py-8">
+      <MapBackground questionNumber={currentQuestionIndex} />
       <div className="w-full">
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-zillow-blue mb-2">

@@ -62,12 +62,52 @@ The game collects user preferences across multiple dimensions:
 
 ---
 
+## 🗺️ Google Maps Setup
+
+This project uses Google Maps API to display dynamic city backgrounds that change with each question.
+
+### Getting Your API Key
+
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project or select an existing one
+3. Enable the **Maps JavaScript API**
+4. Navigate to Credentials → Create Credentials → API Key
+5. **Important:** Restrict your API key to "Maps JavaScript API" only
+
+### Local Development Setup
+
+1. Copy the example environment file:
+   ```bash
+   cp .env.local.example .env.local
+   ```
+2. Edit `.env.local` and add your actual API key:
+   ```
+   VITE_GOOGLE_MAPS_API_KEY=your_actual_api_key_here
+   GEMINI_API_KEY=your_gemini_api_key_here
+   ```
+3. Restart your dev server if it's running
+
+### Vercel/Production Setup
+
+Add the environment variables in your Vercel dashboard:
+- `VITE_GOOGLE_MAPS_API_KEY`: Your Google Maps API key
+- `GEMINI_API_KEY`: Your Gemini API key
+
+### Free Tier Limits
+
+The map loads once per session and updates the center point when questions change. This stays well within Google Maps free tier (28,000 loads/month).
+
+**Note:** If no API key is configured, the app will work fine but won't display the map background.
+
+---
+
 ## 🚀 Development Setup
 
 ### Prerequisites
 - Node.js 18+ installed
 - npm or yarn package manager
 - Google Gemini API key (get one at [Google AI Studio](https://makersuite.google.com/app/apikey))
+- Google Maps API key (see above section)
 
 ### Installation
 
@@ -86,9 +126,10 @@ The game collects user preferences across multiple dimensions:
    ```bash
    cp .env.local.example .env.local
    ```
-   Then edit `.env.local` and add your Gemini API key:
+   Then edit `.env.local` and add your API keys:
    ```
-   GEMINI_API_KEY=your_actual_api_key_here
+   GEMINI_API_KEY=your_gemini_api_key_here
+   VITE_GOOGLE_MAPS_API_KEY=your_google_maps_api_key_here
    ```
 
 ### Running Locally
@@ -167,7 +208,8 @@ npm run preview
 4. **Set Environment Variables**
    - Go to your project in the Vercel dashboard
    - Navigate to Settings → Environment Variables
-   - Add `GEMINI_API_KEY` with your API key
+   - Add `GEMINI_API_KEY` with your Gemini API key
+   - Add `VITE_GOOGLE_MAPS_API_KEY` with your Google Maps API key
    - Redeploy for changes to take effect
 
 ### Automatic Deployments
@@ -186,7 +228,8 @@ session-11/
 │   └── README.md           # API documentation
 ├── src/
 │   ├── components/
-│   │   ├── QuestionCard.jsx     # Question display component
+│   │   ├── SwipeCard.jsx        # Swipe card with Framer Motion
+│   │   ├── MapBackground.jsx    # Google Maps background
 │   │   └── ResultsPage.jsx      # AI results display
 │   ├── App.jsx             # Main app with game flow
 │   ├── main.jsx            # React entry point
@@ -205,6 +248,8 @@ session-11/
 
 ### Manual Testing Checklist
 - [ ] All 20 questions display correctly
+- [ ] Swipe gestures work in all 8 directions
+- [ ] Map background updates with each question
 - [ ] Progress indicator updates
 - [ ] Answers are captured properly
 - [ ] Results page shows loading state
@@ -240,5 +285,4 @@ This is a learning project. Feel free to:
 ## 📝 License
 
 This project is open source and available for educational purposes.
-
 
