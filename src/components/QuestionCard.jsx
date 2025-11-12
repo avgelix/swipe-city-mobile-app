@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { triggerHaptic } from '../utils/haptics';
 
 /**
  * QuestionCard Component
@@ -13,6 +14,12 @@ import PropTypes from 'prop-types';
  */
 function QuestionCard({ question, currentQuestion, totalQuestions, onAnswer }) {
   const { category, text, type, options } = question;
+
+  const handleAnswer = (answer) => {
+    // Trigger haptic feedback on mobile devices
+    triggerHaptic('light');
+    onAnswer(answer);
+  };
 
   return (
     <div className="w-full max-w-md mx-auto px-4">
@@ -59,14 +66,14 @@ function QuestionCard({ question, currentQuestion, totalQuestions, onAnswer }) {
           {type === 'binary' ? (
             <div className="grid grid-cols-2 gap-4">
               <button
-                onClick={() => onAnswer(options.left)}
+                onClick={() => handleAnswer(options.left)}
                 className="text-center p-4 bg-gray-50 rounded-lg hover:bg-zillow-blue hover:text-white transition-all duration-200 active:scale-95 cursor-pointer border-2 border-transparent hover:border-zillow-blue"
               >
                 <div className="text-3xl mb-2">←</div>
                 <p className="text-sm font-medium">{options.left}</p>
               </button>
               <button
-                onClick={() => onAnswer(options.right)}
+                onClick={() => handleAnswer(options.right)}
                 className="text-center p-4 bg-gray-50 rounded-lg hover:bg-zillow-blue hover:text-white transition-all duration-200 active:scale-95 cursor-pointer border-2 border-transparent hover:border-zillow-blue"
               >
                 <div className="text-3xl mb-2">→</div>
@@ -76,28 +83,28 @@ function QuestionCard({ question, currentQuestion, totalQuestions, onAnswer }) {
           ) : (
             <div className="grid grid-cols-3 gap-2">
               <button
-                onClick={() => onAnswer(options.upLeft)}
+                onClick={() => handleAnswer(options.upLeft)}
                 className="text-center p-3 bg-gray-50 rounded hover:bg-zillow-blue hover:text-white transition-all duration-200 active:scale-95 cursor-pointer border-2 border-transparent hover:border-zillow-blue"
               >
                 <div className="text-xl mb-1">↖</div>
                 <p className="text-xs font-medium truncate">{options.upLeft}</p>
               </button>
               <button
-                onClick={() => onAnswer(options.up)}
+                onClick={() => handleAnswer(options.up)}
                 className="text-center p-3 bg-gray-50 rounded hover:bg-zillow-blue hover:text-white transition-all duration-200 active:scale-95 cursor-pointer border-2 border-transparent hover:border-zillow-blue"
               >
                 <div className="text-xl mb-1">↑</div>
                 <p className="text-xs font-medium truncate">{options.up}</p>
               </button>
               <button
-                onClick={() => onAnswer(options.upRight)}
+                onClick={() => handleAnswer(options.upRight)}
                 className="text-center p-3 bg-gray-50 rounded hover:bg-zillow-blue hover:text-white transition-all duration-200 active:scale-95 cursor-pointer border-2 border-transparent hover:border-zillow-blue"
               >
                 <div className="text-xl mb-1">↗</div>
                 <p className="text-xs font-medium truncate">{options.upRight}</p>
               </button>
               <button
-                onClick={() => onAnswer(options.left)}
+                onClick={() => handleAnswer(options.left)}
                 className="text-center p-3 bg-gray-50 rounded hover:bg-zillow-blue hover:text-white transition-all duration-200 active:scale-95 cursor-pointer border-2 border-transparent hover:border-zillow-blue"
               >
                 <div className="text-xl mb-1">←</div>
@@ -107,28 +114,28 @@ function QuestionCard({ question, currentQuestion, totalQuestions, onAnswer }) {
                 <div className="text-xl">•</div>
               </div>
               <button
-                onClick={() => onAnswer(options.right)}
+                onClick={() => handleAnswer(options.right)}
                 className="text-center p-3 bg-gray-50 rounded hover:bg-zillow-blue hover:text-white transition-all duration-200 active:scale-95 cursor-pointer border-2 border-transparent hover:border-zillow-blue"
               >
                 <div className="text-xl mb-1">→</div>
                 <p className="text-xs font-medium truncate">{options.right}</p>
               </button>
               <button
-                onClick={() => onAnswer(options.downLeft)}
+                onClick={() => handleAnswer(options.downLeft)}
                 className="text-center p-3 bg-gray-50 rounded hover:bg-zillow-blue hover:text-white transition-all duration-200 active:scale-95 cursor-pointer border-2 border-transparent hover:border-zillow-blue"
               >
                 <div className="text-xl mb-1">↙</div>
                 <p className="text-xs font-medium truncate">{options.downLeft}</p>
               </button>
               <button
-                onClick={() => onAnswer(options.down)}
+                onClick={() => handleAnswer(options.down)}
                 className="text-center p-3 bg-gray-50 rounded hover:bg-zillow-blue hover:text-white transition-all duration-200 active:scale-95 cursor-pointer border-2 border-transparent hover:border-zillow-blue"
               >
                 <div className="text-xl mb-1">↓</div>
                 <p className="text-xs font-medium truncate">{options.down}</p>
               </button>
               <button
-                onClick={() => onAnswer(options.downRight)}
+                onClick={() => handleAnswer(options.downRight)}
                 className="text-center p-3 bg-gray-50 rounded hover:bg-zillow-blue hover:text-white transition-all duration-200 active:scale-95 cursor-pointer border-2 border-transparent hover:border-zillow-blue"
               >
                 <div className="text-xl mb-1">↘</div>
