@@ -51,6 +51,30 @@ function MapBackground({ questionNumber }) {
       return;
     }
 
+    const initMap = () => {
+      if (mapRef.current && !mapInstanceRef.current && window.google?.maps) {
+        // Create new map instance (only once)
+        mapInstanceRef.current = new window.google.maps.Map(mapRef.current, {
+          center: { lat: currentCity.lat, lng: currentCity.lng },
+          zoom: 12,
+          disableDefaultUI: true,
+          gestureHandling: 'none',
+          zoomControl: false,
+          scrollwheel: false,
+          disableDoubleClickZoom: true,
+          draggable: false,
+          styles: [
+            {
+              featureType: 'all',
+              elementType: 'labels',
+              stylers: [{ visibility: 'off' }]
+            }
+          ]
+        });
+        setIsLoaded(true);
+      }
+    };
+
     // Load Google Maps dynamically using script tag
     const loadGoogleMaps = async () => {
       try {
@@ -79,30 +103,6 @@ function MapBackground({ questionNumber }) {
       } catch (err) {
         console.error('Error loading Google Maps:', err);
         setError('Failed to load map');
-      }
-    };
-
-    const initMap = () => {
-      if (mapRef.current && !mapInstanceRef.current && window.google?.maps) {
-        // Create new map instance (only once)
-        mapInstanceRef.current = new window.google.maps.Map(mapRef.current, {
-          center: { lat: currentCity.lat, lng: currentCity.lng },
-          zoom: 12,
-          disableDefaultUI: true,
-          gestureHandling: 'none',
-          zoomControl: false,
-          scrollwheel: false,
-          disableDoubleClickZoom: true,
-          draggable: false,
-          styles: [
-            {
-              featureType: 'all',
-              elementType: 'labels',
-              stylers: [{ visibility: 'off' }]
-            }
-          ]
-        });
-        setIsLoaded(true);
       }
     };
 
