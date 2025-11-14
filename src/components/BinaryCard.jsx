@@ -61,9 +61,6 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
 
       {/* Card Container with Swipe Indicators */}
       <div className="relative">
-        {/* Swipe Indicators for Binary Questions */}
-        <SwipeIndicators x={x} />
-
         {/* Swipeable Question Card */}
         <motion.div
           className="bg-gray-50 rounded-2xl p-6 min-h-[320px] flex flex-col justify-between cursor-grab active:cursor-grabbing border border-gray-200"
