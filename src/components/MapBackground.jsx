@@ -33,14 +33,14 @@ const CITIES = [
   { name: 'Istanbul', lat: 41.0082, lng: 28.9784 }
 ];
 
-function MapBackground({ questionNumber }) {
+function MapBackground({ questionNumber, city }) {
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(null);
 
-  // Get city based on question number (cycles through cities)
-  const currentCity = CITIES[questionNumber % CITIES.length];
+  // Get city based on question number (cycles through cities) OR use provided city
+  const currentCity = city ? null : CITIES[questionNumber % CITIES.length];
 
   useEffect(() => {
     const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
@@ -55,10 +55,15 @@ function MapBackground({ questionNumber }) {
 
     const initMap = () => {
       if (mapRef.current && !mapInstanceRef.current && window.google?.maps) {
-        console.log('Initializing Google Map with city:', currentCity.name);
+        const centerLocation = currentCity 
+          ? { lat: currentCity.lat, lng: currentCity.lng }
+          : { lat: 0, lng: 0 }; // Default if using city name
+        
+        console.log('Initializing Google Map with location:', city || currentCity?.name);
+        
         // Create new map instance (only once)
         mapInstanceRef.current = new window.google.maps.Map(mapRef.current, {
-          center: { lat: currentCity.lat, lng: currentCity.lng },
+          center: centerLocation,
           zoom: 12,
           disableDefaultUI: true,
           gestureHandling: 'none',
@@ -76,6 +81,19 @@ function MapBackground({ questionNumber }) {
         });
         setIsLoaded(true);
         console.log('Google Map initialized successfully');
+        
+        // If we have a city name, geocode it
+        if (city && window.google?.maps?.Geocoder) {
+          const geocoder = new window.google.maps.Geocoder();
+          geocoder.geocode({ address: city }, (results, status) => {
+            if (status === 'OK' && results[0]) {
+              console.log('Geocoded', city, 'to', results[0].geometry.location);
+              mapInstanceRef.current.setCenter(results[0].geometry.location);
+            } else {
+              console.error('Geocoding failed for', city, ':', status);
+            }
+          });
+        }
       }
     };
 
@@ -127,10 +145,21 @@ function MapBackground({ questionNumber }) {
   // Update map center when question changes (debounced via city rotation)
   useEffect(() => {
     if (mapInstanceRef.current && isLoaded) {
-      const newCenter = { lat: currentCity.lat, lng: currentCity.lng };
-      mapInstanceRef.current.panTo(newCenter);
+      if (city && window.google?.maps?.Geocoder) {
+        // Geocode the city name
+        const geocoder = new window.google.maps.Geocoder();
+        geocoder.geocode({ address: city }, (results, status) => {
+          if (status === 'OK' && results[0]) {
+            console.log('Moving map to', city);
+            mapInstanceRef.current.panTo(results[0].geometry.location);
+          }
+        });
+      } else if (currentCity) {
+        const newCenter = { lat: currentCity.lat, lng: currentCity.lng };
+        mapInstanceRef.current.panTo(newCenter);
+      }
     }
-  }, [currentCity, isLoaded]);
+  }, [currentCity, city, isLoaded]);
 
   // Don't render anything if there's an error or no API key
   if (error) {
@@ -142,16 +171,17 @@ function MapBackground({ questionNumber }) {
 
   return (
     <div 
-      className="fixed inset-0 z-0"
+      className="absolute inset-0"
       style={{
-        opacity: 0.8, // Much more visible for testing
-        filter: 'blur(0px)', // No blur for testing
-        pointerEvents: 'none'
+        opacity: 0.6,
+        pointerEvents: 'none',
+        zIndex: 0
       }}
     >
       <div 
         ref={mapRef} 
-        className="w-full h-full bg-blue-200"
+        className="w-full h-full"
+        style={{ backgroundColor: '#e5e7eb' }}
         aria-hidden="true"
       />
     </div>
@@ -159,7 +189,8 @@ function MapBackground({ questionNumber }) {
 }
 
 MapBackground.propTypes = {
-  questionNumber: PropTypes.number.isRequired,
+  questionNumber: PropTypes.number,
+  city: PropTypes.string,
 };
 
 export default MapBackground;
