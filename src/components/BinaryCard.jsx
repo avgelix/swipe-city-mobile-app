@@ -2,7 +2,6 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 // eslint-disable-next-line no-unused-vars
 import { motion, useMotionValue, useTransform } from 'framer-motion';
-import SwipeIndicators from './SwipeIndicators';
 
 /**
  * BinaryCard Component
@@ -30,11 +29,17 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
     [1, 0, 0, 1]
   );
 
-  // Get current direction text
-  const getCurrentDirectionText = () => {
+  // Track the current direction text using state
+  const [currentDirectionText, setCurrentDirectionText] = useState('');
+
+  // Update direction text as user drags
+  const updateDirectionText = () => {
     const xVal = x.get();
-    if (Math.abs(xVal) < 50) return '';
-    return xVal > 0 ? options.right : options.left;
+    if (Math.abs(xVal) < 50) {
+      setCurrentDirectionText('');
+    } else {
+      setCurrentDirectionText(xVal > 0 ? options.right : options.left);
+    }
   };
 
   const handleDragEnd = (event, info) => {
@@ -72,6 +77,7 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
           }}
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
+          onDrag={updateDirectionText}
           onDragEnd={handleDragEnd}
           animate={exitX !== 0 ? { x: exitX } : {}}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -82,7 +88,7 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
             style={{ opacity: overlayOpacity }}
           >
             <p className="text-white text-xl md:text-2xl font-bold text-center px-8 leading-tight">
-              {getCurrentDirectionText()}
+              {currentDirectionText}
             </p>
           </motion.div>
 
@@ -98,37 +104,6 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
           <h2 className="text-2xl md:text-3xl font-bold text-gray-800 leading-relaxed">
             {text}
           </h2>
-        </div>
-
-        {/* Interactive Buttons */}
-        <div className="mt-8 border-t border-gray-200 pt-6">
-          <p className="text-sm text-gray-500 mb-4 text-center">
-            Swipe left or right • Or tap below
-          </p>
-          
-          {/* Fallback Buttons for Accessibility */}
-          <div className="grid grid-cols-2 gap-4">
-            <button
-              onClick={() => {
-                setExitX(-1000);
-                setTimeout(() => onAnswer(options.left), 200);
-              }}
-              className="text-center p-4 bg-gray-50 rounded-lg hover:bg-zillow-blue hover:text-white transition-all duration-200 active:scale-95 cursor-pointer border-2 border-transparent hover:border-zillow-blue"
-            >
-              <div className="text-3xl mb-2">←</div>
-              <p className="text-sm font-medium">{options.left}</p>
-            </button>
-            <button
-              onClick={() => {
-                setExitX(1000);
-                setTimeout(() => onAnswer(options.right), 200);
-              }}
-              className="text-center p-4 bg-gray-50 rounded-lg hover:bg-zillow-blue hover:text-white transition-all duration-200 active:scale-95 cursor-pointer border-2 border-transparent hover:border-zillow-blue"
-            >
-              <div className="text-3xl mb-2">→</div>
-              <p className="text-sm font-medium">{options.right}</p>
-            </button>
-          </div>
         </div>
       </motion.div>
       </div>
