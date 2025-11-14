@@ -127,10 +127,10 @@ function ResultsPage({ answers, onAccept, onRefuse }) {
       {/* Content */}
       <div className="relative z-10 w-full max-w-2xl mx-auto px-4">
         <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-2" style={{ textShadow: '0 4px 12px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3)' }}>
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2" style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
             Your Perfect Match!
           </h1>
-          <p className="text-white text-lg" style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.5)' }}>
+          <p className="text-gray-600 text-lg" style={{ textShadow: '0 1px 2px rgba(0, 0, 0, 0.1)' }}>
             Based on your preferences, we found your ideal city
           </p>
         </div>
