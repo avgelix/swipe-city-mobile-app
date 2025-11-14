@@ -24,6 +24,19 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
   const rotate = useTransform(x, [-200, 200], [-25, 25]);
   const opacity = useTransform(x, [-200, -100, 0, 100, 200], [0, 1, 1, 1, 0]);
 
+  // Transform for overlay text opacity
+  const overlayOpacity = useTransform(x, 
+    [-150, -50, 50, 150], 
+    [1, 0, 0, 1]
+  );
+
+  // Get current direction text
+  const getCurrentDirectionText = () => {
+    const xVal = x.get();
+    if (Math.abs(xVal) < 50) return '';
+    return xVal > 0 ? options.right : options.left;
+  };
+
   const handleDragEnd = (event, info) => {
     const threshold = 100;
     
@@ -66,7 +79,17 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
           animate={exitX !== 0 ? { x: exitX } : {}}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
-        {/* Category Badge */}
+          {/* Swipe Direction Overlay */}
+          <motion.div 
+            className="absolute inset-0 flex items-center justify-center bg-zillow-blue/90 rounded-2xl pointer-events-none"
+            style={{ opacity: overlayOpacity }}
+          >
+            <p className="text-white text-xl md:text-2xl font-bold text-center px-8 leading-tight">
+              {getCurrentDirectionText()}
+            </p>
+          </motion.div>
+
+          {/* Category Badge */}
         <div className="mb-6">
           <span className="inline-block bg-zillow-blue text-white text-sm font-semibold px-4 py-2 rounded-full">
             {category}

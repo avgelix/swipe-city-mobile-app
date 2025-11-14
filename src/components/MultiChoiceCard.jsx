@@ -37,6 +37,27 @@ function MultiChoiceCard({ question, currentQuestion, totalQuestions, onAnswer }
     }
   );
 
+  // Transform for overlay text opacity based on swipe distance
+  const overlayOpacity = useTransform(
+    [x, y],
+    ([xVal, yVal]) => {
+      const distance = Math.sqrt(xVal * xVal + yVal * yVal);
+      return distance > 50 ? Math.min(distance / 150, 1) : 0;
+    }
+  );
+
+  // Get current swipe direction text
+  const getCurrentDirectionText = () => {
+    const xVal = x.get();
+    const yVal = y.get();
+    const distance = Math.sqrt(xVal * xVal + yVal * yVal);
+    
+    if (distance < 50) return '';
+    
+    const direction = getSwipeDirection(xVal, yVal);
+    return options[direction] || '';
+  };
+
   /**
    * Handle drag end - detect direction and trigger answer
    */
@@ -96,6 +117,16 @@ function MultiChoiceCard({ question, currentQuestion, totalQuestions, onAnswer }
           animate={exitDirection ? { x: exitDirection.x, y: exitDirection.y, opacity: 0 } : {}}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
+          {/* Swipe Direction Overlay */}
+          <motion.div 
+            className="absolute inset-0 flex items-center justify-center bg-zillow-blue/90 rounded-2xl pointer-events-none"
+            style={{ opacity: overlayOpacity }}
+          >
+            <p className="text-white text-xl md:text-2xl font-bold text-center px-8 leading-tight">
+              {getCurrentDirectionText()}
+            </p>
+          </motion.div>
+
           {/* Category Badge */}
           <div className="mb-6">
             <span className="inline-block bg-zillow-blue text-white text-sm font-semibold px-4 py-2 rounded-full">
