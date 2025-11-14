@@ -44,7 +44,7 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
   return (
     <div className="w-full max-w-md mx-auto px-4">
       {/* Negative space where progress was */}
-      <div className="mb-6 h-12"></div>
+      <div className="mb-3 h-6"></div>
 
       {/* Card Container with Swipe Indicators */}
       <div className="relative">
@@ -53,7 +53,7 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
 
         {/* Swipeable Question Card */}
         <motion.div
-          className="bg-gray-50 rounded-2xl p-8 min-h-[400px] flex flex-col justify-between cursor-grab active:cursor-grabbing border border-gray-200"
+          className="bg-gray-50 rounded-2xl p-6 min-h-[320px] flex flex-col justify-between cursor-grab active:cursor-grabbing border border-gray-200"
           style={{
             x,
             rotate,

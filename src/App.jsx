@@ -63,15 +63,15 @@ function App() {
   return (
     <>
       <MapBackground questionNumber={currentQuestionIndex} />
-      <div className="min-h-screen flex items-center justify-center py-8 relative z-10">
+      <div className="min-h-screen flex items-center justify-center py-4 relative z-10">
         <div className="w-full">
-          <div className="text-center mb-8 px-4">
-            <h1 className="text-3xl md:text-4xl font-bold text-zillow-blue mb-2" style={{
+          <div className="text-center mb-4 px-4">
+            <h1 className="text-2xl md:text-3xl font-bold text-zillow-blue mb-1" style={{
               textShadow: '0 0 20px rgba(255, 255, 255, 0.9), 0 0 40px rgba(255, 255, 255, 0.7), 0 2px 4px rgba(0, 0, 0, 0.3)'
             }}>
               Swipe City
             </h1>
-            <p className="text-gray-900 font-medium" style={{
+            <p className="text-sm text-gray-900 font-medium leading-tight" style={{
               textShadow: '0 0 15px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.7), 0 1px 3px rgba(0, 0, 0, 0.3)'
             }}>
               Discover your perfect city through our card-swiping adventure

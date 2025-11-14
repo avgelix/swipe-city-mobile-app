@@ -72,16 +72,16 @@ function MultiChoiceCard({ question, currentQuestion, totalQuestions, onAnswer }
   return (
     <div className="w-full max-w-md mx-auto px-4">
       {/* Negative space where progress was */}
-      <div className="mb-6 h-12"></div>
+      <div className="mb-3 h-6"></div>
 
       {/* Card Container with Directional Hints */}
-      <div className="relative min-h-[550px] flex items-center justify-center py-8">
+      <div className="relative min-h-[480px] flex items-center justify-center py-4">
         {/* Directional Hints */}
         <DirectionalHints x={x} y={y} options={options} />
 
         {/* Swipeable Card */}
         <motion.div
-          className="bg-gray-50 rounded-2xl p-8 min-h-[350px] max-w-sm w-full flex flex-col justify-between cursor-grab active:cursor-grabbing border border-gray-200"
+          className="bg-gray-50 rounded-2xl p-6 min-h-[280px] max-w-sm w-full flex flex-col justify-between cursor-grab active:cursor-grabbing border border-gray-200"
           style={{
             x,
             y,
