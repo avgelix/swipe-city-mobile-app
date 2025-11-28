@@ -109,25 +109,25 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
           
           {/* Blue Arch Illustration - with perfect circular snowflakes */}
           <div className="w-full flex-1 flex items-end justify-center z-10">
-            <svg viewBox="0 0 200 220" className="w-3/5" style={{ height: '220px' }} xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 200 330" className="w-3/5" style={{ height: '330px' }} xmlns="http://www.w3.org/2000/svg">
               {/* Blue arch shape with rounded top */}
               <path 
-                d="M 0 220 L 0 80 Q 0 0, 100 0 Q 200 0, 200 80 L 200 220 Z" 
+                d="M 0 330 L 0 120 Q 0 0, 100 0 Q 200 0, 200 120 L 200 330 Z" 
                 fill="#5B9AAD"
               />
               {/* Falling snowflakes - perfect circles */}
-              <circle cx="140" cy="18" r="3" fill="white" opacity="0.9"/>
-              <circle cx="95" cy="35" r="2.5" fill="white" opacity="0.9"/>
-              <circle cx="160" cy="52" r="2.5" fill="white" opacity="0.9"/>
-              <circle cx="120" cy="68" r="3" fill="white" opacity="0.9"/>
-              <circle cx="70" cy="85" r="2.5" fill="white" opacity="0.9"/>
-              <circle cx="170" cy="100" r="2.5" fill="white" opacity="0.9"/>
-              <circle cx="105" cy="118" r="3" fill="white" opacity="0.9"/>
-              <circle cx="150" cy="135" r="2.5" fill="white" opacity="0.9"/>
-              <circle cx="85" cy="152" r="2.5" fill="white" opacity="0.9"/>
-              <circle cx="130" cy="168" r="3" fill="white" opacity="0.9"/>
-              <circle cx="175" cy="185" r="2.5" fill="white" opacity="0.9"/>
-              <circle cx="100" cy="202" r="2.5" fill="white" opacity="0.9"/>
+              <circle cx="140" cy="27" r="3" fill="white" opacity="0.9"/>
+              <circle cx="95" cy="52" r="2.5" fill="white" opacity="0.9"/>
+              <circle cx="160" cy="78" r="2.5" fill="white" opacity="0.9"/>
+              <circle cx="120" cy="102" r="3" fill="white" opacity="0.9"/>
+              <circle cx="70" cy="128" r="2.5" fill="white" opacity="0.9"/>
+              <circle cx="170" cy="150" r="2.5" fill="white" opacity="0.9"/>
+              <circle cx="105" cy="177" r="3" fill="white" opacity="0.9"/>
+              <circle cx="150" cy="202" r="2.5" fill="white" opacity="0.9"/>
+              <circle cx="85" cy="228" r="2.5" fill="white" opacity="0.9"/>
+              <circle cx="130" cy="252" r="3" fill="white" opacity="0.9"/>
+              <circle cx="175" cy="278" r="2.5" fill="white" opacity="0.9"/>
+              <circle cx="100" cy="303" r="2.5" fill="white" opacity="0.9"/>
             </svg>
           </div>
 
