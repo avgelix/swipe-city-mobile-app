@@ -71,31 +71,31 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
         {/* Stack card 2 (middle) */}
         <div className="absolute inset-0 bg-white rounded-3xl shadow-lg transform translate-y-1.5 scale-[0.97] opacity-50"></div>
 
-        {/* Left Arrow Hint - Subtle pulsing animation */}
+        {/* Left Arrow Hint - Smaller, closer to card */}
         <motion.div 
-          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 text-gray-300"
-          animate={{ x: [-2, 2, -2] }}
+          className="absolute -left-8 top-1/2 -translate-y-1/2 text-gray-400"
+          animate={{ x: [-1, 1, -1] }}
           transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M19 12H5M5 12l7 7M5 12l7-7"/>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <path d="M15 18l-6-6 6-6"/>
           </svg>
         </motion.div>
 
-        {/* Right Arrow Hint - Subtle pulsing animation */}
+        {/* Right Arrow Hint - Smaller, closer to card */}
         <motion.div 
-          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 text-gray-300"
-          animate={{ x: [2, -2, 2] }}
+          className="absolute -right-8 top-1/2 -translate-y-1/2 text-gray-400"
+          animate={{ x: [1, -1, 1] }}
           transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M5 12h14M19 12l-7 7M19 12l-7-7"/>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <path d="M9 18l6-6-6-6"/>
           </svg>
         </motion.div>
 
         {/* Active Swipeable Question Card */}
         <motion.div
-          className="relative bg-white rounded-3xl p-8 min-h-[480px] flex flex-col justify-center items-center cursor-grab active:cursor-grabbing shadow-2xl"
+          className="relative bg-white rounded-3xl p-6 md:p-8 min-h-[420px] md:min-h-[450px] flex flex-col justify-center items-center cursor-grab active:cursor-grabbing shadow-2xl"
           style={{
             x,
             rotate,
@@ -113,21 +113,36 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
             className="absolute inset-0 flex items-center justify-center bg-zillow-blue rounded-3xl pointer-events-none"
             style={{ opacity: overlayOpacity }}
           >
-            <p className="text-white text-xl md:text-2xl font-bold text-center px-8 leading-tight">
+            <p className="text-white text-lg md:text-xl font-bold text-center px-8 leading-tight">
               {currentDirectionText}
             </p>
           </motion.div>
 
           {/* Question Text - Centered, using Asul font */}
-          <div className="text-center space-y-8 z-10">
-            <h2 className="text-[28px] md:text-4xl font-normal text-gray-900 leading-relaxed">
+          <div className="text-center space-y-6 z-10 w-full">
+            <h2 className="text-xl md:text-2xl font-normal text-gray-900 leading-snug px-4">
               {text}
             </h2>
             
-            {/* Illustration placeholder - matches reference design height */}
-            <div className="w-full max-w-sm h-64 mx-auto">
-              {/* Future: Add category-specific illustrations here */}
-              {/* Example: Climate category → snow scene with falling snowflakes */}
+            {/* Snow Scene Illustration - matching reference */}
+            <div className="w-full max-w-[280px] h-[240px] mx-auto relative">
+              <svg viewBox="0 0 280 240" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                {/* Blue rounded rectangle background */}
+                <rect x="0" y="0" width="280" height="240" rx="20" fill="#5B9AAD"/>
+                {/* Falling snowflakes */}
+                <circle cx="70" cy="30" r="3" fill="white" opacity="0.9"/>
+                <circle cx="140" cy="50" r="3" fill="white" opacity="0.9"/>
+                <circle cx="210" cy="35" r="3" fill="white" opacity="0.9"/>
+                <circle cx="45" cy="80" r="3" fill="white" opacity="0.9"/>
+                <circle cx="180" cy="100" r="3" fill="white" opacity="0.9"/>
+                <circle cx="230" cy="120" r="3" fill="white" opacity="0.9"/>
+                <circle cx="100" cy="140" r="3" fill="white" opacity="0.9"/>
+                <circle cx="60" cy="170" r="3" fill="white" opacity="0.9"/>
+                <circle cx="150" cy="180" r="3" fill="white" opacity="0.9"/>
+                <circle cx="200" cy="160" r="3" fill="white" opacity="0.9"/>
+                <circle cx="120" cy="210" r="3" fill="white" opacity="0.9"/>
+                <circle cx="240" cy="190" r="3" fill="white" opacity="0.9"/>
+              </svg>
             </div>
           </div>
         </motion.div>
