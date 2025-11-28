@@ -117,29 +117,30 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
             </h2>
           </div>
           
-          {/* Blue Dome/Arch Illustration - matching reference exactly */}
-          <div className="w-full flex-1 flex items-end justify-center pb-0 z-10">
-            <svg viewBox="0 0 340 320" className="w-full h-auto" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet">
-              {/* Blue dome/arch shape with rounded top */}
+          {/* Blue Arch Illustration - matching reference exactly */}
+          <div className="w-full flex-1 flex items-end justify-center z-10">
+            <svg viewBox="0 0 280 380" className="w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              {/* Blue arch shape with rounded top - fills to bottom */}
               <path 
-                d="M 30 320 L 30 160 Q 30 40, 170 40 Q 310 40, 310 160 L 310 320 Z" 
+                d="M 0 380 L 0 140 Q 0 0, 140 0 Q 280 0, 280 140 L 280 380 Z" 
                 fill="#5B9AAD"
               />
-              {/* Falling snowflakes positioned naturally */}
-              <circle cx="170" cy="75" r="4" fill="white" opacity="0.9"/>
-              <circle cx="210" cy="95" r="4" fill="white" opacity="0.9"/>
-              <circle cx="130" cy="105" r="4" fill="white" opacity="0.9"/>
-              <circle cx="250" cy="125" r="4" fill="white" opacity="0.9"/>
-              <circle cx="90" cy="140" r="4" fill="white" opacity="0.9"/>
-              <circle cx="180" cy="155" r="4" fill="white" opacity="0.9"/>
-              <circle cx="145" cy="175" r="4" fill="white" opacity="0.9"/>
-              <circle cx="220" cy="185" r="4" fill="white" opacity="0.9"/>
-              <circle cx="110" cy="200" r="4" fill="white" opacity="0.9"/>
-              <circle cx="270" cy="210" r="4" fill="white" opacity="0.9"/>
-              <circle cx="160" cy="230" r="4" fill="white" opacity="0.9"/>
-              <circle cx="200" cy="250" r="4" fill="white" opacity="0.9"/>
-              <circle cx="240" cy="270" r="4" fill="white" opacity="0.9"/>
-              <circle cx="130" cy="280" r="4" fill="white" opacity="0.9"/>
+              {/* Falling snowflakes */}
+              <circle cx="200" cy="30" r="4" fill="white" opacity="0.9"/>
+              <circle cx="135" cy="60" r="3.5" fill="white" opacity="0.9"/>
+              <circle cx="235" cy="75" r="3.5" fill="white" opacity="0.9"/>
+              <circle cx="180" cy="100" r="4" fill="white" opacity="0.9"/>
+              <circle cx="105" cy="130" r="3.5" fill="white" opacity="0.9"/>
+              <circle cx="245" cy="145" r="3.5" fill="white" opacity="0.9"/>
+              <circle cx="155" cy="170" r="4" fill="white" opacity="0.9"/>
+              <circle cx="215" cy="195" r="3.5" fill="white" opacity="0.9"/>
+              <circle cx="130" cy="220" r="3.5" fill="white" opacity="0.9"/>
+              <circle cx="190" cy="245" r="4" fill="white" opacity="0.9"/>
+              <circle cx="255" cy="270" r="3.5" fill="white" opacity="0.9"/>
+              <circle cx="90" cy="290" r="3.5" fill="white" opacity="0.9"/>
+              <circle cx="165" cy="315" r="4" fill="white" opacity="0.9"/>
+              <circle cx="225" cy="340" r="3.5" fill="white" opacity="0.9"/>
+              <circle cx="135" cy="365" r="3.5" fill="white" opacity="0.9"/>
             </svg>
           </div>
         </motion.div>
