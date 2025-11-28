@@ -100,12 +100,18 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
           animate={exitX !== 0 ? { x: exitX } : {}}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
-          {/* Swipe Direction Overlay - Appears when dragging */}
+          {/* Swipe Direction Overlay - Soft light blue wash over entire card */}
           <motion.div 
-            className="absolute inset-0 flex items-center justify-center bg-zillow-blue rounded-2xl pointer-events-none"
-            style={{ opacity: overlayOpacity }}
+            className="absolute inset-0 flex items-center justify-center rounded-2xl pointer-events-none"
+            style={{ 
+              opacity: overlayOpacity,
+              backgroundColor: 'rgba(107, 165, 216, 0.9)' // Light sky blue #6BA5D8 at 90% opacity
+            }}
           >
-            <p className="text-white text-xl font-bold text-center px-8 leading-tight">
+            <p 
+              className="text-white text-xl font-normal text-center px-4 leading-snug" 
+              style={{ fontFamily: 'Asul, sans-serif' }}
+            >
               {currentDirectionText}
             </p>
           </motion.div>
