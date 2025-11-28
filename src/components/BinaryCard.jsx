@@ -102,7 +102,7 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
         >
           {/* Question Text - Centered, using Asul font */}
           <div className="text-center w-full pt-6 pb-2 z-10">
-            <h2 className="text-xl font-normal text-black leading-tight px-4" style={{ fontFamily: 'Asul, sans-serif' }}>
+            <h2 className="text-xl font-normal text-black leading-snug px-4" style={{ fontFamily: 'Asul, sans-serif' }}>
               {text}
             </h2>
           </div>
