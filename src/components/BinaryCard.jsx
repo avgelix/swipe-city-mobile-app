@@ -100,22 +100,6 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
           animate={exitX !== 0 ? { x: exitX } : {}}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
-          {/* Swipe Direction Overlay - Soft light blue wash over entire card */}
-          <motion.div 
-            className="absolute inset-0 flex items-center justify-center rounded-2xl pointer-events-none"
-            style={{ 
-              opacity: overlayOpacity,
-              backgroundColor: 'rgba(107, 165, 216, 0.9)' // Light sky blue #6BA5D8 at 90% opacity
-            }}
-          >
-            <p 
-              className="text-white text-xl font-normal text-center px-4 leading-snug" 
-              style={{ fontFamily: 'Asul, sans-serif' }}
-            >
-              {currentDirectionText}
-            </p>
-          </motion.div>
-
           {/* Question Text - Centered, using Asul font */}
           <div className="text-center w-full pt-4 pb-2 z-10">
             <h2 className="text-xl font-normal text-black leading-tight px-4" style={{ fontFamily: 'Asul, sans-serif' }}>
@@ -146,6 +130,22 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
               <circle cx="100" cy="285" r="3" fill="white" opacity="0.9"/>
             </svg>
           </div>
+
+          {/* Swipe Direction Overlay - Soft light blue wash over entire card */}
+          <motion.div 
+            className="absolute inset-0 flex items-center justify-center rounded-2xl pointer-events-none z-20"
+            style={{ 
+              opacity: overlayOpacity,
+              backgroundColor: 'rgba(107, 165, 216, 0.95)' // Light sky blue #6BA5D8 at 95% opacity
+            }}
+          >
+            <p 
+              className="text-white text-xl font-normal text-center px-4 leading-snug relative z-30" 
+              style={{ fontFamily: 'Asul, sans-serif' }}
+            >
+              {currentDirectionText}
+            </p>
+          </motion.div>
         </motion.div>
       </div>
     </div>
