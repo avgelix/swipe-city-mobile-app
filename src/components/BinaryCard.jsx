@@ -140,7 +140,7 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
             }}
           >
             <p 
-              className="text-white text-xl font-normal text-center px-8 leading-snug relative z-30" 
+              className="text-white text-xl font-normal text-center px-12 leading-snug relative z-30" 
               style={{ fontFamily: 'Asul, sans-serif' }}
             >
               {currentDirectionText}
