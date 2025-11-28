@@ -25,8 +25,8 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
 
   // Transform for overlay text opacity
   const overlayOpacity = useTransform(x, 
-    [-150, -50, 50, 150], 
-    [1, 0, 0, 1]
+    [-200, -80, 0, 80, 200], 
+    [1, 1, 0, 1, 1]
   );
 
   // Track the current direction text using state
@@ -84,7 +84,7 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
         >
           {/* Swipe Direction Overlay */}
           <motion.div 
-            className="absolute inset-0 flex items-center justify-center bg-zillow-blue/90 rounded-2xl pointer-events-none"
+            className="absolute inset-0 flex items-center justify-center bg-zillow-blue rounded-2xl pointer-events-none"
             style={{ opacity: overlayOpacity }}
           >
             <p className="text-white text-xl md:text-2xl font-bold text-center px-8 leading-tight">

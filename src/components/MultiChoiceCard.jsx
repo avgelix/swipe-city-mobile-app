@@ -41,7 +41,7 @@ function MultiChoiceCard({ question, currentQuestion, totalQuestions, onAnswer }
     [x, y],
     ([xVal, yVal]) => {
       const distance = Math.sqrt(xVal * xVal + yVal * yVal);
-      return distance > 50 ? Math.min(distance / 150, 1) : 0;
+      return distance > 80 ? 1 : 0;
     }
   );
 
@@ -121,7 +121,7 @@ function MultiChoiceCard({ question, currentQuestion, totalQuestions, onAnswer }
         >
           {/* Swipe Direction Overlay */}
           <motion.div 
-            className="absolute inset-0 flex items-center justify-center bg-zillow-blue/90 rounded-2xl pointer-events-none"
+            className="absolute inset-0 flex items-center justify-center bg-zillow-blue rounded-2xl pointer-events-none"
             style={{ opacity: overlayOpacity }}
           >
             <p className="text-white text-xl md:text-2xl font-bold text-center px-8 leading-tight">
