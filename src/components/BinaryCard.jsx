@@ -71,6 +71,20 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
         {/* Stack card 2 (middle) */}
         <div className="absolute inset-0 bg-white rounded-3xl shadow-lg transform translate-y-1.5 scale-[0.97] opacity-50"></div>
 
+        {/* Left Arrow Hint - behind card at edge */}
+        <div className="absolute -left-4 top-1/2 -translate-y-1/2 z-0">
+          <p className="text-[#636363] text-[32px] leading-none" style={{ fontFamily: 'Asul, sans-serif' }}>
+            ←
+          </p>
+        </div>
+
+        {/* Right Arrow Hint - behind card at edge */}
+        <div className="absolute -right-4 top-1/2 -translate-y-1/2 z-0">
+          <p className="text-[#636363] text-[32px] leading-none" style={{ fontFamily: 'Asul, sans-serif' }}>
+            →
+          </p>
+        </div>
+
         {/* Active Swipeable Question Card */}
         <motion.div
           className="relative bg-white rounded-[32px] p-4 w-full aspect-[2/3] flex flex-col justify-start items-center cursor-grab active:cursor-grabbing shadow-2xl"
@@ -86,19 +100,6 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
           animate={exitX !== 0 ? { x: exitX } : {}}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
-          {/* Left Arrow Hint - visible on card */}
-          <div className="absolute left-4 top-1/2 -translate-y-1/2 z-20">
-            <p className="text-[#636363] text-[32px] leading-none" style={{ fontFamily: 'Asul, sans-serif' }}>
-              ←
-            </p>
-          </div>
-
-          {/* Right Arrow Hint - visible on card */}
-          <div className="absolute right-4 top-1/2 -translate-y-1/2 z-20">
-            <p className="text-[#636363] text-[32px] leading-none" style={{ fontFamily: 'Asul, sans-serif' }}>
-              →
-            </p>
-          </div>
           {/* Swipe Direction Overlay - Appears when dragging */}
           <motion.div 
             className="absolute inset-0 flex items-center justify-center bg-zillow-blue rounded-[32px] pointer-events-none"
