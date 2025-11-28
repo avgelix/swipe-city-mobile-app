@@ -87,7 +87,7 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
 
         {/* Active Swipeable Question Card */}
         <motion.div
-          className="relative bg-white rounded-2xl p-4 pb-0 w-full aspect-[2/3] flex flex-col justify-start items-center cursor-grab active:cursor-grabbing shadow-2xl overflow-hidden"
+          className="relative bg-white rounded-2xl p-4 pt-3 pb-0 w-full aspect-[2/3] flex flex-col justify-start items-center cursor-grab active:cursor-grabbing shadow-2xl overflow-hidden"
           style={{
             x,
             rotate,
@@ -101,15 +101,15 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
           {/* Question Text - Centered, using Asul font */}
-          <div className="text-center w-full pt-4 pb-2 z-10">
+          <div className="text-center w-full pt-2 pb-1 z-10">
             <h2 className="text-xl font-normal text-black leading-tight px-4" style={{ fontFamily: 'Asul, sans-serif' }}>
               {text}
             </h2>
           </div>
           
-          {/* Blue Arch Illustration - with perfect circular snowflakes */}
-          <div className="w-full flex-1 flex items-end justify-center z-10">
-            <svg viewBox="0 0 200 330" className="w-3/5" style={{ height: '330px' }} xmlns="http://www.w3.org/2000/svg">
+          {/* Blue Arch Illustration - with perfect circular snowflakes, touches bottom */}
+          <div className="w-full flex-1 flex items-end justify-center z-10 -mb-0">
+            <svg viewBox="0 0 200 330" className="w-3/5 h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet">
               {/* Blue arch shape with rounded top */}
               <path 
                 d="M 0 330 L 0 120 Q 0 0, 100 0 Q 200 0, 200 120 L 200 330 Z" 
