@@ -73,15 +73,15 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
 
         {/* Left Arrow Hint - behind card at edge */}
         <div className="absolute -left-4 top-1/2 -translate-y-1/2 z-0">
-          <svg width="56" height="20" viewBox="0 0 56 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 0C10 0 0 6 0 10C0 14 10 20 10 20V13H56V7H10V0Z" fill="#636363"/>
+          <svg width="56" height="16" viewBox="0 0 56 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 0C8 0 0 5 0 8C0 11 8 16 8 16V10H56V6H8V0Z" fill="#636363"/>
           </svg>
         </div>
 
         {/* Right Arrow Hint - behind card at edge */}
         <div className="absolute -right-4 top-1/2 -translate-y-1/2 z-0">
-          <svg width="56" height="20" viewBox="0 0 56 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M46 20C46 20 56 14 56 10C56 6 46 0 46 0V7H0V13H46V20Z" fill="#636363"/>
+          <svg width="56" height="16" viewBox="0 0 56 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M48 16C48 16 56 11 56 8C56 5 48 0 48 0V6H0V10H48V16Z" fill="#636363"/>
           </svg>
         </div>
 
