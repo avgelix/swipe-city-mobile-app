@@ -26,7 +26,7 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
 
   // Transform for overlay text opacity
   const overlayOpacity = useTransform(x, 
-    [-200, -100, 0, 100, 200], 
+    [-100, -50, 0, 50, 100], 
     [1, 1, 0, 1, 1]
   );
 
