@@ -2,6 +2,7 @@
 
 @theme {
   --color-zillow-blue: #0074E4;
+  --font-family-sans: 'Asul', system-ui, -apple-system, sans-serif;
 }
 
 /* Mobile UX Enhancements */
