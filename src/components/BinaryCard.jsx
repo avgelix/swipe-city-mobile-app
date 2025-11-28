@@ -72,16 +72,16 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
         <div className="absolute inset-0 bg-white rounded-2xl shadow-lg transform translate-y-1.5 scale-[0.97] opacity-50"></div>
 
         {/* Left Arrow Hint - behind card at edge */}
-        <div className="absolute -left-8 top-1/2 -translate-y-1/2 z-0">
-          <svg width="32" height="16" viewBox="0 0 32 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8 0C8 0 0 5 0 8C0 11 8 16 8 16V10H32V6H8V0Z" fill="#636363"/>
+        <div className="absolute -left-6 top-1/2 -translate-y-1/2 z-0">
+          <svg width="32" height="12" viewBox="0 0 32 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 0C6 0 0 4 0 6C0 8 6 12 6 12V8H32V4H6V0Z" fill="#636363"/>
           </svg>
         </div>
 
         {/* Right Arrow Hint - behind card at edge */}
-        <div className="absolute -right-8 top-1/2 -translate-y-1/2 z-0">
-          <svg width="32" height="16" viewBox="0 0 32 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M24 16C24 16 32 11 32 8C32 5 24 0 24 0V6H0V10H24V16Z" fill="#636363"/>
+        <div className="absolute -right-6 top-1/2 -translate-y-1/2 z-0">
+          <svg width="32" height="12" viewBox="0 0 32 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M26 12C26 12 32 8 32 6C32 4 26 0 26 0V4H0V8H26V12Z" fill="#636363"/>
           </svg>
         </div>
 
