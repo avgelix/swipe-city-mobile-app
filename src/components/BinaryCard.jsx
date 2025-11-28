@@ -87,7 +87,7 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
 
         {/* Active Swipeable Question Card */}
         <motion.div
-          className="relative bg-white rounded-[32px] p-8 w-full aspect-[3/4] flex flex-col justify-start items-center cursor-grab active:cursor-grabbing shadow-2xl"
+          className="relative bg-white rounded-[32px] p-6 w-full aspect-[3/4] flex flex-col justify-start items-center cursor-grab active:cursor-grabbing shadow-2xl"
           style={{
             x,
             rotate,
@@ -111,7 +111,7 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
           </motion.div>
 
           {/* Question Text - Centered, using Asul font */}
-          <div className="text-center w-full pt-12 pb-8 z-10">
+          <div className="text-center w-full pt-6 pb-4 z-10">
             <h2 className="text-2xl font-normal text-black leading-tight px-6" style={{ fontFamily: 'Asul, sans-serif' }}>
               {text}
             </h2>
