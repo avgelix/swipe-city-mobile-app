@@ -66,10 +66,10 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
       {/* Card Container with Stacked Effect and Arrow Hints */}
       <div className="relative">
         {/* Stack card 1 (furthest back) */}
-        <div className="absolute inset-0 bg-white rounded-3xl shadow-md transform translate-y-3 scale-[0.94] opacity-30"></div>
+        <div className="absolute inset-0 bg-white rounded-2xl shadow-md transform translate-y-3 scale-[0.94] opacity-30"></div>
         
         {/* Stack card 2 (middle) */}
-        <div className="absolute inset-0 bg-white rounded-3xl shadow-lg transform translate-y-1.5 scale-[0.97] opacity-50"></div>
+        <div className="absolute inset-0 bg-white rounded-2xl shadow-lg transform translate-y-1.5 scale-[0.97] opacity-50"></div>
 
         {/* Left Arrow Hint - behind card at edge */}
         <div className="absolute -left-4 top-1/2 -translate-y-1/2 z-0">
@@ -87,7 +87,7 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
 
         {/* Active Swipeable Question Card */}
         <motion.div
-          className="relative bg-white rounded-[32px] p-4 w-full aspect-[2/3] flex flex-col justify-start items-center cursor-grab active:cursor-grabbing shadow-2xl"
+          className="relative bg-white rounded-2xl p-4 w-full aspect-[2/3] flex flex-col justify-start items-center cursor-grab active:cursor-grabbing shadow-2xl"
           style={{
             x,
             rotate,
@@ -102,7 +102,7 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
         >
           {/* Swipe Direction Overlay - Appears when dragging */}
           <motion.div 
-            className="absolute inset-0 flex items-center justify-center bg-zillow-blue rounded-[32px] pointer-events-none"
+            className="absolute inset-0 flex items-center justify-center bg-zillow-blue rounded-2xl pointer-events-none"
             style={{ opacity: overlayOpacity }}
           >
             <p className="text-white text-xl font-bold text-center px-8 leading-tight">
