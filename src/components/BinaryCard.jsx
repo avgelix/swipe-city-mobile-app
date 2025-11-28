@@ -59,7 +59,7 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto px-4">
+    <div className="w-full max-w-sm mx-auto px-4">
       {/* Negative space for progress indicator */}
       <div className="mb-3 h-6"></div>
 
