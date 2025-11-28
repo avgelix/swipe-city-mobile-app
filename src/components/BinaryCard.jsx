@@ -87,17 +87,17 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
           {/* Left Arrow Hint - visible on card */}
-          <div className="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-500 z-20">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
-              <path d="M15 6l-6 6 6 6"/>
-            </svg>
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 z-20">
+            <p className="text-[#636363] text-[32px] leading-none" style={{ fontFamily: 'Asul, sans-serif' }}>
+              ←
+            </p>
           </div>
 
           {/* Right Arrow Hint - visible on card */}
-          <div className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-500 z-20">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
-              <path d="M9 6l6 6-6 6"/>
-            </svg>
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 z-20">
+            <p className="text-[#636363] text-[32px] leading-none" style={{ fontFamily: 'Asul, sans-serif' }}>
+              →
+            </p>
           </div>
           {/* Swipe Direction Overlay - Appears when dragging */}
           <motion.div 
