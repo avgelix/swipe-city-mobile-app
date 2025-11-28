@@ -136,7 +136,7 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
             className="absolute inset-0 flex items-center justify-center rounded-2xl pointer-events-none z-20"
             style={{ 
               opacity: overlayOpacity,
-              backgroundColor: 'rgba(107, 165, 216, 0.95)' // Light sky blue #6BA5D8 at 95% opacity
+              backgroundColor: '#6BA5D8' // Light sky blue - fully opaque
             }}
           >
             <p 
