@@ -24,27 +24,27 @@ export const questions = [
   {
     id: 1,
     category: 'Climate & Environment',
-    text: 'Imagine waking up to snow on a winter morning. Does this excite you or make you want to stay in bed forever?',
+    text: 'You wake up to snow on a winter morning',
     type: 'binary',
     options: {
-      left: 'Stay in bed',
-      right: 'Excited'
+      left: 'You can find me in the depths of my comforter',
+      right: 'Where are my gloves again?! I love a snowy day'
     }
   },
   {
     id: 2,
     category: 'Climate & Environment',
-    text: 'Your wardrobe needs to work year-round. How many different types of clothing do you want to own?',
+    text: 'Your wardrobe is your temple of self-expression.',
     type: 'multiChoice',
     options: {
-      up: 'Everything - heavy coats to tank tops',
-      upRight: 'Light jacket range with some variety',
-      right: 'Moderate layers for mild changes',
-      downRight: 'Mostly the same, minor adjustments',
-      down: 'Same clothes all year',
-      downLeft: 'Endless shorts and t-shirts',
-      left: 'Only summer clothes needed',
-      upLeft: 'Only sweaters and jackets needed'
+      up: 'I like just about everything - heavy coats to tank tops',
+      upRight: "I'm always out an about in my leather jacket",
+      right: "I'll layer up if needed... like once a year",
+      downRight: "I wear mostly the same pants and shirt every day — unless I don't",
+      down: 'I trust the same old shorts and t-shirts year-round',
+      downLeft: "Let me get my sandals, shorts and t-shirt and I'm out the doot",
+      left: 'How many swimsuits does one person need?',
+      upLeft: 'Sweather weather is the best weather'
     },
     // Vertical axis: Up = More variation, Down = Less variation
     // Horizontal axis: Right = Moderate, Left = Extreme preferences
@@ -52,11 +52,11 @@ export const questions = [
   {
     id: 3,
     category: 'Climate & Environment',
-    text: 'A powerful thunderstorm rolls in. What\'s your reaction?',
+    text: 'A powerful thunderstorm rolls in',
     type: 'binary',
     options: {
-      left: 'Nervous',
-      right: 'Thrilled'
+      left: 'A chance to close the windows and put up a good movie',
+      right: 'When do we go outside to dance in the rain?'
     }
   },
 
