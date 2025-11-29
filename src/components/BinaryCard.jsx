@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import PropTypes from 'prop-types';
+import QuestionIllustration from './QuestionIllustration';
 
 /**
  * BinaryCard Component
@@ -107,29 +108,8 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
             </h2>
           </div>
           
-          {/* Blue Arch Illustration - with perfect circular snowflakes, touches bottom */}
-          <div className="w-full flex-1 flex items-end justify-center z-10 -mb-0">
-            <svg viewBox="0 0 200 330" className="w-3/5 h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet">
-              {/* Blue arch shape with rounded top */}
-              <path 
-                d="M 0 330 L 0 120 Q 0 0, 100 0 Q 200 0, 200 120 L 200 330 Z" 
-                fill="#5B9AAD"
-              />
-              {/* Falling snowflakes - perfect circles */}
-              <circle cx="140" cy="27" r="3" fill="white" opacity="0.9"/>
-              <circle cx="95" cy="52" r="2.5" fill="white" opacity="0.9"/>
-              <circle cx="160" cy="78" r="2.5" fill="white" opacity="0.9"/>
-              <circle cx="120" cy="102" r="3" fill="white" opacity="0.9"/>
-              <circle cx="70" cy="128" r="2.5" fill="white" opacity="0.9"/>
-              <circle cx="170" cy="150" r="2.5" fill="white" opacity="0.9"/>
-              <circle cx="105" cy="177" r="3" fill="white" opacity="0.9"/>
-              <circle cx="150" cy="202" r="2.5" fill="white" opacity="0.9"/>
-              <circle cx="85" cy="228" r="2.5" fill="white" opacity="0.9"/>
-              <circle cx="130" cy="252" r="3" fill="white" opacity="0.9"/>
-              <circle cx="175" cy="278" r="2.5" fill="white" opacity="0.9"/>
-              <circle cx="100" cy="303" r="2.5" fill="white" opacity="0.9"/>
-            </svg>
-          </div>
+          {/* Contextual Illustration */}
+          <QuestionIllustration questionId={question.id} />
 
           {/* Swipe Direction Overlay - Soft light blue wash over entire card */}
           <motion.div 
