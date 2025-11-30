@@ -30,22 +30,22 @@ function QuestionIllustration({ questionId }) {
     // Q2: Wardrobe/clothing variety - t-shirt icon
     2: (
       <svg viewBox="0 0 200 240" className="w-full" style={{ height: '320px' }} xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-        <path d="M 60 40 L 60 20 L 80 20 Q 80 10, 100 10 Q 120 10, 120 20 L 140 20 L 140 40 L 165 60 L 165 100 L 145 100 L 145 200 L 55 200 L 55 100 L 35 100 L 35 60 Z" fill="#6BA5D8" opacity="0.85"/>
-        <rect x="70" y="100" width="60" height="15" fill="white" opacity="0.3"/>
+        <path d="M 65 40 L 65 20 L 82 20 Q 82 10, 100 10 Q 118 10, 118 20 L 135 20 L 135 40 L 155 60 L 155 100 L 140 100 L 140 200 L 60 200 L 60 100 L 45 100 L 45 60 Z" fill="#6BA5D8" opacity="0.85"/>
+        <rect x="75" y="100" width="50" height="15" fill="white" opacity="0.3"/>
       </svg>
     ),
 
     // Q3: Thunderstorm - lightning bolt and rain
     3: (
       <svg viewBox="0 0 200 240" className="w-full" style={{ height: '320px' }} xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-        <ellipse cx="100" cy="50" rx="80" ry="50" fill="#8B9AA3" opacity="0.8"/>
-        <ellipse cx="65" cy="65" rx="70" ry="45" fill="#6B7A83" opacity="0.8"/>
-        <ellipse cx="135" cy="65" rx="75" ry="48" fill="#7B8A93" opacity="0.75"/>
-        <path d="M 100 90 L 65 170 L 90 170 L 65 240 L 135 150 L 105 150 Z" fill="#F4D03F" opacity="0.95" stroke="#E0C030" strokeWidth="2"/>
-        <line x1="30" y1="110" x2="20" y2="150" stroke="#6BA5D8" strokeWidth="5" opacity="0.7"/>
-        <line x1="55" y1="120" x2="45" y2="160" stroke="#6BA5D8" strokeWidth="5" opacity="0.7"/>
-        <line x1="150" y1="115" x2="140" y2="155" stroke="#6BA5D8" strokeWidth="5" opacity="0.7"/>
-        <line x1="175" y1="125" x2="165" y2="165" stroke="#6BA5D8" strokeWidth="5" opacity="0.7"/>
+        <ellipse cx="100" cy="55" rx="70" ry="45" fill="#8B9AA3" opacity="0.8"/>
+        <ellipse cx="70" cy="68" rx="60" ry="40" fill="#6B7A83" opacity="0.8"/>
+        <ellipse cx="130" cy="68" rx="60" ry="40" fill="#7B8A93" opacity="0.75"/>
+        <path d="M 100 95 L 70 170 L 90 170 L 70 235 L 130 155 L 105 155 Z" fill="#F4D03F" opacity="0.95" stroke="#E0C030" strokeWidth="2"/>
+        <line x1="35" y1="115" x2="28" y2="150" stroke="#6BA5D8" strokeWidth="5" opacity="0.7"/>
+        <line x1="55" y1="120" x2="48" y2="155" stroke="#6BA5D8" strokeWidth="5" opacity="0.7"/>
+        <line x1="145" y1="120" x2="138" y2="155" stroke="#6BA5D8" strokeWidth="5" opacity="0.7"/>
+        <line x1="165" y1="125" x2="158" y2="160" stroke="#6BA5D8" strokeWidth="5" opacity="0.7"/>
       </svg>
     ),
 
@@ -83,12 +83,12 @@ function QuestionIllustration({ questionId }) {
     // Q7: Coffee shop work conversations - coffee cup
     7: (
       <svg viewBox="0 0 200 240" className="w-full" style={{ height: '320px' }} xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-        <rect x="35" y="80" width="130" height="150" rx="15" fill="#8B6F47" opacity="0.85"/>
-        <rect x="45" y="90" width="110" height="130" rx="12" fill="#C4A57B" opacity="0.9"/>
-        <path d="M 155 115 Q 185 115, 185 155 Q 185 195, 155 195" stroke="#8B6F47" strokeWidth="10" fill="none" opacity="0.8"/>
-        <ellipse cx="100" cy="40" rx="60" ry="15" fill="#5B4A3C" opacity="0.7"/>
-        <path d="M 70 0 Q 82 -20, 94 -5" stroke="#8B6F47" strokeWidth="5" fill="none" opacity="0.6"/>
-        <path d="M 94 -5 Q 106 -25, 118 -10" stroke="#8B6F47" strokeWidth="5" fill="none" opacity="0.6"/>
+        <rect x="40" y="85" width="120" height="145" rx="15" fill="#8B6F47" opacity="0.85"/>
+        <rect x="48" y="93" width="104" height="130" rx="12" fill="#C4A57B" opacity="0.9"/>
+        <path d="M 152 118 Q 175 118, 175 155 Q 175 192, 152 192" stroke="#8B6F47" strokeWidth="9" fill="none" opacity="0.8"/>
+        <ellipse cx="100" cy="50" rx="55" ry="14" fill="#5B4A3C" opacity="0.7"/>
+        <path d="M 75 12 Q 85 -5, 95 8" stroke="#8B6F47" strokeWidth="5" fill="none" opacity="0.6"/>
+        <path d="M 95 8 Q 105 -5, 115 8" stroke="#8B6F47" strokeWidth="5" fill="none" opacity="0.6"/>
       </svg>
     ),
 
@@ -103,14 +103,14 @@ function QuestionIllustration({ questionId }) {
     // Q9: Friday dinner - plate with utensils
     9: (
       <svg viewBox="0 0 200 240" className="w-full" style={{ height: '320px' }} xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-        <ellipse cx="100" cy="145" rx="75" ry="12" fill="#C4A57B" opacity="0.6"/>
-        <circle cx="100" cy="120" r="65" fill="#E8D5C4" opacity="0.9" stroke="#8B7355" strokeWidth="3"/>
-        <line x1="40" y1="60" x2="40" y2="180" stroke="#8B7355" strokeWidth="5" opacity="0.8"/>
-        <line x1="30" y1="70" x2="50" y2="70" stroke="#8B7355" strokeWidth="5" opacity="0.8"/>
-        <line x1="30" y1="90" x2="50" y2="90" stroke="#8B7355" strokeWidth="5" opacity="0.8"/>
-        <line x1="30" y1="110" x2="50" y2="110" stroke="#8B7355" strokeWidth="5" opacity="0.8"/>
-        <path d="M 160 60 Q 155 100, 155 120 L 155 180" stroke="#8B7355" strokeWidth="5" fill="none" opacity="0.8"/>
-        <ellipse cx="160" cy="55" rx="8" ry="12" fill="#8B7355" opacity="0.8"/>
+        <ellipse cx="100" cy="145" rx="70" ry="12" fill="#C4A57B" opacity="0.6"/>
+        <circle cx="100" cy="120" r="60" fill="#E8D5C4" opacity="0.9" stroke="#8B7355" strokeWidth="3"/>
+        <line x1="45" y1="65" x2="45" y2="175" stroke="#8B7355" strokeWidth="5" opacity="0.8"/>
+        <line x1="37" y1="73" x2="53" y2="73" stroke="#8B7355" strokeWidth="5" opacity="0.8"/>
+        <line x1="37" y1="90" x2="53" y2="90" stroke="#8B7355" strokeWidth="5" opacity="0.8"/>
+        <line x1="37" y1="107" x2="53" y2="107" stroke="#8B7355" strokeWidth="5" opacity="0.8"/>
+        <path d="M 155 65 Q 151 100, 151 120 L 151 175" stroke="#8B7355" strokeWidth="5" fill="none" opacity="0.8"/>
+        <ellipse cx="155" cy="60" rx="7" ry="11" fill="#8B7355" opacity="0.8"/>
       </svg>
     ),
 
@@ -190,25 +190,25 @@ function QuestionIllustration({ questionId }) {
     // Q15: Exercise setting - running figure
     15: (
       <svg viewBox="0 0 200 240" className="w-full" style={{ height: '320px' }} xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-        <circle cx="100" cy="50" r="30" fill="#6BA5D8" opacity="0.9"/>
-        <path d="M 100 80 L 100 170" stroke="#6BA5D8" strokeWidth="14" opacity="0.9"/>
-        <path d="M 100 110 L 55 150" stroke="#6BA5D8" strokeWidth="12" opacity="0.9"/>
-        <path d="M 100 110 L 145 140" stroke="#6BA5D8" strokeWidth="12" opacity="0.9"/>
-        <path d="M 100 170 L 65 225" stroke="#6BA5D8" strokeWidth="12" opacity="0.9"/>
-        <path d="M 100 170 L 135 220" stroke="#6BA5D8" strokeWidth="12" opacity="0.9"/>
+        <circle cx="100" cy="52" r="28" fill="#6BA5D8" opacity="0.9"/>
+        <path d="M 100 80 L 100 165" stroke="#6BA5D8" strokeWidth="14" opacity="0.9"/>
+        <path d="M 100 110 L 62 145" stroke="#6BA5D8" strokeWidth="12" opacity="0.9"/>
+        <path d="M 100 110 L 138 137" stroke="#6BA5D8" strokeWidth="12" opacity="0.9"/>
+        <path d="M 100 165 L 70 218" stroke="#6BA5D8" strokeWidth="12" opacity="0.9"/>
+        <path d="M 100 165 L 130 215" stroke="#6BA5D8" strokeWidth="12" opacity="0.9"/>
       </svg>
     ),
 
     // Q16: Unwind - couch
     16: (
       <svg viewBox="0 0 200 180" className="w-full" style={{ height: '320px' }} xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-        <rect x="15" y="80" width="170" height="85" rx="18" fill="#8B9AA3" opacity="0.85"/>
-        <rect x="5" y="65" width="35" height="110" rx="15" fill="#7B8A93" opacity="0.8"/>
-        <rect x="160" y="65" width="35" height="110" rx="15" fill="#7B8A93" opacity="0.8"/>
-        <rect x="30" y="40" width="140" height="45" rx="10" fill="#A0ADB5" opacity="0.9"/>
-        <circle cx="65" cy="62" r="15" fill="#E8D5C4" opacity="0.8"/>
-        <circle cx="100" cy="62" r="15" fill="#E8D5C4" opacity="0.8"/>
-        <circle cx="135" cy="62" r="15" fill="#E8D5C4" opacity="0.8"/>
+        <rect x="20" y="82" width="160" height="80" rx="16" fill="#8B9AA3" opacity="0.85"/>
+        <rect x="12" y="68" width="30" height="100" rx="13" fill="#7B8A93" opacity="0.8"/>
+        <rect x="158" y="68" width="30" height="100" rx="13" fill="#7B8A93" opacity="0.8"/>
+        <rect x="32" y="45" width="136" height="42" rx="9" fill="#A0ADB5" opacity="0.9"/>
+        <circle cx="65" cy="65" r="14" fill="#E8D5C4" opacity="0.8"/>
+        <circle cx="100" cy="65" r="14" fill="#E8D5C4" opacity="0.8"/>
+        <circle cx="135" cy="65" r="14" fill="#E8D5C4" opacity="0.8"/>
       </svg>
     ),
 
@@ -224,32 +224,32 @@ function QuestionIllustration({ questionId }) {
     // Q18: Family far away - airplane
     18: (
       <svg viewBox="0 0 200 200" className="w-full" style={{ height: '320px' }} xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-        <path d="M 165 60 L 130 78 L 35 70 L 25 88 L 120 100 L 70 140 L 60 150 L 110 157 L 100 182 L 120 188 L 140 145 L 185 155 L 193 100 Z" fill="#6BA5D8" opacity="0.9"/>
-        <circle cx="170" cy="80" r="15" fill="white" opacity="0.95"/>
-        <circle cx="190" cy="80" r="15" fill="white" opacity="0.95"/>
+        <path d="M 155 65 L 125 80 L 40 73 L 32 88 L 115 98 L 72 133 L 64 142 L 108 148 L 100 170 L 117 175 L 135 137 L 175 145 L 182 100 Z" fill="#6BA5D8" opacity="0.9"/>
+        <circle cx="160" cy="82" r="13" fill="white" opacity="0.95"/>
+        <circle cx="178" cy="82" r="13" fill="white" opacity="0.95"/>
       </svg>
     ),
 
     // Q19: Flying comfort - clouds
     19: (
       <svg viewBox="0 0 200 180" className="w-full" style={{ height: '320px' }} xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-        <ellipse cx="60" cy="50" rx="50" ry="35" fill="#E8D5C4" opacity="0.85"/>
-        <ellipse cx="110" cy="35" rx="55" ry="38" fill="#D5C4B4" opacity="0.85"/>
-        <ellipse cx="150" cy="50" rx="45" ry="32" fill="#C4B4A4" opacity="0.85"/>
-        <ellipse cx="70" cy="130" rx="55" ry="38" fill="#E8D5C4" opacity="0.75"/>
-        <ellipse cx="125" cy="115" rx="60" ry="40" fill="#D5C4B4" opacity="0.75"/>
-        <ellipse cx="165" cy="130" rx="50" ry="35" fill="#C4B4A4" opacity="0.75"/>
+        <ellipse cx="65" cy="50" rx="45" ry="32" fill="#E8D5C4" opacity="0.85"/>
+        <ellipse cx="110" cy="38" rx="48" ry="35" fill="#D5C4B4" opacity="0.85"/>
+        <ellipse cx="148" cy="50" rx="40" ry="30" fill="#C4B4A4" opacity="0.85"/>
+        <ellipse cx="70" cy="128" rx="48" ry="35" fill="#E8D5C4" opacity="0.75"/>
+        <ellipse cx="120" cy="115" rx="52" ry="37" fill="#D5C4B4" opacity="0.75"/>
+        <ellipse cx="160" cy="128" rx="45" ry="32" fill="#C4B4A4" opacity="0.75"/>
       </svg>
     ),
 
     // Q20: Late for meeting - car
     20: (
       <svg viewBox="0 0 200 180" className="w-full" style={{ height: '320px' }} xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-        <rect x="25" y="50" width="150" height="95" rx="15" fill="#C97064" opacity="0.85"/>
-        <rect x="40" y="65" width="120" height="65" rx="10" fill="white" opacity="0.9"/>
-        <circle cx="60" cy="130" r="18" fill="#6BA5D8" opacity="0.9" stroke="#333" strokeWidth="3"/>
-        <circle cx="140" cy="130" r="18" fill="#6BA5D8" opacity="0.9" stroke="#333" strokeWidth="3"/>
-        <rect x="90" y="65" width="20" height="65" rx="3" fill="#7B8A93" opacity="0.8"/>
+        <rect x="30" y="55" width="140" height="90" rx="14" fill="#C97064" opacity="0.85"/>
+        <rect x="42" y="68" width="116" height="62" rx="9" fill="white" opacity="0.9"/>
+        <circle cx="62" cy="130" r="17" fill="#6BA5D8" opacity="0.9" stroke="#333" strokeWidth="3"/>
+        <circle cx="138" cy="130" r="17" fill="#6BA5D8" opacity="0.9" stroke="#333" strokeWidth="3"/>
+        <rect x="93" y="68" width="18" height="62" rx="3" fill="#7B8A93" opacity="0.8"/>
       </svg>
     )
   };
