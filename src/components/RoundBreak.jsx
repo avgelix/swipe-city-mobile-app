@@ -14,19 +14,19 @@ function RoundBreak({ roundNumber, onContinue, questionNumber }) {
   }, [onContinue]);
 
   return (
-    <div className="relative min-h-screen flex items-start justify-center overflow-hidden pt-20">
+    <div className="relative min-h-screen overflow-hidden">
       {/* Map background with 60% opacity overlay */}
       <MapBackground questionNumber={questionNumber} />
       
       {/* Blue overlay */}
       <div className="absolute inset-0 bg-[rgba(178,188,237,0.4)] pointer-events-none" />
       
-      {/* Content */}
+      {/* Round badge and title - positioned at top */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="relative z-10 flex flex-col items-center w-full"
+        className="absolute top-8 left-0 right-0 z-10 flex flex-col items-center w-full"
       >
         {/* Round badge */}
         <div className="relative mb-0">
@@ -71,8 +71,10 @@ function RoundBreak({ roundNumber, onContinue, questionNumber }) {
             GET READY TO SWIPE
           </p>
         </div>
+      </motion.div>
 
-        {/* Compass with glow effect */}
+      {/* Compass - centered on screen */}
+      <div className="absolute inset-0 flex items-center justify-center z-0">
         <motion.div
           animate={{ 
             rotate: 360,
@@ -82,7 +84,7 @@ function RoundBreak({ roundNumber, onContinue, questionNumber }) {
             rotate: { duration: 3, repeat: Infinity, ease: "linear" },
             scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
           }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+          className="relative"
           style={{ width: '280px', height: '280px' }}
         >
           {/* Outer glow circle */}
@@ -104,7 +106,7 @@ function RoundBreak({ roundNumber, onContinue, questionNumber }) {
             }}
           />
         </motion.div>
-      </motion.div>
+      </div>
     </div>
   );
 }
