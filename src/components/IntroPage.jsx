@@ -58,7 +58,7 @@ function IntroPage({ onStart }) {
           >
             {/* Title */}
             <h1
-              className="text-4xl font-bold text-black text-center mb-6"
+              className="text-5xl font-bold text-black text-center mb-4 mt-6"
               style={{
                 fontFamily: 'Asul, sans-serif',
                 letterSpacing: '-1px'
@@ -69,7 +69,7 @@ function IntroPage({ onStart }) {
 
             {/* Question Text */}
             <p
-              className="text-lg text-black text-center mb-8 leading-relaxed px-2"
+              className="text-base text-black text-center mb-6 leading-relaxed px-3"
               style={{
                 fontFamily: 'Asul, sans-serif',
                 fontWeight: 400
@@ -79,7 +79,7 @@ function IntroPage({ onStart }) {
             </p>
 
             {/* Compass */}
-            <div className="flex justify-center flex-1 items-center">
+            <div className="flex justify-center flex-1 items-center pb-8">
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ 
@@ -101,7 +101,7 @@ function IntroPage({ onStart }) {
                 <img 
                   src={compassIcon} 
                   alt="Compass" 
-                  className="w-36 h-36 object-contain relative z-10"
+                  className="w-48 h-48 object-contain relative z-10"
                 />
               </motion.div>
             </div>
