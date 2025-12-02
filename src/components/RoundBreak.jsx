@@ -4,11 +4,11 @@ import MapBackground from './MapBackground';
 import compassIcon from '../assets/compass.svg';
 
 function RoundBreak({ roundNumber, onContinue, questionNumber }) {
-  // Auto-continue after 5 seconds
+  // Auto-continue after 3 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
       onContinue();
-    }, 5000);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, [onContinue]);
@@ -26,23 +26,24 @@ function RoundBreak({ roundNumber, onContinue, questionNumber }) {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="relative z-10 flex flex-col items-center"
+        className="relative z-10 flex flex-col items-center w-full"
       >
         {/* Round badge */}
-        <div className="relative mb-6">
+        <div className="relative mb-0">
           <div 
-            className="px-6 py-2 rounded-md shadow-lg"
+            className="px-10 py-3 rounded-lg"
             style={{
-              background: 'linear-gradient(90deg, rgba(160, 195, 239, 1) 0%, rgba(160, 195, 239, 1) 100%)',
-              border: 'none'
+              background: 'linear-gradient(90deg, rgba(128, 156, 191, 1) 0%, rgba(128, 156, 191, 1) 100%)',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
             }}
           >
             <p 
-              className="text-white text-center font-medium"
+              className="text-white text-center"
               style={{
                 fontFamily: 'Asul, sans-serif',
-                fontSize: '22px',
-                fontWeight: 400
+                fontSize: '28px',
+                fontWeight: 400,
+                letterSpacing: '0.5px'
               }}
             >
               Round {roundNumber}
@@ -52,57 +53,27 @@ function RoundBreak({ roundNumber, onContinue, questionNumber }) {
 
         {/* White header bar with text */}
         <div 
-          className="bg-white px-8 py-4 mb-12 shadow-md"
+          className="bg-white px-12 py-5 w-full"
           style={{
-            border: '4px solid #809cbf',
-            borderRadius: '0'
+            borderTop: '4px solid #809cbf',
+            borderBottom: '4px solid #809cbf'
           }}
         >
           <p 
-            className="text-black text-center font-medium tracking-wide"
+            className="text-black text-center"
             style={{
               fontFamily: 'Asul, sans-serif',
-              fontSize: '26px',
-              fontWeight: 400,
-              letterSpacing: '0.5px'
+              fontSize: '40px',
+              fontWeight: 700,
+              letterSpacing: '2px'
             }}
           >
             GET READY TO SWIPE
           </p>
         </div>
 
-        {/* Compass with glow effect */}
-        <motion.div
-          animate={{ 
-            rotate: 360,
-            scale: [1, 1.1, 1]
-          }}
-          transition={{ 
-            rotate: { duration: 3, repeat: Infinity, ease: "linear" },
-            scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
-          }}
-          className="relative"
-          style={{ width: '280px', height: '280px' }}
-        >
-          {/* Outer glow circle */}
-          <div 
-            className="absolute inset-0 rounded-full"
-            style={{
-              background: 'radial-gradient(circle, rgba(160, 195, 239, 0.3) 0%, transparent 70%)',
-              filter: 'blur(20px)'
-            }}
-          />
-          
-          {/* Compass image */}
-          <img 
-            src={compassIcon} 
-            alt="Compass" 
-            className="relative w-full h-full object-contain"
-            style={{
-              filter: 'drop-shadow(0 0 30px rgba(160, 195, 239, 0.6))'
-            }}
-          />
-        </motion.div>
+        {/* Compass with glow effect - hidden to match screenshot */}
+        <div className="mt-12"></div>
       </motion.div>
     </div>
   );
