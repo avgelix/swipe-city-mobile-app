@@ -48,29 +48,13 @@ function IntroPage({ onStart }) {
           style={{ y, opacity }}
           className="relative w-full max-w-md cursor-grab active:cursor-grabbing"
         >
-          {/* Card stack effect - bottom cards */}
-          <div 
-            className="absolute inset-0 bg-white rounded-3xl"
-            style={{
-              transform: 'translateY(16px) scale(0.95)',
-              opacity: 0.5,
-              zIndex: -2
-            }}
-          />
-          <div 
-            className="absolute inset-0 bg-white rounded-3xl"
-            style={{
-              transform: 'translateY(8px) scale(0.97)',
-              opacity: 0.7,
-              zIndex: -1
-            }}
-          />
-
           {/* Main Card */}
           <div 
-            className="relative bg-white rounded-3xl shadow-2xl p-8 pb-12"
+            className="relative rounded-3xl shadow-2xl p-8 pb-12"
             style={{
-              minHeight: '500px'
+              minHeight: '500px',
+              backgroundColor: 'rgba(255, 255, 255, 0.85)',
+              backdropFilter: 'blur(10px)'
             }}
           >
             {/* Title */}
@@ -122,18 +106,27 @@ function IntroPage({ onStart }) {
                 />
               </motion.div>
             </div>
-
-            {/* Tagline */}
-            <p
-              className="text-base text-gray-600 text-center leading-relaxed px-4"
-              style={{
-                fontFamily: 'Asul, sans-serif',
-                fontWeight: 400
-              }}
-            >
-              Answer 20 questions. Discover your perfect city. Start your adventure.
-            </p>
           </div>
+
+          {/* Bottom card stack - visible at bottom edges only */}
+          <div 
+            className="absolute left-0 right-0 bg-white rounded-b-3xl"
+            style={{
+              height: '20px',
+              bottom: '-12px',
+              backgroundColor: 'rgba(255, 255, 255, 0.6)',
+              zIndex: -1
+            }}
+          />
+          <div 
+            className="absolute left-0 right-0 bg-white rounded-b-3xl"
+            style={{
+              height: '20px',
+              bottom: '-24px',
+              backgroundColor: 'rgba(255, 255, 255, 0.4)',
+              zIndex: -2
+            }}
+          />
         </motion.div>
 
         {/* Swipe instruction */}
