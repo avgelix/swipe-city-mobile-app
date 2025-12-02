@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { getSwipeDirection, isValidSwipe } from '../utils/swipeDetection';
 import { triggerHaptic } from '../utils/haptics';
+import QuestionIllustration from './QuestionIllustration';
 
 /**
  * MultiChoiceCard Component
@@ -27,12 +28,17 @@ function MultiChoiceCard({ question, currentQuestion, totalQuestions, onAnswer }
   // Transform for card rotation based on x position
   const rotate = useTransform(x, [-200, 200], [-15, 15]);
   
-  // Transform for card opacity based on distance from center
-  const opacity = useTransform(
+  // Keep card fully opaque during swipe (like BinaryCard)
+  const opacity = 1;
+
+  // Arrow visibility - fade out when card moves from center (based on 2D distance)
+  const arrowOpacity = useTransform(
     [x, y],
     ([xVal, yVal]) => {
       const distance = Math.sqrt(xVal * xVal + yVal * yVal);
-      return Math.max(1 - distance / 400, 0.3);
+      if (distance < 30) return 1; // Fully visible when centered
+      if (distance > 70) return 0; // Fully hidden when swiping
+      return 1 - (distance - 30) / 40; // Fade transition
     }
   );
 
@@ -95,21 +101,84 @@ function MultiChoiceCard({ question, currentQuestion, totalQuestions, onAnswer }
   };
 
   return (
-    <div className="w-full max-w-md mx-auto px-4">
-      {/* Negative space where progress was */}
+    <div className="w-full max-w-xs mx-auto px-4">
+      {/* Negative space for progress indicator */}
       <div className="mb-3 h-6"></div>
 
-      {/* Card Container */}
-      <div className="relative min-h-[480px] flex items-center justify-center py-4">
-        {/* Swipeable Card */}
+      {/* Card Container with Stacked Effect and 8-Directional Arrow Hints */}
+      <div className="relative">
+        {/* Stack card 1 (furthest back) */}
+        <div className="absolute inset-0 bg-white rounded-2xl shadow-md transform translate-y-3 scale-[0.94] opacity-30"></div>
+        
+        {/* Stack card 2 (middle) */}
+        <div className="absolute inset-0 bg-white rounded-2xl shadow-lg transform translate-y-1.5 scale-[0.97] opacity-50"></div>
+
+        {/* 8-Directional Arrow Hints - behind card at edges */}
+        
+        {/* Left Arrow */}
+        <motion.div className="absolute -left-4 top-1/2 -translate-y-1/2 z-0" style={{ opacity: arrowOpacity }}>
+          <svg width="32" height="8" viewBox="0 0 32 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 0C4 0 0 2.67 0 4C0 5.33 4 8 4 8V5.33H32V2.67H4V0Z" fill="#9CA3AF"/>
+          </svg>
+        </motion.div>
+
+        {/* Right Arrow */}
+        <motion.div className="absolute -right-4 top-1/2 -translate-y-1/2 z-0" style={{ opacity: arrowOpacity }}>
+          <svg width="32" height="8" viewBox="0 0 32 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M28 8C28 8 32 5.33 32 4C32 2.67 28 0 28 0V2.67H0V5.33H28V8Z" fill="#9CA3AF"/>
+          </svg>
+        </motion.div>
+
+        {/* Up Arrow */}
+        <motion.div className="absolute left-1/2 -translate-x-1/2 -top-4 z-0" style={{ opacity: arrowOpacity }}>
+          <svg width="8" height="32" viewBox="0 0 8 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 4C0 4 2.67 0 4 0C5.33 0 8 4 8 4H5.33V32H2.67V4H0Z" fill="#9CA3AF"/>
+          </svg>
+        </motion.div>
+
+        {/* Down Arrow */}
+        <motion.div className="absolute left-1/2 -translate-x-1/2 -bottom-4 z-0" style={{ opacity: arrowOpacity }}>
+          <svg width="8" height="32" viewBox="0 0 8 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 28C8 28 5.33 32 4 32C2.67 32 0 28 0 28H2.67V0H5.33V28H8Z" fill="#9CA3AF"/>
+          </svg>
+        </motion.div>
+
+        {/* Up-Left Arrow (diagonal) */}
+        <motion.div className="absolute -left-3 -top-3 z-0" style={{ opacity: arrowOpacity }}>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 8L3 3L8 3L6 5L24 23L22 24L4 6L3 8Z" fill="#9CA3AF"/>
+          </svg>
+        </motion.div>
+
+        {/* Up-Right Arrow (diagonal) */}
+        <motion.div className="absolute -right-3 -top-3 z-0" style={{ opacity: arrowOpacity }}>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 8L21 3L16 3L18 5L0 23L2 24L20 6L21 8Z" fill="#9CA3AF"/>
+          </svg>
+        </motion.div>
+
+        {/* Down-Left Arrow (diagonal) */}
+        <motion.div className="absolute -left-3 -bottom-3 z-0" style={{ opacity: arrowOpacity }}>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 16L3 21L8 21L6 19L24 1L22 0L4 18L3 16Z" fill="#9CA3AF"/>
+          </svg>
+        </motion.div>
+
+        {/* Down-Right Arrow (diagonal) */}
+        <motion.div className="absolute -right-3 -bottom-3 z-0" style={{ opacity: arrowOpacity }}>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 16L21 21L16 21L18 19L0 1L2 0L20 18L21 16Z" fill="#9CA3AF"/>
+          </svg>
+        </motion.div>
+
+        {/* Active Swipeable Question Card */}
         <motion.div
-          className="bg-gray-50 rounded-2xl p-6 min-h-[280px] max-w-sm w-full flex flex-col justify-between cursor-grab active:cursor-grabbing border border-gray-200"
+          className="relative bg-white rounded-2xl p-4 pb-0 w-full aspect-[2/3] flex flex-col justify-start items-center cursor-grab active:cursor-grabbing shadow-2xl overflow-hidden"
           style={{
             x,
             y,
             rotate,
             opacity,
-            boxShadow: '6px 6px 12px rgba(0, 0, 0, 0.08), -6px -6px 12px rgba(255, 255, 255, 0.5)'
           }}
           drag
           dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
@@ -119,29 +188,31 @@ function MultiChoiceCard({ question, currentQuestion, totalQuestions, onAnswer }
           animate={exitDirection ? { x: exitDirection.x, y: exitDirection.y, opacity: 0 } : {}}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
         >
-          {/* Swipe Direction Overlay */}
-          <motion.div 
-            className="absolute inset-0 flex items-center justify-center bg-zillow-blue rounded-2xl pointer-events-none"
-            style={{ opacity: overlayOpacity }}
-          >
-            <p className="text-white text-xl md:text-2xl font-bold text-center px-8 leading-tight">
-              {currentDirectionText}
-            </p>
-          </motion.div>
-
-          {/* Category Badge */}
-          <div className="mb-6">
-            <span className="inline-block bg-zillow-blue text-white text-sm font-semibold px-4 py-2 rounded-full">
-              {category}
-            </span>
-          </div>
-
-          {/* Question Text */}
-          <div className="flex-grow flex items-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 leading-relaxed">
+          {/* Question Text - Centered, using Asul font */}
+          <div className="text-center w-full pt-6 pb-2 z-10">
+            <h2 className="text-xl font-normal text-black leading-snug px-4" style={{ fontFamily: 'Asul, sans-serif' }}>
               {text}
             </h2>
           </div>
+          
+          {/* Contextual Illustration */}
+          <QuestionIllustration questionId={question.id} />
+
+          {/* Swipe Direction Overlay - Soft light blue wash over entire card */}
+          <motion.div 
+            className="absolute inset-0 flex items-center justify-center rounded-2xl pointer-events-none z-20"
+            style={{ 
+              opacity: overlayOpacity,
+              backgroundColor: '#6BA5D8' // Light sky blue - fully opaque
+            }}
+          >
+            <p 
+              className="text-white text-xl font-normal text-center px-12 leading-snug relative z-30" 
+              style={{ fontFamily: 'Asul, sans-serif' }}
+            >
+              {currentDirectionText}
+            </p>
+          </motion.div>
         </motion.div>
       </div>
     </div>

@@ -25,6 +25,9 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
   const rotate = useTransform(x, [-200, 200], [-10, 10]);
   const opacity = useTransform(x, [-200, -100, 0, 100, 200], [0, 1, 1, 1, 0]);
 
+  // Arrow visibility - fade out when card moves from center
+  const arrowOpacity = useTransform(x, [-50, 0, 50], [0, 1, 0]);
+
   // Transform for overlay text opacity
   const overlayOpacity = useTransform(x, 
     [-100, -50, 0, 50, 100], 
@@ -73,18 +76,18 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
         <div className="absolute inset-0 bg-white rounded-2xl shadow-lg transform translate-y-1.5 scale-[0.97] opacity-50"></div>
 
         {/* Left Arrow Hint - behind card at edge */}
-        <div className="absolute -left-6 top-1/2 -translate-y-1/2 z-0">
-          <svg width="32" height="12" viewBox="0 0 32 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M6 0C6 0 0 4 0 6C0 8 6 12 6 12V8H32V4H6V0Z" fill="#636363"/>
+        <motion.div className="absolute -left-4 top-1/2 -translate-y-1/2 z-0" style={{ opacity: arrowOpacity }}>
+          <svg width="32" height="8" viewBox="0 0 32 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 0C4 0 0 2.67 0 4C0 5.33 4 8 4 8V5.33H32V2.67H4V0Z" fill="#9CA3AF"/>
           </svg>
-        </div>
+        </motion.div>
 
         {/* Right Arrow Hint - behind card at edge */}
-        <div className="absolute -right-6 top-1/2 -translate-y-1/2 z-0">
-          <svg width="32" height="12" viewBox="0 0 32 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M26 12C26 12 32 8 32 6C32 4 26 0 26 0V4H0V8H26V12Z" fill="#636363"/>
+        <motion.div className="absolute -right-4 top-1/2 -translate-y-1/2 z-0" style={{ opacity: arrowOpacity }}>
+          <svg width="32" height="8" viewBox="0 0 32 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M28 8C28 8 32 5.33 32 4C32 2.67 28 0 28 0V2.67H0V5.33H28V8Z" fill="#9CA3AF"/>
           </svg>
-        </div>
+        </motion.div>
 
         {/* Active Swipeable Question Card */}
         <motion.div
