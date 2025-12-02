@@ -49,7 +49,7 @@ The game collects user preferences across multiple dimensions:
 - **Illustrations:** Open-source illustrations from [ManyPixels Gallery](https://www.manypixels.co/gallery)
 
 ### Background
-- **Dynamic Google Maps display**
+- **Dynamic Mapbox display**
   - Shows random city maps
   - Updates to different city with each answered question
 
@@ -65,9 +65,9 @@ The game collects user preferences across multiple dimensions:
 
 ---
 
-## 🗺️ Google Maps Setup
+## 🗺️ Mapbox Setup
 
-This project uses Google Maps API to display dynamic city backgrounds that change with each question.
+This project uses Mapbox to display dynamic city backgrounds that change with each question.
 
 ### Getting Your API Key
 
@@ -93,12 +93,12 @@ This project uses Google Maps API to display dynamic city backgrounds that chang
 ### Vercel/Production Setup
 
 Add the environment variables in your Vercel dashboard:
-- `VITE_GOOGLE_MAPS_API_KEY`: Your Google Maps API key
+- `VITE_MAPBOX_TOKEN`: Your Mapbox access token
 - `GEMINI_API_KEY`: Your Gemini API key
 
 ### Free Tier Limits
 
-The map loads once per session and updates the center point when questions change. This stays well within Google Maps free tier (28,000 loads/month).
+The map loads once per session and updates the center point when questions change. This stays well within Mapbox free tier (50,000 loads/month).
 
 **Note:** If no API key is configured, the app will work fine but won't display the map background.
 
@@ -110,7 +110,7 @@ The map loads once per session and updates the center point when questions chang
 - Node.js 18+ installed
 - npm or yarn package manager
 - Google Gemini API key (get one at [Google AI Studio](https://makersuite.google.com/app/apikey))
-- Google Maps API key (see above section)
+- Mapbox access token (see above section)
 
 ### Installation
 
@@ -212,7 +212,7 @@ npm run preview
    - Go to your project in the Vercel dashboard
    - Navigate to Settings → Environment Variables
    - Add `GEMINI_API_KEY` with your Gemini API key
-   - Add `VITE_GOOGLE_MAPS_API_KEY` with your Google Maps API key
+   - Add `VITE_MAPBOX_TOKEN` with your Mapbox access token
    - Redeploy for changes to take effect
 
 ### Automatic Deployments
@@ -232,7 +232,7 @@ session-11/
 ├── src/
 │   ├── components/
 │   │   ├── SwipeCard.jsx        # Swipe card with Framer Motion
-│   │   ├── MapBackground.jsx    # Google Maps background
+│   │   ├── MapBackground.jsx    # Mapbox background
 │   │   └── ResultsPage.jsx      # AI results display
 │   ├── App.jsx             # Main app with game flow
 │   ├── main.jsx            # React entry point

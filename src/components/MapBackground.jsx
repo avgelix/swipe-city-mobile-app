@@ -1,20 +1,21 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
+import Map from 'react-map-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 /**
  * MapBackground Component
  * 
- * Displays a dynamic Google Maps background that changes with each question.
+ * Displays a dynamic Mapbox background that changes with each question.
  * Features:
- * - 15 diverse cities with geographic coordinates
+ * - 20 diverse cities with geographic coordinates
  * - Rotates cities based on questionNumber prop
- * - Subtle styling (20% opacity, slight blur) to not distract from content
- * - Lazy loads map to optimize performance
- * - Caches map instance to avoid unnecessary reloads
- * - Mobile-responsive and stays within Google Maps free tier
+ * - Subtle styling (60% opacity) to not distract from content
+ * - Mobile-responsive and stays within Mapbox free tier (50k loads/month)
+ * - Smooth transitions between cities
  */
 
-// Array of 15 diverse cities from around the world
+// Array of 20 diverse cities from around the world
 const CITIES = [
   { name: 'Tokyo', lat: 35.6762, lng: 139.6503 },
   { name: 'Paris', lat: 48.8566, lng: 2.3522 },
@@ -52,8 +53,6 @@ function findCityCoordinates(cityName) {
 
 function MapBackground({ questionNumber, city }) {
   const mapRef = useRef(null);
-  const mapInstanceRef = useRef(null);
-  const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(null);
 
   // Get city coordinates - either from prop or cycling through list
@@ -69,115 +68,60 @@ function MapBackground({ questionNumber, city }) {
 
   const currentCity = getCityLocation();
 
-  useEffect(() => {
-    const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+  // Viewport state for the map
+  const [viewState, setViewState] = useState({
+    latitude: currentCity.lat,
+    longitude: currentCity.lng,
+    zoom: 12,
+    pitch: 0,
+    bearing: 0
+  });
 
+  // Get Mapbox token from environment
+  const mapboxToken = import.meta.env.VITE_MAPBOX_TOKEN;
+
+  useEffect(() => {
     console.log('🗺️ MapBackground mounted');
-    console.log('   - API key exists:', !!apiKey);
+    console.log('   - API token exists:', !!mapboxToken);
     console.log('   - city prop:', city);
     console.log('   - questionNumber:', questionNumber);
 
-    // If no API key is provided, don't try to load the map
-    if (!apiKey || apiKey === 'your_api_key_here') {
-      console.warn('⚠️ Google Maps API key not configured. Map background will not display.');
-      return;
+    // If no API key is provided, show warning
+    if (!mapboxToken || mapboxToken === 'your_mapbox_token_here') {
+      console.warn('⚠️ Mapbox token not configured. Map background will not display.');
+      setError('Map token not configured');
     }
-
-    const initMap = () => {
-      if (mapRef.current && !mapInstanceRef.current && window.google?.maps) {
-        const centerLocation = { lat: currentCity.lat, lng: currentCity.lng };
-        
-        console.log('✅ Initializing Google Map');
-        console.log('   - Location:', currentCity.name);
-        console.log('   - Coordinates:', centerLocation);
-        
-        // Create new map instance (only once)
-        mapInstanceRef.current = new window.google.maps.Map(mapRef.current, {
-          center: centerLocation,
-          zoom: 12,
-          disableDefaultUI: true,
-          gestureHandling: 'none',
-          zoomControl: false,
-          scrollwheel: false,
-          disableDoubleClickZoom: true,
-          draggable: false,
-          styles: [
-            {
-              featureType: 'all',
-              elementType: 'labels',
-              stylers: [{ visibility: 'off' }]
-            }
-          ]
-        });
-        setIsLoaded(true);
-        console.log('✅ Google Map initialized successfully!');
-      }
-    };
-
-    // Load Google Maps dynamically using script tag
-    const loadGoogleMaps = () => {
-      try {
-        // Check if Google Maps is already loaded
-        if (window.google?.maps) {
-          console.log('Google Maps already loaded, initializing map');
-          initMap();
-          return;
-        }
-
-        // Check if script is already being loaded
-        const existingScript = document.querySelector('script[src*="maps.googleapis.com"]');
-        if (existingScript) {
-          console.log('Google Maps script already exists, waiting for load');
-          existingScript.addEventListener('load', initMap);
-          return;
-        }
-
-        // Create script element
-        console.log('Loading Google Maps script');
-        const script = document.createElement('script');
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=weekly`;
-        script.async = true;
-        script.defer = true;
-        
-        script.onload = () => {
-          console.log('Google Maps script loaded');
-          initMap();
-        };
-        
-        script.onerror = () => {
-          console.error('Error loading Google Maps script');
-          setError('Failed to load map');
-        };
-
-        document.head.appendChild(script);
-      } catch (err) {
-        console.error('Error loading Google Maps:', err);
-        setError('Failed to load map');
-      }
-    };
-
-    loadGoogleMaps();
-  }, []); // Only run once on mount
+  }, []);
 
   // Update map center when city changes
   useEffect(() => {
-    if (mapInstanceRef.current && isLoaded && currentCity) {
-      const newCenter = { lat: currentCity.lat, lng: currentCity.lng };
-      console.log('📍 Moving map to:', currentCity.name, newCenter);
-      mapInstanceRef.current.panTo(newCenter);
+    if (currentCity) {
+      console.log('📍 Moving map to:', currentCity.name, { lat: currentCity.lat, lng: currentCity.lng });
+      setViewState(prev => ({
+        ...prev,
+        latitude: currentCity.lat,
+        longitude: currentCity.lng,
+        zoom: 12
+      }));
     }
-  }, [currentCity, isLoaded]);
+  }, [currentCity.name]); // Only update when city name changes
 
-  // Don't render anything if there's an error or no API key
-  if (error) {
-    console.error('MapBackground error, not rendering:', error);
-    return null;
+  // Don't render map if there's no token
+  if (error || !mapboxToken || mapboxToken === 'your_mapbox_token_here') {
+    console.warn('MapBackground: No valid token, showing fallback');
+    return (
+      <div 
+        className="absolute inset-0"
+        style={{
+          opacity: 0.6,
+          pointerEvents: 'none',
+          zIndex: 0,
+          backgroundColor: '#93c5fd' // Light blue fallback
+        }}
+        aria-hidden="true"
+      />
+    );
   }
-
-  console.log('🗺️ MapBackground rendering');
-  console.log('   - isLoaded:', isLoaded);
-  console.log('   - error:', error);
-  console.log('   - city:', city);
 
   return (
     <div 
@@ -186,20 +130,25 @@ function MapBackground({ questionNumber, city }) {
         opacity: 0.6,
         pointerEvents: 'none',
         zIndex: 0,
-        backgroundColor: '#93c5fd' // Light blue background for debugging
       }}
+      aria-hidden="true"
     >
-      <div 
-        ref={mapRef} 
-        className="w-full h-full"
-        style={{ backgroundColor: isLoaded ? 'transparent' : '#e5e7eb' }}
-        aria-hidden="true"
+      <Map
+        ref={mapRef}
+        {...viewState}
+        onMove={evt => setViewState(evt.viewState)}
+        mapboxAccessToken={mapboxToken}
+        mapStyle="mapbox://styles/mapbox/streets-v12"
+        style={{ width: '100%', height: '100%' }}
+        interactive={false}
+        attributionControl={false}
+        dragPan={false}
+        scrollZoom={false}
+        doubleClickZoom={false}
+        touchZoomRotate={false}
+        dragRotate={false}
+        keyboard={false}
       />
-      {!isLoaded && (
-        <div className="absolute inset-0 flex items-center justify-center text-gray-500">
-          Loading map...
-        </div>
-      )}
     </div>
   );
 }

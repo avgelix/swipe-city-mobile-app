@@ -10,7 +10,7 @@ This is a **React SPA** (single-page application) that helps users discover wher
 ### Tech Stack (See DECISIONS.md)
 - **Frontend:** React + Tailwind CSS + Framer Motion
 - **AI:** Google Gemini (gemini-2.0-flash) via Vercel serverless function
-- **Maps:** Google Maps JavaScript API (background displays)
+- **Maps:** Mapbox GL JS via react-map-gl (background displays)
 - **State:** React state + localStorage for persistence
 - **Hosting:** Vercel (SPA with serverless API proxy)
 - **Illustrations:** Open-source SVG illustrations from [ManyPixels Gallery](https://www.manypixels.co/gallery)
@@ -60,7 +60,7 @@ localStorage.setItem('gameProgress', JSON.stringify({
 - **Typography:** Asul font for question text and overlays (Google Fonts)
 - **Card design:** White cards with stacked shadow effect, rounded corners, contextual SVG illustrations
 - **Arrows:** Thin gray directional arrows that fade out during swipes
-- **Background:** Google Maps showing random cities, updates after each question
+- **Background:** Mapbox showing random cities, updates after each question
 - **Illustrations:** Custom SVG illustrations from ManyPixels Gallery stored in `src/assets/illustrations/`
   - 20 unique illustrations (Q1-snow.svg through Q20-late.svg)
   - Rendered as `<img>` tags with `object-contain` and `maxHeight: 320px`
@@ -121,9 +121,9 @@ When working with Lovable-generated code:
    - "Create a Vercel serverless function that proxies Google Gemini API calls keeping the API key secure"
    - "Build an API route that accepts user answers as JSON and returns city match from Gemini"
 
-4. **Google Maps Integration:**
-   - "Create a React component that displays Google Maps background and updates center on prop change"
-   - "Build a Maps component that cycles through random cities array without reloading unnecessarily"
+4. **Mapbox Integration:**
+   - "Create a React component that displays Mapbox background and updates center on prop change"
+   - "Build a Maps component that cycles through random cities array using react-map-gl"
 
 **Best Practices:**
 - Prompt Copilot to use Tailwind utility classes (not inline styles or CSS modules)
@@ -190,7 +190,7 @@ export const questions = [
 - **Token optimization:** Keep prompts concise to maximize free tier usage
 - **Error handling (MVP):** Simple try/catch with user-friendly message, no retry logic needed
 
-### Google Maps Background Logic
+### Mapbox Background Logic
 ```javascript
 // Rotate through random cities after each question
 const cities = ['Tokyo', 'Paris', 'NYC', 'Sydney', /* ... */];
@@ -206,7 +206,7 @@ const randomCity = cities[Math.floor(Math.random() * cities.length)];
 
 3. **Gemini API key security:** NEVER commit to Git. Always use Vercel environment variables + serverless function proxy.
 
-4. **Google Maps API quotas:** Free tier is ~28,000 loads/month. Don't reload map unnecessarily—only on question transitions.
+4. **Mapbox API quotas:** Free tier is ~50,000 loads/month. Don't reload map unnecessarily—only on question transitions.
 
 5. **Mobile-first swipe UX:** Test touch gestures on mobile; ensure swipe threshold is comfortable (not too sensitive/insensitive).
 
@@ -219,7 +219,7 @@ const randomCity = cities[Math.floor(Math.random() * cities.length)];
 - `src/components/BinaryCard.jsx` - **COMPLETED** - Binary swipe card with Framer Motion, stacked effect, arrows
 - `src/components/MultiChoiceCard.jsx` - **COMPLETED** - 8-direction swipe card matching BinaryCard design
 - `src/components/QuestionIllustration.jsx` - **COMPLETED** - Renders custom SVG illustrations for each question
-- `src/components/MapBackground.jsx` - **COMPLETED** - Google Maps integration
+- `src/components/MapBackground.jsx` - **COMPLETED** - Mapbox integration using react-map-gl
 - `src/App.jsx` - **COMPLETED** - Game state machine (questions → AI call → results)
 - `api/gemini.js` - **COMPLETED** - Vercel serverless function for Gemini API proxy
 - `vercel.json` - **COMPLETED** - Deployment configuration
@@ -227,7 +227,7 @@ const randomCity = cities[Math.floor(Math.random() * cities.length)];
 - `src/assets/illustrations/` - **COMPLETED** - 20 custom SVG illustrations from ManyPixels Gallery
 
 ### Configuration
-- Environment variables in Vercel: `GEMINI_API_KEY`, `GOOGLE_MAPS_API_KEY`
+- Environment variables in Vercel: `GEMINI_API_KEY`, `VITE_MAPBOX_TOKEN`
 - `.gitignore` - Ensure `.env.local` is ignored
 
 ## Additional Context
