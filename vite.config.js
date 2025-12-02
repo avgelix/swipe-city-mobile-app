@@ -22,13 +22,16 @@ export default defineConfig(({ mode }) => {
                 const { answers } = JSON.parse(body);
                 const apiKey = env.OPENROUTER_API_KEY;
                 
-                if (!apiKey) {
+                if (!apiKey || apiKey === 'your_openrouter_api_key_here') {
+                  console.error('❌ OPENROUTER_API_KEY not configured or still has placeholder value');
+                  console.error('   Current value:', apiKey ? `${apiKey.substring(0, 10)}...` : 'undefined');
                   res.statusCode = 500;
                   res.setHeader('Content-Type', 'application/json');
-                  res.end(JSON.stringify({ error: 'OPENROUTER_API_KEY not configured' }));
+                  res.end(JSON.stringify({ error: 'OpenRouter API key not configured. Please add OPENROUTER_API_KEY to .env.local' }));
                   return;
                 }
                 
+                console.log('✅ API key found:', apiKey.substring(0, 15) + '...');
                 console.log('🚀 Processing', answers?.length || 0, 'answers...');
                 
                 const prompt = buildPrompt(answers);
@@ -63,11 +66,15 @@ export default defineConfig(({ mode }) => {
 
                 const data = await response.json();
                 console.log('📦 Full OpenRouter response:', JSON.stringify(data, null, 2));
+                console.log('📊 Response keys:', Object.keys(data));
+                console.log('📊 Choices?:', data.choices);
+                console.log('📊 First choice?:', data.choices?.[0]);
                 
                 const text = data.choices?.[0]?.message?.content;
 
                 if (!text) {
-                  console.error('❌ No text in response. Data structure:', data);
+                  console.error('❌ No text in response.');
+                  console.error('   Full data structure:', JSON.stringify(data, null, 2));
                   throw new Error('No response from AI model. Check API key and model availability.');
                 }
                 
