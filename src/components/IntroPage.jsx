@@ -113,12 +113,12 @@ function IntroPage({ onStart }) {
             style={{
               height: '100%',
               top: '-12px',
-              backgroundColor: 'rgba(255, 255, 255, 0.6)',
+              backgroundColor: 'rgba(255, 255, 255, 0.4)',
               transform: 'scaleX(0.96)',
               transformOrigin: 'center top',
               zIndex: -1,
               backdropFilter: 'blur(10px)',
-              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
+              boxShadow: '0 8px 16px rgba(0, 0, 0, 0.2)'
             }}
           />
           <div 
@@ -126,12 +126,25 @@ function IntroPage({ onStart }) {
             style={{
               height: '100%',
               top: '-24px',
-              backgroundColor: 'rgba(255, 255, 255, 0.45)',
+              backgroundColor: 'rgba(255, 255, 255, 0.3)',
               transform: 'scaleX(0.92)',
               transformOrigin: 'center top',
               zIndex: -2,
               backdropFilter: 'blur(10px)',
-              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.08)'
+              boxShadow: '0 8px 16px rgba(0, 0, 0, 0.15)'
+            }}
+          />
+          <div 
+            className="absolute left-0 right-0 rounded-t-2xl"
+            style={{
+              height: '100%',
+              top: '-36px',
+              backgroundColor: 'rgba(255, 255, 255, 0.2)',
+              transform: 'scaleX(0.88)',
+              transformOrigin: 'center top',
+              zIndex: -3,
+              backdropFilter: 'blur(10px)',
+              boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)'
             }}
           />
         </motion.div>
