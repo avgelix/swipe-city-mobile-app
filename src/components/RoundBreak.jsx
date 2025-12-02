@@ -1,8 +1,18 @@
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 import MapBackground from './MapBackground';
 import compassIcon from '../assets/compass.svg';
 
 function RoundBreak({ roundNumber, onContinue, questionNumber }) {
+  // Auto-continue after 5 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onContinue();
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, [onContinue]);
+
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Map background with 60% opacity overlay */}
@@ -93,21 +103,6 @@ function RoundBreak({ roundNumber, onContinue, questionNumber }) {
             }}
           />
         </motion.div>
-
-        {/* Continue button (appears after animation) */}
-        <motion.button
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.5 }}
-          onClick={onContinue}
-          className="mt-12 px-8 py-3 bg-zillow-blue text-white rounded-lg font-medium shadow-lg hover:bg-blue-600 transition-colors"
-          style={{
-            fontFamily: 'Asul, sans-serif',
-            fontSize: '18px'
-          }}
-        >
-          Continue
-        </motion.button>
       </motion.div>
     </div>
   );
