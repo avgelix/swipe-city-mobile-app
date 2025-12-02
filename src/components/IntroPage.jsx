@@ -38,7 +38,7 @@ function IntroPage({ onStart }) {
       />
       
       {/* Content */}
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-end px-6 pt-40 pb-20">
+      <div className="relative z-10 min-h-screen flex flex-col items-center justify-end px-6 pt-24 pb-20">
         {/* Swipeable Card */}
         <motion.div
           drag="y"

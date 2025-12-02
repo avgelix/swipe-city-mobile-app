@@ -51,7 +51,7 @@ function App() {
   };
 
   const handleStartGame = () => {
-    setGamePhase('questions');
+    setGamePhase('roundBreak');
   };
 
   // Show intro page
