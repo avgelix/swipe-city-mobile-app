@@ -190,7 +190,7 @@ function MultiChoiceCard({ question, currentQuestion, totalQuestions, onAnswer }
 
         {/* Active Swipeable Question Card */}
         <motion.div
-          className="relative bg-white rounded-2xl p-6 pb-0 w-full aspect-[2/3] flex flex-col justify-start items-center cursor-grab active:cursor-grabbing shadow-2xl overflow-hidden"
+          className="relative bg-white rounded-2xl p-6 w-full aspect-[2/3] flex flex-col justify-start items-center cursor-grab active:cursor-grabbing shadow-2xl overflow-hidden"
           style={{
             x,
             y,
