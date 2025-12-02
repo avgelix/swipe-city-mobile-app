@@ -33,7 +33,7 @@ function IntroPage({ onStart }) {
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'linear-gradient(135deg, rgba(0, 30, 60, 0.5) 0%, rgba(40, 60, 90, 0.5) 50%, rgba(0, 116, 228, 0.4) 100%)'
+          background: 'linear-gradient(135deg, rgba(0, 30, 60, 0.65) 0%, rgba(40, 60, 90, 0.65) 50%, rgba(0, 116, 228, 0.5) 100%)'
         }}
       />
       
