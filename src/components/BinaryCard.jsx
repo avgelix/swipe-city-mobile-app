@@ -66,7 +66,7 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
   return (
     <div className="w-full max-w-xs mx-auto px-4">
       {/* Card Container with Stacked Effect and Arrow Hints */}
-      <div className="relative rounded-2xl overflow-hidden">
+      <div className="relative rounded-b-2xl">
         {/* Top card stack - properly scaled and attached */}
         <div 
           className="absolute left-0 right-0 rounded-t-2xl"
