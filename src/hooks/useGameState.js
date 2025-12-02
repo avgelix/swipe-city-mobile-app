@@ -9,11 +9,17 @@ const loadInitialState = () => {
   try {
     const savedState = localStorage.getItem(STORAGE_KEY);
     if (savedState) {
-      return JSON.parse(savedState);
+      const parsed = JSON.parse(savedState);
+      // If user was in middle of game, restore that state
+      // Otherwise start fresh with intro
+      if (parsed.gamePhase === 'questions' || parsed.gamePhase === 'roundBreak') {
+        return parsed;
+      }
     }
   } catch (error) {
     console.error('Failed to load game state from localStorage:', error);
   }
+  // Default: start at intro
   return {
     currentQuestionIndex: 0,
     answers: [],
