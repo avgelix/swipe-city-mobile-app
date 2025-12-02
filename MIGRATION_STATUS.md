@@ -4,6 +4,7 @@
 
 ✅ **Mapbox Integration Complete**
 - Replaced Google Maps with Mapbox GL JS via react-map-gl
+- Fixed import to use `react-map-gl/mapbox` (v8 compatibility)
 - All 20 cities preserved with exact coordinates
 - Dynamic city changes working (updates on question transitions)
 - Fallback background for missing/invalid tokens
