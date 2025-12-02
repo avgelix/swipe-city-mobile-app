@@ -8,11 +8,11 @@ function IntroPage({ onStart }) {
   const y = useMotionValue(0);
   const opacity = useTransform(y, [-200, 0], [0, 1]);
 
-  // Cycle through cities every 2 seconds
+  // Cycle through cities every 4 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCityIndex((prev) => (prev + 1) % 20);
-    }, 2000);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, []);
@@ -58,7 +58,7 @@ function IntroPage({ onStart }) {
           >
             {/* Title */}
             <h1
-              className="text-5xl font-bold text-black text-center mb-4 mt-6"
+              className="text-5xl text-black text-center mb-8 mt-6"
               style={{
                 fontFamily: 'Asul, sans-serif',
                 letterSpacing: '-1px'
