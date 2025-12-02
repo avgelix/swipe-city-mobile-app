@@ -44,6 +44,9 @@ The game collects user preferences across multiple dimensions:
 - **Primary Color:** Zillow blue (#0074E4)
 - **Feel:** Game-ified version of Zillow's app experience
 - **Gameplay Vibe:** "Choose your own adventure" style
+- **Screen Optimization:** Mobile-first design optimized for 375x812 screen size
+- **Responsive Design:** All elements scale proportionally at larger screen sizes
+- **Illustrations:** Open-source illustrations from [ManyPixels Gallery](https://www.manypixels.co/gallery)
 
 ### Background
 - **Dynamic Google Maps display**
