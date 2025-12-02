@@ -63,9 +63,9 @@ function RoundBreak({ roundNumber, onContinue, questionNumber }) {
             className="text-black text-center"
             style={{
               fontFamily: 'Asul, sans-serif',
-              fontSize: '32px',
+              fontSize: '24px',
               fontWeight: 700,
-              letterSpacing: '2px'
+              letterSpacing: '1px'
             }}
           >
             GET READY TO SWIPE
