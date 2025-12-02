@@ -1,4 +1,4 @@
-# Mapbox Migration - Ready to Test! ✅
+# API Migration Complete - Ready to Test! ✅
 
 ## What's Been Completed
 
@@ -8,6 +8,13 @@
 - All 20 cities preserved with exact coordinates
 - Dynamic city changes working (updates on question transitions)
 - Fallback background for missing/invalid tokens
+
+✅ **OpenRouter AI Integration Complete**
+- Replaced Google Gemini with OpenRouter (openai/gpt-oss-20b:free)
+- Truly free model with no rate limits
+- Same JSON response format maintained
+- Serverless function updated to use REST API
+- Zero dependencies in api/ directory
 
 ✅ **Dependencies Installed**
 - `mapbox-gl`: Mapbox GL JS library
@@ -32,17 +39,14 @@
 
 ## What You Need to Do
 
-1. **Get your Mapbox token** from https://account.mapbox.com/access-tokens/
+1. **Get your API keys:**
+   - **Mapbox:** https://account.mapbox.com/access-tokens/
+   - **OpenRouter:** https://openrouter.ai/keys
 
-2. **Create `.env.local`** (copy from `.env.local.example`):
-   ```bash
-   cp .env.local.example .env.local
-   ```
-
-3. **Add your token** to `.env.local`:
+2. **Update `.env.local`:**
    ```env
-   VITE_MAPBOX_TOKEN=pk.eyJ1...your_actual_token
-   GEMINI_API_KEY=your_existing_gemini_key
+   VITE_MAPBOX_TOKEN=pk.your_mapbox_token
+   OPENROUTER_API_KEY=sk-or-v1-your_openrouter_key
    ```
 
 4. **Test it**:
