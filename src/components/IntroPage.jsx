@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import MapBackground from './MapBackground';
-import compassIcon from '../assets/compass.svg';
 
 function IntroPage({ onStart }) {
   return (
@@ -8,88 +7,83 @@ function IntroPage({ onStart }) {
       {/* Map background */}
       <MapBackground questionNumber={0} />
       
-      {/* Blue overlay */}
-      <div className="absolute inset-0 bg-[rgba(178,188,237,0.4)] pointer-events-none" />
+      {/* Gradient overlay for modern look */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'linear-gradient(135deg, rgba(0, 116, 228, 0.3) 0%, rgba(128, 156, 191, 0.4) 100%)'
+        }}
+      />
       
       {/* Content */}
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6">
-        {/* Animated compass logo */}
+      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-8">
+        {/* Game title with modern typography */}
         <motion.div
-          initial={{ scale: 0, rotate: -180 }}
-          animate={{ scale: 1, rotate: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-8"
+          className="text-center mb-8"
         >
-          <img 
-            src={compassIcon} 
-            alt="Compass" 
-            className="w-32 h-32 object-contain"
+          <h1
+            className="text-7xl md:text-8xl font-bold text-white mb-6"
             style={{
-              filter: 'drop-shadow(0 0 20px rgba(160, 195, 239, 0.8))'
+              fontFamily: 'Asul, sans-serif',
+              textShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+              letterSpacing: '-2px',
+              lineHeight: '1.1'
             }}
-          />
+          >
+            Swipe City
+          </h1>
+
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="text-2xl md:text-3xl text-white max-w-2xl mx-auto leading-relaxed"
+            style={{
+              fontFamily: 'Asul, sans-serif',
+              textShadow: '0 4px 16px rgba(0, 0, 0, 0.4)',
+              fontWeight: 300
+            }}
+          >
+            Find your perfect city in 20 swipes
+          </motion.p>
         </motion.div>
 
-        {/* Game title */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="text-5xl md:text-6xl font-bold text-black mb-4 text-center"
-          style={{
-            fontFamily: 'Asul, sans-serif',
-            textShadow: '0 0 30px rgba(255, 255, 255, 0.9), 0 2px 10px rgba(255, 255, 255, 0.8), 0 4px 20px rgba(255, 255, 255, 0.6)'
-          }}
-        >
-          Swipe City
-        </motion.h1>
-
-        {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
-          className="text-xl md:text-2xl text-black text-center mb-12 max-w-lg leading-relaxed font-medium"
-          style={{
-            fontFamily: 'Asul, sans-serif',
-            textShadow: '0 0 20px rgba(255, 255, 255, 0.9), 0 2px 8px rgba(255, 255, 255, 0.7)'
-          }}
-        >
-          Discover your perfect city through 20 quick questions. Swipe your way to a new home!
-        </motion.p>
-
-        {/* Start button */}
+        {/* Start button - modern glass morphism style */}
         <motion.button
-          initial={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.7, duration: 0.5 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          transition={{ delay: 0.5, duration: 0.6 }}
+          whileHover={{ scale: 1.05, y: -2 }}
+          whileTap={{ scale: 0.98 }}
           onClick={onStart}
-          className="px-16 py-5 bg-zillow-blue text-white rounded-full font-bold text-2xl shadow-2xl hover:shadow-3xl transition-all"
+          className="relative overflow-hidden group"
           style={{
-            fontFamily: 'Asul, sans-serif',
-            border: 'none',
-            background: 'linear-gradient(135deg, #0074E4 0%, #005BB5 100%)',
-            letterSpacing: '1px'
+            fontFamily: 'Asul, sans-serif'
           }}
         >
-          TAP TO START
+          <div 
+            className="absolute inset-0 bg-white opacity-10 backdrop-blur-md"
+            style={{
+              borderRadius: '16px'
+            }}
+          />
+          <div
+            className="relative px-20 py-6 text-white font-semibold text-2xl transition-all"
+            style={{
+              background: 'linear-gradient(135deg, rgba(0, 116, 228, 0.9) 0%, rgba(0, 91, 181, 0.9) 100%)',
+              borderRadius: '16px',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(255, 255, 255, 0.1) inset',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              letterSpacing: '1px'
+            }}
+          >
+            START
+          </div>
         </motion.button>
-
-        {/* Decorative hint text */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-          className="text-black text-sm mt-8 font-medium"
-          style={{
-            fontFamily: 'Asul, sans-serif',
-            textShadow: '0 0 15px rgba(255, 255, 255, 0.9), 0 1px 5px rgba(255, 255, 255, 0.7)'
-          }}
-        >
-          Swipe left or right • 4 rounds • 20 questions
-        </motion.p>
       </div>
     </div>
   );
