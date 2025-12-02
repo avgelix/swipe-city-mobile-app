@@ -14,7 +14,7 @@ function RoundBreak({ roundNumber, onContinue, questionNumber }) {
   }, [onContinue]);
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <div className="relative min-h-screen flex items-start justify-center overflow-hidden pt-20">
       {/* Map background with 60% opacity overlay */}
       <MapBackground questionNumber={questionNumber} />
       
@@ -82,8 +82,8 @@ function RoundBreak({ roundNumber, onContinue, questionNumber }) {
             rotate: { duration: 3, repeat: Infinity, ease: "linear" },
             scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
           }}
-          className="relative mt-16"
-          style={{ width: '200px', height: '200px' }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+          style={{ width: '280px', height: '280px' }}
         >
           {/* Outer glow circle */}
           <div 
