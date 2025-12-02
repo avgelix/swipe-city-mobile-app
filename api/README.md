@@ -6,7 +6,7 @@ This directory contains Vercel serverless functions for the "Where to Move" game
 
 ### `/api/gemini.js`
 
-**Purpose:** Securely proxy requests to Google Gemini AI to generate city recommendations.
+**Purpose:** Securely proxy requests to OpenRouter AI (using gpt-oss-20b:free model) to generate city recommendations.
 
 **Method:** POST
 
@@ -46,13 +46,13 @@ This directory contains Vercel serverless functions for the "Where to Move" game
 - `200` - Success
 - `400` - Invalid request body
 - `405` - Method not allowed (use POST)
-- `500` - Server error (API key missing or Gemini API failure)
+- `500` - Server error (API key missing or OpenRouter API failure)
 
 ### Environment Variables
 
 Required environment variables (set in Vercel dashboard or `.env.local`):
 
-- `GEMINI_API_KEY` - Google Gemini API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+- `OPENROUTER_API_KEY` - OpenRouter API key from [OpenRouter Keys](https://openrouter.ai/keys)
 
 ### Local Testing
 
@@ -63,7 +63,7 @@ Required environment variables (set in Vercel dashboard or `.env.local`):
 
 2. Create `.env.local` file:
    ```
-   GEMINI_API_KEY=your_actual_api_key_here
+   OPENROUTER_API_KEY=your_actual_api_key_here
    ```
 
 3. Run development server with Vercel functions:
@@ -99,5 +99,5 @@ Required environment variables (set in Vercel dashboard or `.env.local`):
 The function includes comprehensive error handling:
 - Missing API key → 500 error
 - Invalid request body → 400 error
-- Gemini API failures → 500 error with retry option
+- OpenRouter API failures → 500 error with retry option
 - JSON parsing errors → 500 error with fallback message

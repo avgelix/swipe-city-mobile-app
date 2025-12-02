@@ -1,13 +1,11 @@
 /**
- * Vercel Serverless Function: Gemini API Proxy
+ * Vercel Serverless Function: OpenRouter API Proxy
  * 
- * This function keeps the GEMINI_API_KEY secure by handling AI requests server-side.
+ * This function keeps the OPENROUTER_API_KEY secure by handling AI requests server-side.
  * It accepts user answers, builds a prompt, and returns a city recommendation.
  * 
- * Updated: 2025-11-14
+ * Updated: 2025-12-02
  */
-
-import { GoogleGenerativeAI } from '@google/generative-ai';
 
 export default async function handler(req, res) {
   // Only allow POST requests
@@ -17,9 +15,9 @@ export default async function handler(req, res) {
 
   try {
     // Validate API key exists
-    const apiKey = process.env.GEMINI_API_KEY;
+    const apiKey = process.env.OPENROUTER_API_KEY;
     if (!apiKey) {
-      console.error('GEMINI_API_KEY is not configured');
+      console.error('OPENROUTER_API_KEY is not configured');
       return res.status(500).json({ 
         error: 'API configuration error. Please contact support.' 
       });
@@ -33,26 +31,52 @@ export default async function handler(req, res) {
       });
     }
 
-    // Initialize Gemini AI
-    const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
-
     // Build the prompt from user answers
     const prompt = buildPrompt(answers);
 
-    // Generate AI response
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const text = response.text();
+    // Call OpenRouter API
+    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+        'HTTP-Referer': 'https://swipe-city.vercel.app',
+        'X-Title': 'Swipe City'
+      },
+      body: JSON.stringify({
+        model: 'openai/gpt-oss-20b:free',
+        messages: [
+          {
+            role: 'user',
+            content: prompt
+          }
+        ],
+        temperature: 0.7,
+        max_tokens: 500
+      })
+    });
 
-    // Parse the JSON response from Gemini
-    const cityMatch = parseGeminiResponse(text);
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      console.error('OpenRouter API Error:', response.status, errorData);
+      throw new Error(`OpenRouter API returned ${response.status}`);
+    }
+
+    const data = await response.json();
+    const text = data.choices[0]?.message?.content;
+
+    if (!text) {
+      throw new Error('No response from AI model');
+    }
+
+    // Parse the JSON response from OpenRouter
+    const cityMatch = parseAIResponse(text);
 
     // Return the city match
     return res.status(200).json(cityMatch);
 
   } catch (error) {
-    console.error('Gemini API Error:', error);
+    console.error('OpenRouter API Error:', error);
     
     // Return user-friendly error message
     const isDevelopment = process.env.NODE_ENV === 'development';
@@ -64,7 +88,7 @@ export default async function handler(req, res) {
 }
 
 /**
- * Build a structured prompt for Gemini based on user answers
+ * Build a structured prompt for OpenRouter based on user answers
  */
 function buildPrompt(answers) {
   // Group answers by category for better context
@@ -112,11 +136,11 @@ Respond ONLY with valid JSON in this exact format:
 }
 
 /**
- * Parse Gemini's response and extract JSON
+ * Parse AI response and extract JSON
  */
-function parseGeminiResponse(text) {
+function parseAIResponse(text) {
   try {
-    // Gemini sometimes wraps JSON in markdown code blocks
+    // AI models sometimes wrap JSON in markdown code blocks
     let jsonText = text.trim();
     
     // Remove markdown code blocks if present
@@ -141,7 +165,7 @@ function parseGeminiResponse(text) {
     };
     
   } catch (parseError) {
-    console.error('Failed to parse Gemini response:', text, parseError);
+    console.error('Failed to parse AI response:', text, parseError);
     throw new Error('Invalid AI response format');
   }
 }

@@ -94,7 +94,7 @@ This project uses Mapbox to display dynamic city backgrounds that change with ea
 
 Add the environment variables in your Vercel dashboard:
 - `VITE_MAPBOX_TOKEN`: Your Mapbox access token
-- `GEMINI_API_KEY`: Your Gemini API key
+- `OPENROUTER_API_KEY`: Your OpenRouter API key
 
 ### Free Tier Limits
 
@@ -109,7 +109,7 @@ The map loads once per session and updates the center point when questions chang
 ### Prerequisites
 - Node.js 18+ installed
 - npm or yarn package manager
-- Google Gemini API key (get one at [Google AI Studio](https://makersuite.google.com/app/apikey))
+- OpenRouter API key (get one at [OpenRouter Keys](https://openrouter.ai/keys))
 - Mapbox access token (see above section)
 
 ### Installation
@@ -211,7 +211,7 @@ npm run preview
 4. **Set Environment Variables**
    - Go to your project in the Vercel dashboard
    - Navigate to Settings → Environment Variables
-   - Add `GEMINI_API_KEY` with your Gemini API key
+   - Add `OPENROUTER_API_KEY` with your OpenRouter API key
    - Add `VITE_MAPBOX_TOKEN` with your Mapbox access token
    - Redeploy for changes to take effect
 
@@ -227,7 +227,7 @@ npm run preview
 ```
 session-11/
 ├── api/
-│   ├── gemini.js           # Vercel serverless function for AI
+│   ├── gemini.js           # Vercel serverless function for AI (uses OpenRouter)
 │   └── README.md           # API documentation
 ├── src/
 │   ├── components/
