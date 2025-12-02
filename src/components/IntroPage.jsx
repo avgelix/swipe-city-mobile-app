@@ -33,7 +33,7 @@ function IntroPage({ onStart }) {
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'linear-gradient(135deg, rgba(0, 30, 60, 0.75) 0%, rgba(40, 60, 90, 0.75) 50%, rgba(0, 116, 228, 0.6) 100%)'
+          background: 'linear-gradient(135deg, rgba(0, 30, 60, 0.5) 0%, rgba(40, 60, 90, 0.5) 50%, rgba(0, 116, 228, 0.4) 100%)'
         }}
       />
       
@@ -75,7 +75,7 @@ function IntroPage({ onStart }) {
                 fontWeight: 400
               }}
             >
-              Do you ever wonder where in the world you would be at peace?
+              Do you ever wonder<br />where in the world you<br />would be at peace?
             </p>
 
             {/* Compass */}
