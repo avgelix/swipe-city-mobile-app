@@ -1,9 +1,8 @@
 /**
- * Local Development API Handler for Gemini
- * This file is used only in local development to test the Gemini API
+ * Local Development API Handler for OpenRouter
+ * This file is used only in local development to test the OpenRouter API
  */
 
-import { GoogleGenerativeAI } from '@google/generative-ai';
 import 'dotenv/config';
 
 export async function handleGeminiRequest(req, res) {
@@ -25,13 +24,13 @@ export async function handleGeminiRequest(req, res) {
   req.on('end', async () => {
     try {
       // Validate API key exists
-      const apiKey = process.env.GEMINI_API_KEY;
+      const apiKey = process.env.OPENROUTER_API_KEY;
       if (!apiKey) {
-        console.error('❌ GEMINI_API_KEY is not configured in .env.local');
+        console.error('❌ OPENROUTER_API_KEY is not configured in .env.local');
         res.statusCode = 500;
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify({ 
-          error: 'API configuration error. GEMINI_API_KEY not found.' 
+          error: 'API configuration error. OPENROUTER_API_KEY not found.' 
         }));
         return;
       }
@@ -49,24 +48,50 @@ export async function handleGeminiRequest(req, res) {
 
       console.log('🚀 Processing', answers.length, 'answers...');
 
-      // Initialize Gemini AI
-      const genAI = new GoogleGenerativeAI(apiKey);
-      const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
-
       // Build the prompt from user answers
       const prompt = buildPrompt(answers);
 
-      console.log('💬 Sending prompt to Gemini...');
+      console.log('💬 Sending prompt to OpenRouter...');
 
-      // Generate AI response
-      const result = await model.generateContent(prompt);
-      const response = await result.response;
-      const text = response.text();
+      // Call OpenRouter API
+      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+          'HTTP-Referer': 'http://localhost:5173',
+          'X-Title': 'Swipe City - Local Dev'
+        },
+        body: JSON.stringify({
+          model: 'openai/gpt-oss-20b:free',
+          messages: [
+            {
+              role: 'user',
+              content: prompt
+            }
+          ],
+          temperature: 0.7,
+          max_tokens: 500
+        })
+      });
 
-      console.log('📝 Gemini response:', text);
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        console.error('OpenRouter API Error:', response.status, errorData);
+        throw new Error(`OpenRouter API returned ${response.status}`);
+      }
 
-      // Parse the JSON response from Gemini
-      const cityMatch = parseGeminiResponse(text);
+      const data = await response.json();
+      const text = data.choices[0]?.message?.content;
+
+      if (!text) {
+        throw new Error('No response from AI model');
+      }
+
+      console.log('📝 OpenRouter response:', text);
+
+      // Parse the JSON response
+      const cityMatch = parseAIResponse(text);
 
       console.log('✅ City match:', cityMatch);
 
@@ -76,7 +101,7 @@ export async function handleGeminiRequest(req, res) {
       res.end(JSON.stringify(cityMatch));
 
     } catch (error) {
-      console.error('💥 Gemini API Error:', error);
+      console.error('💥 OpenRouter API Error:', error);
       
       res.statusCode = 500;
       res.setHeader('Content-Type', 'application/json');
@@ -89,7 +114,7 @@ export async function handleGeminiRequest(req, res) {
 }
 
 /**
- * Build a structured prompt for Gemini based on user answers
+ * Build a structured prompt for OpenRouter based on user answers
  */
 function buildPrompt(answers) {
   // Group answers by category for better context
@@ -137,11 +162,11 @@ Respond ONLY with valid JSON in this exact format:
 }
 
 /**
- * Parse Gemini's response and extract JSON
+ * Parse AI response and extract JSON
  */
-function parseGeminiResponse(text) {
+function parseAIResponse(text) {
   try {
-    // Gemini sometimes wraps JSON in markdown code blocks
+    // AI models sometimes wrap JSON in markdown code blocks
     let jsonText = text.trim();
     
     // Remove markdown code blocks if present
@@ -166,7 +191,7 @@ function parseGeminiResponse(text) {
     };
     
   } catch (parseError) {
-    console.error('Failed to parse Gemini response:', text, parseError);
+    console.error('Failed to parse AI response:', text, parseError);
     throw new Error('Invalid AI response format');
   }
 }
