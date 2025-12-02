@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 
 // Import custom SVG illustrations as URLs
@@ -30,6 +30,9 @@ import Q20Late from '../assets/illustrations/Q20-late.svg';
  * Uses imported SVG files that maintain proportions and fit within card space
  */
 function QuestionIllustration({ questionId }) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
+
   const illustrationSrc = useMemo(() => {
     const illustrations = {
       1: Q1Snow,
@@ -61,15 +64,46 @@ function QuestionIllustration({ questionId }) {
 
   return (
     <div className="w-full flex-1 flex items-end justify-center px-4 pb-4 z-10">
+      {/* Show a subtle loading indicator while image loads */}
+      {!imageLoaded && !imageError && (
+        <div 
+          className="w-full max-w-full flex items-center justify-center" 
+          style={{ height: '320px' }}
+        >
+          <div className="animate-pulse text-gray-300">Loading...</div>
+        </div>
+      )}
+      
       <img 
         src={illustrationSrc}
-        alt={`Illustration for question ${questionId}`}
-        className="w-full max-w-full object-contain" 
+        alt=""
+        className={`w-full max-w-full object-contain transition-opacity duration-300 ${
+          imageLoaded ? 'opacity-100' : 'opacity-0'
+        }`}
         style={{ 
           height: 'auto',
           maxHeight: '320px',
-        }} 
+          display: imageLoaded ? 'block' : 'none'
+        }}
+        onLoad={() => {
+          setImageLoaded(true);
+          setImageError(false);
+        }}
+        onError={(e) => {
+          console.error(`Failed to load illustration for question ${questionId}:`, e);
+          setImageError(true);
+        }}
       />
+      
+      {/* Fallback if image fails to load */}
+      {imageError && (
+        <div 
+          className="w-full max-w-full flex items-center justify-center text-gray-400" 
+          style={{ height: '320px' }}
+        >
+          <span className="text-sm">Image unavailable</span>
+        </div>
+      )}
     </div>
   );
 }
