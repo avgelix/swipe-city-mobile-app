@@ -44,7 +44,7 @@ export default async function handler(req, res) {
         'X-Title': 'Swipe City'
       },
       body: JSON.stringify({
-        model: 'google/gemini-flash-1.5:free',
+        model: 'arcee-ai/trinity-mini:free',
         messages: [
           {
             role: 'user',

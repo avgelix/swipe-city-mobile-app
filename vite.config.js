@@ -46,7 +46,7 @@ export default defineConfig(({ mode }) => {
                     'X-Title': 'Swipe City - Local Dev'
                   },
                   body: JSON.stringify({
-                    model: 'google/gemini-flash-1.5:free',
+                    model: 'arcee-ai/trinity-mini:free',
                     messages: [
                       {
                         role: 'user',
