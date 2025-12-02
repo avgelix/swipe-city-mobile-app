@@ -31,7 +31,7 @@ export default defineConfig(({ mode }) => {
                   return;
                 }
                 
-                console.log('✅ API key found:', apiKey.substring(0, 15) + '...');
+                console.log('✅ API key found');
                 console.log('🚀 Processing', answers?.length || 0, 'answers...');
                 
                 const prompt = buildPrompt(answers);
@@ -65,20 +65,15 @@ export default defineConfig(({ mode }) => {
                 }
 
                 const data = await response.json();
-                console.log('📦 Full OpenRouter response:', JSON.stringify(data, null, 2));
-                console.log('📊 Response keys:', Object.keys(data));
-                console.log('📊 Choices?:', data.choices);
-                console.log('📊 First choice?:', data.choices?.[0]);
-                
                 const text = data.choices?.[0]?.message?.content;
 
                 if (!text) {
-                  console.error('❌ No text in response.');
-                  console.error('   Full data structure:', JSON.stringify(data, null, 2));
-                  throw new Error('No response from AI model. Check API key and model availability.');
+                  console.error('❌ No response from AI model');
+                  console.error('Full response:', JSON.stringify(data, null, 2));
+                  throw new Error('No response from AI model. The API may be rate-limited. Please try again.');
                 }
                 
-                console.log('📝 OpenRouter response:', text.substring(0, 200));
+                console.log('✅ City recommendation generated successfully');
                 
                 const cityMatch = parseAIResponse(text);
                 
