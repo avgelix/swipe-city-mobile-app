@@ -46,7 +46,7 @@ export default defineConfig(({ mode }) => {
                     'X-Title': 'Swipe City - Local Dev'
                   },
                   body: JSON.stringify({
-                    model: 'meta-llama/llama-3.2-3b-instruct:free',
+                    model: 'google/gemini-flash-1.5:free',
                     messages: [
                       {
                         role: 'user',
