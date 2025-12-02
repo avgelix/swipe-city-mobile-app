@@ -64,16 +64,33 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
 
   return (
     <div className="w-full max-w-xs mx-auto px-4">
-      {/* Negative space for progress indicator */}
-      <div className="mb-3 h-6"></div>
-
       {/* Card Container with Stacked Effect and Arrow Hints */}
       <div className="relative">
-        {/* Stack card 1 (furthest back) */}
-        <div className="absolute inset-0 bg-white rounded-2xl shadow-md transform translate-y-3 scale-[0.94] opacity-30"></div>
-        
-        {/* Stack card 2 (middle) */}
-        <div className="absolute inset-0 bg-white rounded-2xl shadow-lg transform translate-y-1.5 scale-[0.97] opacity-50"></div>
+        {/* Top card stack - properly scaled and attached */}
+        <div 
+          className="absolute left-0 right-0 rounded-t-2xl"
+          style={{
+            height: '100%',
+            top: '-12px',
+            backgroundColor: 'rgba(255, 255, 255, 0.6)',
+            transform: 'scaleX(0.96)',
+            transformOrigin: 'center top',
+            zIndex: -1,
+            backdropFilter: 'blur(10px)'
+          }}
+        />
+        <div 
+          className="absolute left-0 right-0 rounded-t-2xl"
+          style={{
+            height: '100%',
+            top: '-24px',
+            backgroundColor: 'rgba(255, 255, 255, 0.45)',
+            transform: 'scaleX(0.92)',
+            transformOrigin: 'center top',
+            zIndex: -2,
+            backdropFilter: 'blur(10px)'
+          }}
+        />
 
         {/* Left Arrow Hint - behind card at edge */}
         <motion.div className="absolute -left-4 top-1/2 -translate-y-1/2 z-0" style={{ opacity: arrowOpacity }}>
@@ -91,7 +108,7 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
 
         {/* Active Swipeable Question Card */}
         <motion.div
-          className="relative bg-white rounded-2xl p-4 pb-0 w-full aspect-[2/3] flex flex-col justify-start items-center cursor-grab active:cursor-grabbing shadow-2xl overflow-hidden"
+          className="relative bg-white rounded-2xl p-6 pb-0 w-full aspect-[2/3] flex flex-col justify-start items-center cursor-grab active:cursor-grabbing shadow-2xl overflow-hidden"
           style={{
             x,
             rotate,
@@ -106,7 +123,7 @@ function BinaryCard({ question, currentQuestion, totalQuestions, onAnswer }) {
         >
           {/* Question Text - Centered, using Asul font */}
           <div className="text-center w-full pt-6 pb-2 z-10">
-            <h2 className="text-xl font-normal text-black leading-snug px-4" style={{ fontFamily: 'Asul, sans-serif' }}>
+            <h2 className="text-lg font-normal text-black leading-snug px-3" style={{ fontFamily: 'Asul, sans-serif' }}>
               {text}
             </h2>
           </div>
