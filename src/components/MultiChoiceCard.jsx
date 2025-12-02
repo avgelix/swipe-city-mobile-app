@@ -148,56 +148,56 @@ function MultiChoiceCard({ question, currentQuestion, totalQuestions, onAnswer }
         {/* 8-Directional Arrow Hints - behind card at edges */}
         
         {/* Left Arrow */}
-        <motion.div className="absolute -left-4 top-1/2 -translate-y-1/2 z-0" style={{ opacity: arrowOpacity }}>
+        <motion.div className="absolute -left-6 top-1/2 -translate-y-1/2 z-0" style={{ opacity: arrowOpacity }}>
           <svg width="32" height="32" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M73.4 297.4C60.9 309.9 60.9 330.2 73.4 342.7L233.4 502.7C245.9 515.2 266.2 515.2 278.7 502.7C291.2 490.2 291.2 469.9 278.7 457.4L173.3 352L544 352C561.7 352 576 337.7 576 320C576 302.3 561.7 288 544 288L173.3 288L278.7 182.6C291.2 170.1 291.2 149.8 278.7 137.3C266.2 124.8 245.9 124.8 233.4 137.3L73.4 297.3z" fill="#9CA3AF"/>
           </svg>
         </motion.div>
 
         {/* Right Arrow */}
-        <motion.div className="absolute -right-4 top-1/2 -translate-y-1/2 z-0" style={{ opacity: arrowOpacity }}>
+        <motion.div className="absolute -right-6 top-1/2 -translate-y-1/2 z-0" style={{ opacity: arrowOpacity }}>
           <svg width="32" height="32" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z" fill="#9CA3AF"/>
           </svg>
         </motion.div>
 
         {/* Up Arrow */}
-        <motion.div className="absolute left-1/2 -translate-x-1/2 -top-4 z-0" style={{ opacity: arrowOpacity }}>
+        <motion.div className="absolute left-1/2 -translate-x-1/2 -top-6 z-0" style={{ opacity: arrowOpacity }}>
           <svg width="32" height="32" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'rotate(-90deg)' }}>
             <path d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z" fill="#9CA3AF"/>
           </svg>
         </motion.div>
 
         {/* Down Arrow */}
-        <motion.div className="absolute left-1/2 -translate-x-1/2 -bottom-4 z-0" style={{ opacity: arrowOpacity }}>
+        <motion.div className="absolute left-1/2 -translate-x-1/2 -bottom-6 z-0" style={{ opacity: arrowOpacity }}>
           <svg width="32" height="32" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'rotate(90deg)' }}>
             <path d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z" fill="#9CA3AF"/>
           </svg>
         </motion.div>
 
         {/* Up-Left Arrow (diagonal) */}
-        <motion.div className="absolute -left-3 -top-3 z-0" style={{ opacity: arrowOpacity }}>
+        <motion.div className="absolute -left-5 -top-5 z-0" style={{ opacity: arrowOpacity }}>
           <svg width="28" height="28" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'rotate(-135deg)' }}>
             <path d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z" fill="#9CA3AF"/>
           </svg>
         </motion.div>
 
         {/* Up-Right Arrow (diagonal) */}
-        <motion.div className="absolute -right-3 -top-3 z-0" style={{ opacity: arrowOpacity }}>
+        <motion.div className="absolute -right-5 -top-5 z-0" style={{ opacity: arrowOpacity }}>
           <svg width="28" height="28" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'rotate(-45deg)' }}>
             <path d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z" fill="#9CA3AF"/>
           </svg>
         </motion.div>
 
         {/* Down-Left Arrow (diagonal) */}
-        <motion.div className="absolute -left-3 -bottom-3 z-0" style={{ opacity: arrowOpacity }}>
+        <motion.div className="absolute -left-5 -bottom-5 z-0" style={{ opacity: arrowOpacity }}>
           <svg width="28" height="28" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'rotate(135deg)' }}>
             <path d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z" fill="#9CA3AF"/>
           </svg>
         </motion.div>
 
         {/* Down-Right Arrow (diagonal) */}
-        <motion.div className="absolute -right-3 -bottom-3 z-0" style={{ opacity: arrowOpacity }}>
+        <motion.div className="absolute -right-5 -bottom-5 z-0" style={{ opacity: arrowOpacity }}>
           <svg width="28" height="28" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'rotate(45deg)' }}>
             <path d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z" fill="#9CA3AF"/>
           </svg>
