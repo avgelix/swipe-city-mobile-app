@@ -50,10 +50,10 @@ function IntroPage({ onStart }) {
         >
           {/* Main Card */}
           <div 
-            className="relative rounded-3xl shadow-2xl p-8 pb-12"
+            className="relative rounded-3xl shadow-2xl p-8 pb-16"
             style={{
               minHeight: '500px',
-              backgroundColor: 'rgba(255, 255, 255, 0.85)',
+              backgroundColor: 'rgba(255, 255, 255, 0.65)',
               backdropFilter: 'blur(10px)'
             }}
           >
@@ -70,7 +70,7 @@ function IntroPage({ onStart }) {
 
             {/* Question Text */}
             <p
-              className="text-xl text-black text-center mb-12 leading-relaxed px-2"
+              className="text-xl text-black text-center mb-16 leading-relaxed px-2"
               style={{
                 fontFamily: 'Asul, sans-serif',
                 fontWeight: 400
@@ -80,7 +80,7 @@ function IntroPage({ onStart }) {
             </p>
 
             {/* Compass */}
-            <div className="flex justify-center mb-12">
+            <div className="flex justify-center mb-16">
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ 
@@ -102,29 +102,35 @@ function IntroPage({ onStart }) {
                 <img 
                   src={compassIcon} 
                   alt="Compass" 
-                  className="w-40 h-40 object-contain relative z-10"
+                  className="w-52 h-52 object-contain relative z-10"
                 />
               </motion.div>
             </div>
           </div>
 
-          {/* Bottom card stack - visible at bottom edges only */}
+          {/* Bottom card stack - properly scaled and attached */}
           <div 
-            className="absolute left-0 right-0 bg-white rounded-b-3xl"
+            className="absolute left-0 right-0 rounded-b-3xl"
             style={{
-              height: '20px',
-              bottom: '-12px',
-              backgroundColor: 'rgba(255, 255, 255, 0.6)',
-              zIndex: -1
+              height: '100%',
+              bottom: '-8px',
+              backgroundColor: 'rgba(255, 255, 255, 0.5)',
+              transform: 'scaleX(0.97)',
+              transformOrigin: 'center bottom',
+              zIndex: -1,
+              backdropFilter: 'blur(10px)'
             }}
           />
           <div 
-            className="absolute left-0 right-0 bg-white rounded-b-3xl"
+            className="absolute left-0 right-0 rounded-b-3xl"
             style={{
-              height: '20px',
-              bottom: '-24px',
-              backgroundColor: 'rgba(255, 255, 255, 0.4)',
-              zIndex: -2
+              height: '100%',
+              bottom: '-16px',
+              backgroundColor: 'rgba(255, 255, 255, 0.35)',
+              transform: 'scaleX(0.94)',
+              transformOrigin: 'center bottom',
+              zIndex: -2,
+              backdropFilter: 'blur(10px)'
             }}
           />
         </motion.div>
@@ -134,10 +140,11 @@ function IntroPage({ onStart }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 1 }}
-          className="text-white text-center mt-8 italic"
+          className="text-white text-center mt-12 italic"
           style={{
-            fontFamily: 'Asul, sans-serif',
+            fontFamily: 'Inter, sans-serif',
             fontSize: '18px',
+            fontWeight: 300,
             textShadow: '0 2px 8px rgba(0, 0, 0, 0.7)'
           }}
         >
