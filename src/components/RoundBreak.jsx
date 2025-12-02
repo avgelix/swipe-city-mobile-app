@@ -31,7 +31,7 @@ function RoundBreak({ roundNumber, onContinue, questionNumber }) {
         {/* Round badge */}
         <div className="relative mb-0">
           <div 
-            className="px-10 py-3 rounded-lg"
+            className="px-8 py-2 rounded-lg"
             style={{
               background: 'linear-gradient(90deg, rgba(128, 156, 191, 1) 0%, rgba(128, 156, 191, 1) 100%)',
               boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
@@ -41,7 +41,7 @@ function RoundBreak({ roundNumber, onContinue, questionNumber }) {
               className="text-white text-center"
               style={{
                 fontFamily: 'Asul, sans-serif',
-                fontSize: '28px',
+                fontSize: '24px',
                 fontWeight: 400,
                 letterSpacing: '0.5px'
               }}
@@ -53,7 +53,7 @@ function RoundBreak({ roundNumber, onContinue, questionNumber }) {
 
         {/* White header bar with text */}
         <div 
-          className="bg-white px-12 py-5 w-full"
+          className="bg-white px-12 py-3 w-full"
           style={{
             borderTop: '4px solid #809cbf',
             borderBottom: '4px solid #809cbf'
@@ -63,7 +63,7 @@ function RoundBreak({ roundNumber, onContinue, questionNumber }) {
             className="text-black text-center"
             style={{
               fontFamily: 'Asul, sans-serif',
-              fontSize: '40px',
+              fontSize: '32px',
               fontWeight: 700,
               letterSpacing: '2px'
             }}
@@ -72,8 +72,38 @@ function RoundBreak({ roundNumber, onContinue, questionNumber }) {
           </p>
         </div>
 
-        {/* Compass with glow effect - hidden to match screenshot */}
-        <div className="mt-12"></div>
+        {/* Compass with glow effect */}
+        <motion.div
+          animate={{ 
+            rotate: 360,
+            scale: [1, 1.1, 1]
+          }}
+          transition={{ 
+            rotate: { duration: 3, repeat: Infinity, ease: "linear" },
+            scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+          }}
+          className="relative mt-16"
+          style={{ width: '200px', height: '200px' }}
+        >
+          {/* Outer glow circle */}
+          <div 
+            className="absolute inset-0 rounded-full"
+            style={{
+              background: 'radial-gradient(circle, rgba(160, 195, 239, 0.3) 0%, transparent 70%)',
+              filter: 'blur(20px)'
+            }}
+          />
+          
+          {/* Compass image */}
+          <img 
+            src={compassIcon} 
+            alt="Compass" 
+            className="relative w-full h-full object-contain"
+            style={{
+              filter: 'drop-shadow(0 0 30px rgba(160, 195, 239, 0.6))'
+            }}
+          />
+        </motion.div>
       </motion.div>
     </div>
   );
