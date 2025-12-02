@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Map from 'react-map-gl/mapbox';
+import { motion, AnimatePresence } from 'framer-motion';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 /**
@@ -54,6 +55,7 @@ function findCityCoordinates(cityName) {
 function MapBackground({ questionNumber, city }) {
   const mapRef = useRef(null);
   const [error, setError] = useState(null);
+  const [mapKey, setMapKey] = useState(0); // Key to force remount for fade animation
 
   // Get city coordinates - either from prop or cycling through list
   const getCityLocation = () => {
@@ -103,6 +105,8 @@ function MapBackground({ questionNumber, city }) {
         longitude: currentCity.lng,
         zoom: 12
       }));
+      // Update key to trigger fade animation
+      setMapKey(prev => prev + 1);
     }
   }, [currentCity.name]); // Only update when city name changes
 
@@ -124,32 +128,38 @@ function MapBackground({ questionNumber, city }) {
   }
 
   return (
-    <div 
-      className="absolute inset-0"
-      style={{
-        opacity: 0.6,
-        pointerEvents: 'none',
-        zIndex: 0,
-      }}
-      aria-hidden="true"
-    >
-      <Map
-        ref={mapRef}
-        {...viewState}
-        onMove={evt => setViewState(evt.viewState)}
-        mapboxAccessToken={mapboxToken}
-        mapStyle="mapbox://styles/mapbox/streets-v12"
-        style={{ width: '100%', height: '100%' }}
-        interactive={false}
-        attributionControl={false}
-        dragPan={false}
-        scrollZoom={false}
-        doubleClickZoom={false}
-        touchZoomRotate={false}
-        dragRotate={false}
-        keyboard={false}
-      />
-    </div>
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={mapKey}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.6 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.8, ease: "easeInOut" }}
+        className="absolute inset-0"
+        style={{
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+        aria-hidden="true"
+      >
+        <Map
+          ref={mapRef}
+          {...viewState}
+          onMove={evt => setViewState(evt.viewState)}
+          mapboxAccessToken={mapboxToken}
+          mapStyle="mapbox://styles/mapbox/streets-v12"
+          style={{ width: '100%', height: '100%' }}
+          interactive={false}
+          attributionControl={false}
+          dragPan={false}
+          scrollZoom={false}
+          doubleClickZoom={false}
+          touchZoomRotate={false}
+          dragRotate={false}
+          keyboard={false}
+        />
+      </motion.div>
+    </AnimatePresence>
   );
 }
 
