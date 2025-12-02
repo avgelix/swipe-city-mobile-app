@@ -9,7 +9,7 @@ This is a **React SPA** (single-page application) that helps users discover wher
 
 ### Tech Stack (See DECISIONS.md)
 - **Frontend:** React + Tailwind CSS + Framer Motion
-- **AI:** OpenRouter API (openai/gpt-oss-20b:free model) via Vercel serverless function
+- **AI:** OpenRouter API (meta-llama/llama-3.2-3b-instruct:free model) via Vercel serverless function
 - **Maps:** Mapbox GL JS via react-map-gl (background displays)
 - **State:** React state + localStorage for persistence
 - **Hosting:** Vercel (SPA with serverless API proxy)

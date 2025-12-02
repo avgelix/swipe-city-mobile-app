@@ -44,7 +44,7 @@ export default async function handler(req, res) {
         'X-Title': 'Swipe City'
       },
       body: JSON.stringify({
-        model: 'openai/gpt-oss-20b:free',
+        model: 'meta-llama/llama-3.2-3b-instruct:free',
         messages: [
           {
             role: 'user',

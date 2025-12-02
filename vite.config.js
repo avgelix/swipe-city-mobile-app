@@ -46,7 +46,7 @@ export default defineConfig(({ mode }) => {
                     'X-Title': 'Swipe City - Local Dev'
                   },
                   body: JSON.stringify({
-                    model: 'openai/gpt-oss-20b:free',
+                    model: 'meta-llama/llama-3.2-3b-instruct:free',
                     messages: [
                       {
                         role: 'user',

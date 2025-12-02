@@ -35,7 +35,7 @@ That's it! The serverless function will use the free `openai/gpt-oss-20b:free` m
 ## Technical Details
 
 ### Model Used
-- **Model ID:** `openai/gpt-oss-20b:free`
+- **Model ID:** `meta-llama/llama-3.2-3b-instruct:free`
 - **Provider:** OpenRouter
 - **Cost:** $0.00 (completely free)
 - **Rate Limits:** None on free tier
