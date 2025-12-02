@@ -3,6 +3,7 @@ import SwipeCard from './components/SwipeCard';
 import MapBackground from './components/MapBackground';
 import ResultsPage from './components/ResultsPage';
 import LoadingScreen from './components/LoadingScreen';
+import RoundBreak from './components/RoundBreak';
 import useGameState from './hooks/useGameState';
 import { questions } from '../questions';
 
@@ -43,6 +44,34 @@ function App() {
   const handleRefuse = () => {
     restart();
   };
+
+  // Check if we should show a round break (after questions 5, 10, 15)
+  const shouldShowRoundBreak = () => {
+    const questionNum = currentQuestionIndex + 1;
+    return gamePhase === 'roundBreak' || (
+      gamePhase === 'questions' && 
+      questionNum > 0 && 
+      questionNum <= 20 && 
+      questionNum % 5 === 0 &&
+      answers.length === questionNum
+    );
+  };
+
+  const handleContinueFromBreak = () => {
+    setGamePhase('questions');
+  };
+
+  // Show round break after every 5 questions
+  if (shouldShowRoundBreak()) {
+    const roundNumber = Math.ceil((currentQuestionIndex + 1) / 5);
+    return (
+      <RoundBreak 
+        roundNumber={roundNumber}
+        onContinue={handleContinueFromBreak}
+        questionNumber={currentQuestionIndex}
+      />
+    );
+  }
 
   // Render different screens based on game phase
   if (gamePhase === 'loading') {
