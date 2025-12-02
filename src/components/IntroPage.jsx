@@ -107,27 +107,27 @@ function IntroPage({ onStart }) {
             </div>
           </div>
 
-          {/* Bottom card stack - properly scaled and attached */}
+          {/* Top card stack - properly scaled and attached */}
           <div 
-            className="absolute left-0 right-0 rounded-b-2xl"
+            className="absolute left-0 right-0 rounded-t-2xl"
             style={{
               height: '100%',
-              bottom: '-12px',
+              top: '-12px',
               backgroundColor: 'rgba(255, 255, 255, 0.6)',
               transform: 'scaleX(0.96)',
-              transformOrigin: 'center bottom',
+              transformOrigin: 'center top',
               zIndex: -1,
               backdropFilter: 'blur(10px)'
             }}
           />
           <div 
-            className="absolute left-0 right-0 rounded-b-2xl"
+            className="absolute left-0 right-0 rounded-t-2xl"
             style={{
               height: '100%',
-              bottom: '-24px',
+              top: '-24px',
               backgroundColor: 'rgba(255, 255, 255, 0.45)',
               transform: 'scaleX(0.92)',
-              transformOrigin: 'center bottom',
+              transformOrigin: 'center top',
               zIndex: -2,
               backdropFilter: 'blur(10px)'
             }}
