@@ -58,7 +58,7 @@ function IntroPage({ onStart }) {
           >
             {/* Title */}
             <h1
-              className="text-5xl text-black text-center mb-8 mt-6"
+              className="text-5xl text-black text-center mb-12 mt-6"
               style={{
                 fontFamily: 'Asul, sans-serif',
                 letterSpacing: '-1px'
@@ -69,7 +69,7 @@ function IntroPage({ onStart }) {
 
             {/* Question Text */}
             <p
-              className="text-base text-black text-center mb-6 leading-relaxed px-3"
+              className="text-lg text-black text-center mb-6 leading-relaxed px-3"
               style={{
                 fontFamily: 'Asul, sans-serif',
                 fontWeight: 400
@@ -101,7 +101,7 @@ function IntroPage({ onStart }) {
                 <img 
                   src={compassIcon} 
                   alt="Compass" 
-                  className="w-48 h-48 object-contain relative z-10"
+                  className="w-56 h-56 object-contain relative z-10"
                 />
               </motion.div>
             </div>
@@ -112,9 +112,9 @@ function IntroPage({ onStart }) {
             className="absolute left-0 right-0 rounded-b-2xl"
             style={{
               height: '100%',
-              bottom: '-8px',
-              backgroundColor: 'rgba(255, 255, 255, 0.5)',
-              transform: 'scaleX(0.97)',
+              bottom: '-12px',
+              backgroundColor: 'rgba(255, 255, 255, 0.6)',
+              transform: 'scaleX(0.96)',
               transformOrigin: 'center bottom',
               zIndex: -1,
               backdropFilter: 'blur(10px)'
@@ -124,9 +124,9 @@ function IntroPage({ onStart }) {
             className="absolute left-0 right-0 rounded-b-2xl"
             style={{
               height: '100%',
-              bottom: '-16px',
-              backgroundColor: 'rgba(255, 255, 255, 0.35)',
-              transform: 'scaleX(0.94)',
+              bottom: '-24px',
+              backgroundColor: 'rgba(255, 255, 255, 0.45)',
+              transform: 'scaleX(0.92)',
               transformOrigin: 'center bottom',
               zIndex: -2,
               backdropFilter: 'blur(10px)'
