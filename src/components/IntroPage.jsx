@@ -46,20 +46,19 @@ function IntroPage({ onStart }) {
           dragElastic={0.2}
           onDragEnd={handleDragEnd}
           style={{ y, opacity }}
-          className="relative w-full max-w-md cursor-grab active:cursor-grabbing"
+          className="relative w-full max-w-xs cursor-grab active:cursor-grabbing"
         >
           {/* Main Card */}
           <div 
-            className="relative rounded-3xl shadow-2xl p-8 pb-16"
+            className="relative rounded-2xl shadow-2xl p-6 aspect-[2/3] flex flex-col justify-start items-center"
             style={{
-              minHeight: '500px',
               backgroundColor: 'rgba(255, 255, 255, 0.65)',
               backdropFilter: 'blur(10px)'
             }}
           >
             {/* Title */}
             <h1
-              className="text-5xl font-bold text-black text-center mb-8"
+              className="text-4xl font-bold text-black text-center mb-6"
               style={{
                 fontFamily: 'Asul, sans-serif',
                 letterSpacing: '-1px'
@@ -70,7 +69,7 @@ function IntroPage({ onStart }) {
 
             {/* Question Text */}
             <p
-              className="text-xl text-black text-center mb-16 leading-relaxed px-2"
+              className="text-lg text-black text-center mb-8 leading-relaxed px-2"
               style={{
                 fontFamily: 'Asul, sans-serif',
                 fontWeight: 400
@@ -80,7 +79,7 @@ function IntroPage({ onStart }) {
             </p>
 
             {/* Compass */}
-            <div className="flex justify-center mb-16">
+            <div className="flex justify-center flex-1 items-center">
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ 
@@ -102,7 +101,7 @@ function IntroPage({ onStart }) {
                 <img 
                   src={compassIcon} 
                   alt="Compass" 
-                  className="w-52 h-52 object-contain relative z-10"
+                  className="w-36 h-36 object-contain relative z-10"
                 />
               </motion.div>
             </div>
@@ -110,7 +109,7 @@ function IntroPage({ onStart }) {
 
           {/* Bottom card stack - properly scaled and attached */}
           <div 
-            className="absolute left-0 right-0 rounded-b-3xl"
+            className="absolute left-0 right-0 rounded-b-2xl"
             style={{
               height: '100%',
               bottom: '-8px',
@@ -122,7 +121,7 @@ function IntroPage({ onStart }) {
             }}
           />
           <div 
-            className="absolute left-0 right-0 rounded-b-3xl"
+            className="absolute left-0 right-0 rounded-b-2xl"
             style={{
               height: '100%',
               bottom: '-16px',
