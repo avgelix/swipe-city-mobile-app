@@ -149,57 +149,57 @@ function MultiChoiceCard({ question, currentQuestion, totalQuestions, onAnswer }
         
         {/* Left Arrow */}
         <motion.div className="absolute -left-4 top-1/2 -translate-y-1/2 z-0" style={{ opacity: arrowOpacity }}>
-          <svg width="32" height="8" viewBox="0 0 32 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 0C4 0 0 2.67 0 4C0 5.33 4 8 4 8V5.33H32V2.67H4V0Z" fill="#9CA3AF"/>
+          <svg width="32" height="32" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M73.4 297.4C60.9 309.9 60.9 330.2 73.4 342.7L233.4 502.7C245.9 515.2 266.2 515.2 278.7 502.7C291.2 490.2 291.2 469.9 278.7 457.4L173.3 352L544 352C561.7 352 576 337.7 576 320C576 302.3 561.7 288 544 288L173.3 288L278.7 182.6C291.2 170.1 291.2 149.8 278.7 137.3C266.2 124.8 245.9 124.8 233.4 137.3L73.4 297.3z" fill="#9CA3AF"/>
           </svg>
         </motion.div>
 
         {/* Right Arrow */}
         <motion.div className="absolute -right-4 top-1/2 -translate-y-1/2 z-0" style={{ opacity: arrowOpacity }}>
-          <svg width="32" height="8" viewBox="0 0 32 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M28 8C28 8 32 5.33 32 4C32 2.67 28 0 28 0V2.67H0V5.33H28V8Z" fill="#9CA3AF"/>
+          <svg width="32" height="32" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z" fill="#9CA3AF"/>
           </svg>
         </motion.div>
 
         {/* Up Arrow */}
         <motion.div className="absolute left-1/2 -translate-x-1/2 -top-4 z-0" style={{ opacity: arrowOpacity }}>
-          <svg width="8" height="32" viewBox="0 0 8 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 4C0 4 2.67 0 4 0C5.33 0 8 4 8 4H5.33V32H2.67V4H0Z" fill="#9CA3AF"/>
+          <svg width="32" height="32" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'rotate(-90deg)' }}>
+            <path d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z" fill="#9CA3AF"/>
           </svg>
         </motion.div>
 
         {/* Down Arrow */}
         <motion.div className="absolute left-1/2 -translate-x-1/2 -bottom-4 z-0" style={{ opacity: arrowOpacity }}>
-          <svg width="8" height="32" viewBox="0 0 8 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8 28C8 28 5.33 32 4 32C2.67 32 0 28 0 28H2.67V0H5.33V28H8Z" fill="#9CA3AF"/>
+          <svg width="32" height="32" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'rotate(90deg)' }}>
+            <path d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z" fill="#9CA3AF"/>
           </svg>
         </motion.div>
 
         {/* Up-Left Arrow (diagonal) */}
         <motion.div className="absolute -left-3 -top-3 z-0" style={{ opacity: arrowOpacity }}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 8L3 3L8 3L6 5L24 23L22 24L4 6L3 8Z" fill="#9CA3AF"/>
+          <svg width="28" height="28" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'rotate(-135deg)' }}>
+            <path d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z" fill="#9CA3AF"/>
           </svg>
         </motion.div>
 
         {/* Up-Right Arrow (diagonal) */}
         <motion.div className="absolute -right-3 -top-3 z-0" style={{ opacity: arrowOpacity }}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M21 8L21 3L16 3L18 5L0 23L2 24L20 6L21 8Z" fill="#9CA3AF"/>
+          <svg width="28" height="28" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'rotate(-45deg)' }}>
+            <path d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z" fill="#9CA3AF"/>
           </svg>
         </motion.div>
 
         {/* Down-Left Arrow (diagonal) */}
         <motion.div className="absolute -left-3 -bottom-3 z-0" style={{ opacity: arrowOpacity }}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 16L3 21L8 21L6 19L24 1L22 0L4 18L3 16Z" fill="#9CA3AF"/>
+          <svg width="28" height="28" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'rotate(135deg)' }}>
+            <path d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z" fill="#9CA3AF"/>
           </svg>
         </motion.div>
 
         {/* Down-Right Arrow (diagonal) */}
         <motion.div className="absolute -right-3 -bottom-3 z-0" style={{ opacity: arrowOpacity }}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M21 16L21 21L16 21L18 19L0 1L2 0L20 18L21 16Z" fill="#9CA3AF"/>
+          <svg width="28" height="28" viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'rotate(45deg)' }}>
+            <path d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z" fill="#9CA3AF"/>
           </svg>
         </motion.div>
 
