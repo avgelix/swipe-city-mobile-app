@@ -1,12 +1,24 @@
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import MapBackground from './MapBackground';
 import compassIcon from '../assets/compass.svg';
 
 function IntroPage({ onStart }) {
+  const [cityIndex, setCityIndex] = useState(0);
+
+  // Cycle through cities every 2 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCityIndex((prev) => (prev + 1) % 20);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="relative min-h-screen overflow-hidden">
-      {/* Map background */}
-      <MapBackground questionNumber={0} />
+      {/* Map background - cycles through cities */}
+      <MapBackground questionNumber={cityIndex} />
       
       {/* Darker gradient overlay for better text contrast */}
       <div 
@@ -142,30 +154,6 @@ function IntroPage({ onStart }) {
             TAP TO START
           </div>
         </motion.button>
-
-        {/* Subtle progress indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 1 }}
-          className="mt-12 flex items-center gap-2"
-        >
-          {[1, 2, 3, 4].map((round) => (
-            <div
-              key={round}
-              className="w-2 h-2 rounded-full bg-white opacity-40"
-            />
-          ))}
-          <span 
-            className="ml-2 text-white text-sm opacity-60"
-            style={{
-              fontFamily: 'Asul, sans-serif',
-              textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
-            }}
-          >
-            4 rounds
-          </span>
-        </motion.div>
       </div>
     </div>
   );
