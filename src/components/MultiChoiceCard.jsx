@@ -114,7 +114,8 @@ function MultiChoiceCard({ question, currentQuestion, totalQuestions, onAnswer }
             transform: 'scaleX(0.96)',
             transformOrigin: 'center top',
             zIndex: -1,
-            backdropFilter: 'blur(10px)'
+            backdropFilter: 'blur(10px)',
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
           }}
         />
         <div 
@@ -126,7 +127,8 @@ function MultiChoiceCard({ question, currentQuestion, totalQuestions, onAnswer }
             transform: 'scaleX(0.92)',
             transformOrigin: 'center top',
             zIndex: -2,
-            backdropFilter: 'blur(10px)'
+            backdropFilter: 'blur(10px)',
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.08)'
           }}
         />
 
