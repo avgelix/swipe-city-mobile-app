@@ -61,7 +61,7 @@ function App() {
 
   // Show round break screen
   if (gamePhase === 'roundBreak') {
-    const roundNumber = Math.ceil(currentQuestionIndex / 5);
+    const roundNumber = Math.ceil((currentQuestionIndex + 1) / 5);
     return (
       <RoundBreak 
         roundNumber={roundNumber}
