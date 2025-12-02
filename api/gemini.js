@@ -44,7 +44,7 @@ export default async function handler(req, res) {
         'X-Title': 'Swipe City Game'
       },
       body: JSON.stringify({
-        model: 'arcee-ai/trinity-mini:free',
+        model: 'tngtech/tng-r1t-chimera:free',
         messages: [
           {
             role: 'system',
