@@ -35,10 +35,10 @@ function IntroPage({ onStart }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
-          className="text-5xl md:text-6xl font-bold text-white mb-4 text-center"
+          className="text-5xl md:text-6xl font-bold text-black mb-4 text-center"
           style={{
             fontFamily: 'Asul, sans-serif',
-            textShadow: '0 4px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(255, 255, 255, 0.5)'
+            textShadow: '0 0 30px rgba(255, 255, 255, 0.9), 0 2px 10px rgba(255, 255, 255, 0.8), 0 4px 20px rgba(255, 255, 255, 0.6)'
           }}
         >
           Swipe City
@@ -49,10 +49,10 @@ function IntroPage({ onStart }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.6 }}
-          className="text-xl md:text-2xl text-white text-center mb-12 max-w-lg leading-relaxed"
+          className="text-xl md:text-2xl text-black text-center mb-12 max-w-lg leading-relaxed font-medium"
           style={{
             fontFamily: 'Asul, sans-serif',
-            textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)'
+            textShadow: '0 0 20px rgba(255, 255, 255, 0.9), 0 2px 8px rgba(255, 255, 255, 0.7)'
           }}
         >
           Discover your perfect city through 20 quick questions. Swipe your way to a new home!
@@ -66,10 +66,12 @@ function IntroPage({ onStart }) {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={onStart}
-          className="px-12 py-4 bg-white text-zillow-blue rounded-full font-bold text-xl shadow-2xl hover:shadow-3xl transition-all"
+          className="px-16 py-5 bg-zillow-blue text-white rounded-full font-bold text-2xl shadow-2xl hover:shadow-3xl transition-all"
           style={{
             fontFamily: 'Asul, sans-serif',
-            border: '3px solid #809cbf'
+            border: 'none',
+            background: 'linear-gradient(135deg, #0074E4 0%, #005BB5 100%)',
+            letterSpacing: '1px'
           }}
         >
           TAP TO START
@@ -80,10 +82,10 @@ function IntroPage({ onStart }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.8 }}
-          className="text-white text-sm mt-8 opacity-75"
+          className="text-black text-sm mt-8 font-medium"
           style={{
             fontFamily: 'Asul, sans-serif',
-            textShadow: '0 1px 5px rgba(0, 0, 0, 0.5)'
+            textShadow: '0 0 15px rgba(255, 255, 255, 0.9), 0 1px 5px rgba(255, 255, 255, 0.7)'
           }}
         >
           Swipe left or right • 4 rounds • 20 questions
