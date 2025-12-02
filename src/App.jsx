@@ -4,6 +4,7 @@ import MapBackground from './components/MapBackground';
 import ResultsPage from './components/ResultsPage';
 import LoadingScreen from './components/LoadingScreen';
 import RoundBreak from './components/RoundBreak';
+import IntroPage from './components/IntroPage';
 import useGameState from './hooks/useGameState';
 import { questions } from '../questions';
 
@@ -48,6 +49,15 @@ function App() {
   const handleContinueFromBreak = () => {
     setGamePhase('questions');
   };
+
+  const handleStartGame = () => {
+    setGamePhase('questions');
+  };
+
+  // Show intro page
+  if (gamePhase === 'intro') {
+    return <IntroPage onStart={handleStartGame} />;
+  }
 
   // Show round break screen
   if (gamePhase === 'roundBreak') {

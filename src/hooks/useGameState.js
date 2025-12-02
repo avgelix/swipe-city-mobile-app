@@ -17,7 +17,7 @@ const loadInitialState = () => {
   return {
     currentQuestionIndex: 0,
     answers: [],
-    gamePhase: 'questions'
+    gamePhase: 'intro'
   };
 };
 
@@ -27,7 +27,7 @@ const loadInitialState = () => {
  * Manages:
  * - currentQuestionIndex: Which question the user is on (0-19)
  * - answers: Array of user answers with question context
- * - gamePhase: Current phase ('questions' | 'loading' | 'results')
+ * - gamePhase: Current phase ('intro' | 'questions' | 'roundBreak' | 'loading' | 'results')
  * 
  * All state is automatically persisted to localStorage and restored on mount
  */
