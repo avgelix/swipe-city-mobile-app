@@ -1,16 +1,19 @@
-# Copilot Instructions: Where to Move Game
+# Copilot Instructions: Swipe City
 
 ## Project Overview
-This is a **React SPA** (single-page application) that helps users discover where to move through a gamified, card-swiping experience. The project is currently in **planning stage** with no code implementation yet.
+This is a **React SPA** (single-page application) that helps users discover where to move through a gamified, card-swiping experience. The project is **currently in active development** with Phase 1 (City Matching) completed.
+
+**Current Status:** Phase 1 complete - City/country matching game is live and functional.
 
 ## Architecture Principles
 
 ### Tech Stack (See DECISIONS.md)
 - **Frontend:** React + Tailwind CSS + Framer Motion
-- **AI:** Google Gemini (gemini-1.5-flash) via Vercel serverless function
+- **AI:** Google Gemini (gemini-2.0-flash) via Vercel serverless function
 - **Maps:** Google Maps JavaScript API (background displays)
 - **State:** React state + localStorage for persistence
 - **Hosting:** Vercel (SPA with serverless API proxy)
+- **Illustrations:** Open-source SVG illustrations from [ManyPixels Gallery](https://www.manypixels.co/gallery)
 
 ### Key Architectural Constraints
 1. **Zero-cost MVP:** Must stay within free tiers (Gemini: 1500 req/day, Vercel free tier)
@@ -51,8 +54,17 @@ localStorage.setItem('gameProgress', JSON.stringify({
 ### Visual Identity
 - **Primary color:** Zillow blue `#0074E4`
 - **Design inspiration:** "Zillow meets Tinder" - professional real estate aesthetic with playful game mechanics
+- **Mobile-first design:** Optimized for 375x812 screen size (iPhone X/11/12/13 mini)
+- **Responsive scaling:** All elements scale proportionally at larger screen sizes
 - **Typography & spacing:** Use Tailwind's default scale, emphasize card-based layouts
+- **Typography:** Asul font for question text and overlays (Google Fonts)
+- **Card design:** White cards with stacked shadow effect, rounded corners, contextual SVG illustrations
+- **Arrows:** Thin gray directional arrows that fade out during swipes
 - **Background:** Google Maps showing random cities, updates after each question
+- **Illustrations:** Custom SVG illustrations from ManyPixels Gallery stored in `src/assets/illustrations/`
+  - 20 unique illustrations (Q1-snow.svg through Q20-late.svg)
+  - Rendered as `<img>` tags with `object-contain` and `maxHeight: 320px`
+  - Proper padding to prevent edge cutoff
 
 ### Tone & Voice
 - **Character:** Helpful real estate agent narrator (slightly playful, not overly serious)
@@ -116,8 +128,10 @@ When working with Lovable-generated code:
 **Best Practices:**
 - Prompt Copilot to use Tailwind utility classes (not inline styles or CSS modules)
 - Emphasize zero-cost constraints when asking for library suggestions
-- Request mobile-first responsive implementations
+- Request mobile-first responsive implementations (optimize for 375x812, scale proportionally)
 - Ask for error boundaries and loading states
+- Always use Asul font for card text (`fontFamily: 'Asul, sans-serif'`)
+- Ensure illustrations maintain aspect ratio and don't get cut off at edges
 
 ### Project Setup (First Implementation)
 ```bash
@@ -202,12 +216,15 @@ const randomCity = cities[Math.floor(Math.random() * cities.length)];
 - `src/questions.js` - **ALREADY CREATED** - 20 scenario-based "riddle" questions (8 categories)
   - Questions reveal preferences through scenarios, never directly stating what they measure
   - Example: "You just got your paycheck. After rent, you have..." (reveals cost-of-living tolerance)
-- `src/components/SwipeCard.jsx` - Main card component with Framer Motion
-- `src/components/MapBackground.jsx` - Google Maps integration
-- `src/App.jsx` - Game state machine (questions → AI call → results)
-- `api/gemini.js` - Vercel serverless function for Gemini API proxy
-- `vercel.json` - Deployment configuration
-- `tailwind.config.js` - Custom Zillow blue theme
+- `src/components/BinaryCard.jsx` - **COMPLETED** - Binary swipe card with Framer Motion, stacked effect, arrows
+- `src/components/MultiChoiceCard.jsx` - **COMPLETED** - 8-direction swipe card matching BinaryCard design
+- `src/components/QuestionIllustration.jsx` - **COMPLETED** - Renders custom SVG illustrations for each question
+- `src/components/MapBackground.jsx` - **COMPLETED** - Google Maps integration
+- `src/App.jsx` - **COMPLETED** - Game state machine (questions → AI call → results)
+- `api/gemini.js` - **COMPLETED** - Vercel serverless function for Gemini API proxy
+- `vercel.json` - **COMPLETED** - Deployment configuration
+- `tailwind.config.js` - **COMPLETED** - Custom Zillow blue theme
+- `src/assets/illustrations/` - **COMPLETED** - 20 custom SVG illustrations from ManyPixels Gallery
 
 ### Configuration
 - Environment variables in Vercel: `GEMINI_API_KEY`, `GOOGLE_MAPS_API_KEY`
