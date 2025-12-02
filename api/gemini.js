@@ -41,18 +41,22 @@ export default async function handler(req, res) {
         'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
         'HTTP-Referer': 'https://swipe-city.vercel.app',
-        'X-Title': 'Swipe City'
+        'X-Title': 'Swipe City Game'
       },
       body: JSON.stringify({
         model: 'arcee-ai/trinity-mini:free',
         messages: [
+          {
+            role: 'system',
+            content: 'You are a relocation expert. Respond ONLY with valid JSON in this exact format: {"city": "CityName", "country": "CountryName", "explanation": "brief explanation"}. Do not include any other text or reasoning.'
+          },
           {
             role: 'user',
             content: prompt
           }
         ],
         temperature: 0.7,
-        max_tokens: 500
+        max_tokens: 800
       })
     });
 
@@ -63,7 +67,12 @@ export default async function handler(req, res) {
     }
 
     const data = await response.json();
-    const text = data.choices[0]?.message?.content;
+    let text = data.choices[0]?.message?.content;
+    
+    // If content is empty, check reasoning field (used by some models)
+    if (!text && data.choices[0]?.message?.reasoning) {
+      text = data.choices[0]?.message?.reasoning;
+    }
 
     if (!text) {
       throw new Error('No response from AI model');
@@ -148,6 +157,12 @@ function parseAIResponse(text) {
       jsonText = jsonText.replace(/```json\n?/g, '').replace(/```\n?/g, '');
     } else if (jsonText.startsWith('```')) {
       jsonText = jsonText.replace(/```\n?/g, '');
+    }
+    
+    // Try to find JSON object in the text (in case there's reasoning before it)
+    const jsonMatch = jsonText.match(/\{[\s\S]*"city"[\s\S]*"country"[\s\S]*"explanation"[\s\S]*\}/);
+    if (jsonMatch) {
+      jsonText = jsonMatch[0];
     }
     
     // Parse JSON
