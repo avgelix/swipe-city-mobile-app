@@ -103,7 +103,7 @@ function MultiChoiceCard({ question, currentQuestion, totalQuestions, onAnswer }
   return (
     <div className="w-full max-w-xs mx-auto px-4">
       {/* Card Container with Stacked Effect and 8-Directional Arrow Hints */}
-      <div className="relative">
+      <div className="relative rounded-b-2xl">
         {/* Top card stack - properly scaled and attached */}
         <div 
           className="absolute left-0 right-0 rounded-t-2xl"
@@ -111,7 +111,7 @@ function MultiChoiceCard({ question, currentQuestion, totalQuestions, onAnswer }
             height: '100%',
             top: '-12px',
             backgroundColor: 'rgba(255, 255, 255, 0.4)',
-            transform: 'scaleX(0.96)',
+            transform: 'scaleX(0.94)',
             transformOrigin: 'center top',
             zIndex: -1,
             backdropFilter: 'blur(10px)',
@@ -124,7 +124,7 @@ function MultiChoiceCard({ question, currentQuestion, totalQuestions, onAnswer }
             height: '100%',
             top: '-24px',
             backgroundColor: 'rgba(255, 255, 255, 0.3)',
-            transform: 'scaleX(0.92)',
+            transform: 'scaleX(0.88)',
             transformOrigin: 'center top',
             zIndex: -2,
             backdropFilter: 'blur(10px)',
@@ -137,7 +137,7 @@ function MultiChoiceCard({ question, currentQuestion, totalQuestions, onAnswer }
             height: '100%',
             top: '-36px',
             backgroundColor: 'rgba(255, 255, 255, 0.2)',
-            transform: 'scaleX(0.88)',
+            transform: 'scaleX(0.82)',
             transformOrigin: 'center top',
             zIndex: -3,
             backdropFilter: 'blur(10px)',
