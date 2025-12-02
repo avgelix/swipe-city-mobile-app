@@ -121,39 +121,27 @@ function IntroPage({ onStart }) {
           }}
           whileTap={{ scale: 0.97 }}
           onClick={onStart}
-          className="mt-8 group relative overflow-hidden"
+          className="mt-8 px-16 py-5 text-white font-bold text-xl tracking-wide"
+          style={{
+            fontFamily: 'Asul, sans-serif',
+            borderRadius: '50px',
+            border: '2px solid rgba(255, 255, 255, 0.3)',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 2px 8px rgba(255, 255, 255, 0.2)',
+            background: 'linear-gradient(90deg, #0074E4, #00A8FF, #0074E4)',
+            backgroundSize: '200% 100%',
+            animation: 'shimmer 3s linear infinite'
+          }}
         >
-          {/* Animated gradient background */}
-          <motion.div
-            animate={{
-              backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-            className="absolute inset-0"
-            style={{
-              background: 'linear-gradient(90deg, #0074E4, #00A8FF, #0074E4)',
-              backgroundSize: '200% 100%',
-              borderRadius: '50px'
-            }}
-          />
-          
-          {/* Button content */}
-          <div
-            className="relative px-16 py-5 text-white font-bold text-xl tracking-wide"
-            style={{
-              fontFamily: 'Asul, sans-serif',
-              borderRadius: '50px',
-              border: '2px solid rgba(255, 255, 255, 0.3)',
-              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 2px 8px rgba(255, 255, 255, 0.2)'
-            }}
-          >
-            TAP TO START
-          </div>
+          TAP TO START
         </motion.button>
+
+        <style>{`
+          @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+          }
+        `}</style>
       </div>
     </div>
   );
