@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // Import custom SVG illustrations as URLs
 import Q1Snow from '../assets/illustrations/Q1-snow.svg';
 import Q2Wardrobe from '../assets/illustrations/Q2-wardrobe.svg';
-import Q3Thunderstorm from '../assets/illustrations/Q3-thunderstorm.svg';
+import Q3Rain from '../assets/illustrations/Q3-rain.svg';
 import Q4PM from '../assets/illustrations/Q4-11PM.svg';
 import Q5Store from '../assets/illustrations/Q5-store.svg';
 import Q6Loud from '../assets/illustrations/Q6-loud.svg';
@@ -37,7 +37,7 @@ function QuestionIllustration({ questionId }) {
     const illustrations = {
       1: Q1Snow,
       2: Q2Wardrobe,
-      3: Q3Thunderstorm,
+      3: Q3Rain,
       4: Q4PM,
       5: Q5Store,
       6: Q6Loud,
