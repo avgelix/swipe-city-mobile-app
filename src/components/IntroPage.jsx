@@ -1,10 +1,12 @@
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import MapBackground from './MapBackground';
 import compassIcon from '../assets/compass.svg';
 
 function IntroPage({ onStart }) {
   const [cityIndex, setCityIndex] = useState(0);
+  const y = useMotionValue(0);
+  const opacity = useTransform(y, [-200, 0], [0, 1]);
 
   // Cycle through cities every 2 seconds
   useEffect(() => {
@@ -14,6 +16,13 @@ function IntroPage({ onStart }) {
 
     return () => clearInterval(interval);
   }, []);
+
+  const handleDragEnd = (event, info) => {
+    // If swiped up significantly, start the game
+    if (info.offset.y < -100) {
+      onStart();
+    }
+  };
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -29,119 +38,118 @@ function IntroPage({ onStart }) {
       />
       
       {/* Content */}
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-8">
-        {/* Animated compass with pulsing glow */}
+      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 py-12">
+        {/* Swipeable Card */}
         <motion.div
-          initial={{ scale: 0, rotate: -180, opacity: 0 }}
-          animate={{ scale: 1, rotate: 0, opacity: 1 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="mb-8 relative"
+          drag="y"
+          dragConstraints={{ top: -300, bottom: 0 }}
+          dragElastic={0.2}
+          onDragEnd={handleDragEnd}
+          style={{ y, opacity }}
+          className="relative w-full max-w-md cursor-grab active:cursor-grabbing"
         >
-          {/* Pulsing glow effect */}
-          <motion.div
-            animate={{ 
-              scale: [1, 1.3, 1],
-              opacity: [0.5, 0.8, 0.5]
-            }}
-            transition={{ 
-              duration: 2, 
-              repeat: Infinity,
-              ease: "easeInOut" 
-            }}
-            className="absolute inset-0 rounded-full"
+          {/* Card stack effect - bottom cards */}
+          <div 
+            className="absolute inset-0 bg-white rounded-3xl"
             style={{
-              background: 'radial-gradient(circle, rgba(0, 116, 228, 0.6) 0%, transparent 70%)',
-              filter: 'blur(25px)',
-              transform: 'scale(1.5)'
+              transform: 'translateY(16px) scale(0.95)',
+              opacity: 0.5,
+              zIndex: -2
             }}
           />
-          
-          <motion.img 
-            animate={{ rotate: 360 }}
-            transition={{ 
-              duration: 20, 
-              repeat: Infinity, 
-              ease: "linear" 
-            }}
-            src={compassIcon} 
-            alt="Compass" 
-            className="w-24 h-24 object-contain relative z-10"
+          <div 
+            className="absolute inset-0 bg-white rounded-3xl"
             style={{
-              filter: 'drop-shadow(0 0 30px rgba(0, 116, 228, 1))'
+              transform: 'translateY(8px) scale(0.97)',
+              opacity: 0.7,
+              zIndex: -1
             }}
           />
-        </motion.div>
 
-        {/* Game title - smaller, bolder */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.7 }}
-          className="text-center mb-6"
-        >
-          <h1
-            className="text-5xl md:text-6xl font-bold mb-4"
+          {/* Main Card */}
+          <div 
+            className="relative bg-white rounded-3xl shadow-2xl p-8 pb-12"
             style={{
-              fontFamily: 'Asul, sans-serif',
-              background: 'linear-gradient(135deg, #FFFFFF 0%, #A0C3EF 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              textShadow: '0 4px 20px rgba(0, 0, 0, 0.5)',
-              filter: 'drop-shadow(0 2px 8px rgba(255, 255, 255, 0.3))',
-              letterSpacing: '-1px'
+              minHeight: '500px'
             }}
           >
-            Swipe City
-          </h1>
+            {/* Title */}
+            <h1
+              className="text-5xl font-bold text-black text-center mb-8"
+              style={{
+                fontFamily: 'Asul, sans-serif',
+                letterSpacing: '-1px'
+              }}
+            >
+              Swipe City
+            </h1>
 
-          {/* Tagline */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="text-lg md:text-xl text-white max-w-md mx-auto leading-relaxed"
-            style={{
-              fontFamily: 'Asul, sans-serif',
-              textShadow: '0 2px 10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 0, 0, 0.5)',
-              fontWeight: 400
-            }}
-          >
-            Answer 20 questions. Discover your perfect city. Start your adventure.
-          </motion.p>
+            {/* Question Text */}
+            <p
+              className="text-xl text-black text-center mb-12 leading-relaxed px-2"
+              style={{
+                fontFamily: 'Asul, sans-serif',
+                fontWeight: 400
+              }}
+            >
+              Do you ever wonder where in the world you would be at peace?
+            </p>
+
+            {/* Compass */}
+            <div className="flex justify-center mb-12">
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ 
+                  duration: 20, 
+                  repeat: Infinity, 
+                  ease: "linear" 
+                }}
+                className="relative"
+              >
+                {/* Compass ring/border */}
+                <div 
+                  className="absolute inset-0 rounded-full"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(160, 195, 239, 0.3) 0%, rgba(128, 156, 191, 0.2) 100%)',
+                    transform: 'scale(1.3)',
+                    filter: 'blur(20px)'
+                  }}
+                />
+                <img 
+                  src={compassIcon} 
+                  alt="Compass" 
+                  className="w-40 h-40 object-contain relative z-10"
+                />
+              </motion.div>
+            </div>
+
+            {/* Tagline */}
+            <p
+              className="text-base text-gray-600 text-center leading-relaxed px-4"
+              style={{
+                fontFamily: 'Asul, sans-serif',
+                fontWeight: 400
+              }}
+            >
+              Answer 20 questions. Discover your perfect city. Start your adventure.
+            </p>
+          </div>
         </motion.div>
 
-        {/* Tap to Start button with premium styling */}
-        <motion.button
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-          whileHover={{ 
-            scale: 1.05,
-            boxShadow: '0 12px 40px rgba(0, 116, 228, 0.5), 0 0 60px rgba(0, 116, 228, 0.3)'
-          }}
-          whileTap={{ scale: 0.97 }}
-          onClick={onStart}
-          className="mt-8 px-16 py-5 text-white font-bold text-xl tracking-wide"
+        {/* Swipe instruction */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
+          className="text-white text-center mt-8 italic"
           style={{
             fontFamily: 'Asul, sans-serif',
-            borderRadius: '50px',
-            border: '2px solid rgba(255, 255, 255, 0.3)',
-            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 2px 8px rgba(255, 255, 255, 0.2)',
-            background: 'linear-gradient(90deg, #0074E4, #00A8FF, #0074E4)',
-            backgroundSize: '200% 100%',
-            animation: 'shimmer 3s linear infinite'
+            fontSize: '18px',
+            textShadow: '0 2px 8px rgba(0, 0, 0, 0.7)'
           }}
         >
-          TAP TO START
-        </motion.button>
-
-        <style>{`
-          @keyframes shimmer {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-          }
-        `}</style>
+          Swipe up to find out
+        </motion.p>
       </div>
     </div>
   );
