@@ -67,7 +67,14 @@ function useGameState() {
       setGamePhase('loading');
     } else {
       // Move to next question
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      const nextIndex = currentQuestionIndex + 1;
+      setCurrentQuestionIndex(nextIndex);
+      
+      // Show round break after questions 5, 10, 15 (every 5 questions except the last)
+      const nextQuestionNumber = nextIndex + 1;
+      if (nextQuestionNumber > 1 && nextQuestionNumber <= 20 && (nextIndex) % 5 === 0) {
+        setGamePhase('roundBreak');
+      }
     }
   };
 

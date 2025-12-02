@@ -45,25 +45,13 @@ function App() {
     restart();
   };
 
-  // Check if we should show a round break (after questions 5, 10, 15)
-  const shouldShowRoundBreak = () => {
-    const questionNum = currentQuestionIndex + 1;
-    return gamePhase === 'roundBreak' || (
-      gamePhase === 'questions' && 
-      questionNum > 0 && 
-      questionNum <= 20 && 
-      questionNum % 5 === 0 &&
-      answers.length === questionNum
-    );
-  };
-
   const handleContinueFromBreak = () => {
     setGamePhase('questions');
   };
 
-  // Show round break after every 5 questions
-  if (shouldShowRoundBreak()) {
-    const roundNumber = Math.ceil((currentQuestionIndex + 1) / 5);
+  // Show round break screen
+  if (gamePhase === 'roundBreak') {
+    const roundNumber = Math.ceil(currentQuestionIndex / 5);
     return (
       <RoundBreak 
         roundNumber={roundNumber}
