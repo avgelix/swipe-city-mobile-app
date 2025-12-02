@@ -107,7 +107,7 @@ function MultiChoiceCard({ question, currentQuestion, totalQuestions, onAnswer }
       <div className="relative rounded-b-2xl">
         {/* Top card stack - properly scaled and attached */}
         <div 
-          className="absolute left-0 right-0 rounded-t-2xl"
+          className="absolute left-0 right-0 rounded-2xl"
           style={{
             height: '100%',
             top: '-12px',
@@ -120,7 +120,7 @@ function MultiChoiceCard({ question, currentQuestion, totalQuestions, onAnswer }
           }}
         />
         <div 
-          className="absolute left-0 right-0 rounded-t-2xl"
+          className="absolute left-0 right-0 rounded-2xl"
           style={{
             height: '100%',
             top: '-24px',
@@ -133,7 +133,7 @@ function MultiChoiceCard({ question, currentQuestion, totalQuestions, onAnswer }
           }}
         />
         <div 
-          className="absolute left-0 right-0 rounded-t-2xl"
+          className="absolute left-0 right-0 rounded-2xl"
           style={{
             height: '100%',
             top: '-36px',
