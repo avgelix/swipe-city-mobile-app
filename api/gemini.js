@@ -149,7 +149,7 @@ Respond ONLY with valid JSON in this exact format:
  */
 function parseAIResponse(text) {
   try {
-    // AI models sometimes wrap JSON in markdown code blocks
+    // AI models sometimes wrap JSON in markdown code blocks or add conversational text
     let jsonText = text.trim();
     
     // Remove markdown code blocks if present
@@ -159,8 +159,8 @@ function parseAIResponse(text) {
       jsonText = jsonText.replace(/```\n?/g, '');
     }
     
-    // Try to find JSON object in the text (in case there's reasoning before it)
-    const jsonMatch = jsonText.match(/\{[\s\S]*"city"[\s\S]*"country"[\s\S]*"explanation"[\s\S]*\}/);
+    // Try to find ANY JSON object in the text (even if there's conversational text before/after)
+    const jsonMatch = jsonText.match(/\{[\s\S]*?\}/);
     if (jsonMatch) {
       jsonText = jsonMatch[0];
     }
@@ -181,6 +181,6 @@ function parseAIResponse(text) {
     
   } catch (parseError) {
     console.error('Failed to parse AI response:', text, parseError);
-    throw new Error('Invalid AI response format');
+    throw new Error(`Invalid AI response format. Raw response: ${text.substring(0, 200)}...`);
   }
 }

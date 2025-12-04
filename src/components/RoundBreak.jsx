@@ -26,24 +26,25 @@ function RoundBreak({ roundNumber, onContinue, questionNumber }) {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="absolute top-8 left-0 right-0 z-10 flex flex-col items-center w-full"
+        className="absolute top-12 left-0 right-0 z-10 flex flex-col items-center w-full"
       >
         {/* Round badge */}
-        <div className="relative mb-0">
+        <div className="relative">
           <div 
-            className="px-8 py-2 rounded-lg"
+            className="px-8 py-2"
             style={{
-              background: 'linear-gradient(90deg, rgba(128, 156, 191, 1) 0%, rgba(128, 156, 191, 1) 100%)',
-              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
+              background: '#4a5a6f',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+              borderRadius: '12px 12px 0 0'
             }}
           >
             <p 
               className="text-white text-center"
               style={{
                 fontFamily: 'Asul, sans-serif',
-                fontSize: '24px',
+                fontSize: '20px',
                 fontWeight: 400,
-                letterSpacing: '0.5px'
+                letterSpacing: '2px'
               }}
             >
               Round {roundNumber}
@@ -51,21 +52,23 @@ function RoundBreak({ roundNumber, onContinue, questionNumber }) {
           </div>
         </div>
 
-        {/* White header bar with text */}
+        {/* White bar with border and text - full width spanning entire page */}
         <div 
-          className="bg-white px-12 py-3 w-full"
+          className="bg-white px-12 py-4 w-full"
           style={{
-            borderTop: '4px solid #809cbf',
-            borderBottom: '4px solid #809cbf'
+            border: '3px solid #4a5a6f',
+            borderLeft: 'none',
+            borderRight: 'none'
           }}
         >
           <p 
-            className="text-black text-center"
+            className="text-center uppercase"
             style={{
               fontFamily: 'Asul, sans-serif',
-              fontSize: '24px',
-              fontWeight: 700,
-              letterSpacing: '1px'
+              fontSize: '20px',
+              fontWeight: 400,
+              letterSpacing: '4px',
+              color: '#4a5a6f'
             }}
           >
             GET READY TO SWIPE

@@ -52,11 +52,11 @@ export const questions = [
   {
     id: 3,
     category: 'Climate & Environment',
-    text: 'A powerful thunderstorm rolls in',
+    text: 'A powerful thunderstorm rolls in...',
     type: 'binary',
     options: {
       left: 'A chance to close the windows and put up a good movie',
-      right: 'When do we go outside to dance in the rain?'
+      right: 'When can we go outside to dance in the rain?'
     }
   },
 
@@ -103,7 +103,7 @@ export const questions = [
   {
     id: 7,
     category: 'Work & Economy',
-    text: 'The coffee shops near your office are filled with people talking about...',
+    text: 'You go get coffee near your office. The people sitting next to you are talking about...',
     type: 'multiChoice',
     options: {
       up: 'The latest app launch and coding frameworks',
@@ -131,11 +131,11 @@ export const questions = [
   {
     id: 9,
     category: 'Food & Dining',
-    text: 'It\'s Friday night. Your ideal dinner involves...',
+    text: 'It\'s Friday night. Having your ideal dinner means...',
     type: 'binary',
     options: {
-      left: 'Cooking at home',
-      right: 'Trying a new restaurant'
+      left: 'I am cooking at home',
+      right: 'I am out trying a new restaurant'
     }
   },
   {
@@ -169,11 +169,11 @@ export const questions = [
   {
     id: 12,
     category: 'Culture & Values',
-    text: 'On Sunday mornings, you feel most at peace when surrounded by...',
+    text: 'On Sunday mornings, you feel most at peace surrounded by...',
     type: 'binary',
     options: {
-      left: 'A quiet coffee shop or nature trail',
-      right: 'A gathering of like-minded people in community'
+      left: 'A quiet coffee shop or bookstore',
+      right: 'A nature trail or park'
     }
   },
   {
@@ -182,14 +182,14 @@ export const questions = [
     text: 'A perfect weekend includes...',
     type: 'multiChoice',
     options: {
-      up: 'Art museum & gallery hopping',
-      upRight: 'Live theater or musical performance',
-      right: 'Music concert or festival',
+      up: 'Art museum & gallery visits',
+      upRight: 'Live theater' ,
+      right: 'Concert or festival',
       downRight: 'Historical sites & architecture tours',
-      down: 'Shopping & boutique browsing',
-      downLeft: 'Sports game or live event',
+      down: 'Mall shopping',
+      downLeft: 'Sports games',
       left: 'Bar hopping & nightlife',
-      upLeft: 'Film festival or indie cinema'
+      upLeft: 'Outdoor markets'
     }
   },
 
@@ -197,14 +197,14 @@ export const questions = [
   {
     id: 14,
     category: 'Recreation & Hobbies',
-    text: 'Your ideal Saturday morning involves being outdoors. What are you doing?',
+    text: 'Your Saturday morning involves being outdoors. What are you doing?',
     type: 'multiChoice',
     options: {
       up: 'Hiking mountain trails',
-      upRight: 'Rock climbing or skiing',
-      right: 'Running or biking through parks',
-      downRight: 'Beach walking or surfing',
-      down: 'Kayaking or water sports',
+      upRight: 'Yoga in the park',
+      right: 'Running or biking',
+      downRight: 'Beach walks and sunbathing',
+      down: 'Kayaking and water sports',
       downLeft: 'Casual park picnic',
       left: 'Urban exploring on foot',
       upLeft: 'Camping or backcountry adventure'
@@ -216,7 +216,7 @@ export const questions = [
     text: 'When you exercise, you want to see...',
     type: 'binary',
     options: {
-      left: 'Other people around you doing the same activity',
+      left: 'Other people around doing the same activity',
       right: 'Trees, trails, and open sky'
     }
   },

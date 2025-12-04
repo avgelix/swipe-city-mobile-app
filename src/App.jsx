@@ -44,6 +44,7 @@ function App() {
 
   const handleRefuse = () => {
     restart();
+    setGamePhase('roundBreak'); // Show Round 1 screen after restart
   };
 
   const handleContinueFromBreak = () => {

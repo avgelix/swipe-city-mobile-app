@@ -71,11 +71,11 @@ function IntroPage({ onStart }) {
             <p
               className="text-lg text-black text-center mb-6 leading-relaxed px-3"
               style={{
-                fontFamily: 'Asul, sans-serif',
+                fontFamily: 'Inter, sans-serif',
                 fontWeight: 400
               }}
             >
-              Do you ever wonder<br />where in the world you<br />would be at peace?
+              Do you ever wonder<br />where in the world you<br />should move?
             </p>
 
             {/* Compass */}
@@ -83,7 +83,7 @@ function IntroPage({ onStart }) {
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ 
-                  duration: 20, 
+                  duration: 10, 
                   repeat: Infinity, 
                   ease: "linear" 
                 }}

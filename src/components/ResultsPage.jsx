@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import MapBackground from './MapBackground';
+import compassIcon from '../assets/compass.svg';
 
 /**
  * ResultsPage Component
@@ -17,6 +19,17 @@ function ResultsPage({ answers, onAccept, onRefuse }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [cityMatch, setCityMatch] = useState(null);
+  const [mapCityIndex, setMapCityIndex] = useState(0);
+
+  // Fast-changing map background while loading
+  useEffect(() => {
+    if (loading) {
+      const interval = setInterval(() => {
+        setMapCityIndex(prev => (prev + 1) % 30);
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [loading]);
 
   const fetchCityRecommendation = async () => {
     setLoading(true);
@@ -67,18 +80,44 @@ function ResultsPage({ answers, onAccept, onRefuse }) {
   // Loading state
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center py-8">
-        <div className="w-full max-w-md mx-auto px-4">
-          <div className="bg-white rounded-2xl shadow-xl p-8 text-center">
-            <div className="mb-6">
-              <div className="inline-block animate-spin rounded-full h-16 w-16 border-b-4 border-zillow-blue"></div>
+      <div className="relative min-h-screen overflow-hidden">
+        {/* Fast-changing map background */}
+        <MapBackground questionNumber={mapCityIndex} />
+        
+        {/* Blue overlay */}
+        <div className="absolute inset-0 bg-black/20 pointer-events-none" />
+        
+        {/* Content */}
+        <div className="relative z-10 min-h-screen flex items-center justify-center">
+          <div className="w-full max-w-md mx-auto px-4">
+            <div className="bg-white rounded-2xl shadow-xl p-8 text-center">
+              {/* Spinning Compass */}
+              <div className="mb-6 flex justify-center">
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ 
+                    duration: 1.5, 
+                    repeat: Infinity, 
+                    ease: "linear" 
+                  }}
+                  className="w-24 h-24"
+                >
+                  <img 
+                    src={compassIcon} 
+                    alt="Loading" 
+                    className="w-full h-full object-contain"
+                  />
+                </motion.div>
+              </div>
+              
+              {/* Loading Text */}
+              <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                Finding Your Perfect Match...
+              </h2>
+              <p className="text-gray-600">
+                Our AI is analyzing your preferences to find the ideal city for you.
+              </p>
             </div>
-            <h2 className="text-2xl font-bold text-gray-800 mb-2">
-              Finding Your Perfect Match...
-            </h2>
-            <p className="text-gray-600">
-              Our AI is analyzing your preferences to find the ideal city for you.
-            </p>
           </div>
         </div>
       </div>
@@ -131,7 +170,7 @@ function ResultsPage({ answers, onAccept, onRefuse }) {
 
   // Success state - show city match
   return (
-    <div className="relative min-h-screen flex items-center justify-center py-8 overflow-hidden bg-gray-200">
+    <div className="relative min-h-screen flex items-center justify-center py-8 overflow-hidden">
       {/* Map Background */}
       {cityMatch?.city && (
         <div className="absolute inset-0 z-0">
@@ -139,111 +178,68 @@ function ResultsPage({ answers, onAccept, onRefuse }) {
         </div>
       )}
       
+      {/* Blue glowing overlay */}
+      <div 
+        className="absolute inset-0 z-10"
+        style={{
+          background: 'radial-gradient(circle at center, rgba(0, 116, 228, 0.4) 0%, rgba(0, 80, 180, 0.6) 100%)',
+          backdropFilter: 'blur(2px)'
+        }}
+      />
+      
       {/* Content */}
-      <div className="relative z-10 w-full max-w-2xl mx-auto px-4">
+      <div className="relative z-20 w-full max-w-md mx-auto px-6 flex flex-col items-center justify-start min-h-screen pt-12">
+        
+        {/* Page Title */}
+        <h2 
+          className="text-2xl font-light text-white/80 mb-6 text-center italic"
+          style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.4)' }}
+        >
+          Your new home may be...
+        </h2>
+
+        {/* City & Country */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2" style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
-            Your Perfect Match!
+          <h1 
+            className="text-6xl font-bold text-white mb-3"
+            style={{ textShadow: '0 4px 12px rgba(0, 0, 0, 0.4)' }}
+          >
+            {cityMatch.city}
           </h1>
-          <p className="text-gray-600 text-lg" style={{ textShadow: '0 1px 2px rgba(0, 0, 0, 0.1)' }}>
-            Based on your preferences, we found your ideal city
+          <p 
+            className="text-2xl text-white/90"
+            style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)' }}
+          >
+            {cityMatch.country}
           </p>
         </div>
 
-        {/* Glowing Victory Card */}
-        <div 
-          className="bg-zillow-blue rounded-3xl shadow-2xl p-8 md:p-10 relative overflow-hidden"
-          style={{
-            animation: 'float 3s ease-in-out infinite, glow 2s ease-in-out infinite',
-            boxShadow: '0 0 60px rgba(0, 116, 228, 0.6), 0 20px 40px rgba(0, 0, 0, 0.3), inset 0 -2px 10px rgba(255, 255, 255, 0.2)'
-          }}
-        >
-          {/* Shimmer effect overlay */}
-          <div 
-            className="absolute inset-0 opacity-20 pointer-events-none"
-            style={{
-              background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent)',
-              animation: 'shimmer 3s infinite'
-            }}
-          />
-          
-          {/* City Badge */}
-          <div className="text-center mb-6 relative z-10">
-            <div className="text-7xl mb-4 animate-bounce">🏙️</div>
-            <h2 className="text-5xl md:text-6xl font-bold text-white mb-2">
-              {cityMatch.city}
-            </h2>
-            <p className="text-2xl text-white/90">{cityMatch.country}</p>
-          </div>
-
-          {/* Explanation */}
-          <div className="mb-8 p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 relative z-10">
-            <h3 className="text-sm font-semibold text-white/80 uppercase tracking-wide mb-3">
-              Why This City?
-            </h3>
-            <p className="text-white text-lg leading-relaxed">
-              {cityMatch.explanation}
-            </p>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="space-y-4 relative z-10">
-            <button
-              onClick={onAccept}
-              className="w-full bg-white text-zillow-blue py-4 px-6 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl hover:scale-105 transform"
-            >
-              ✓ Love It! Let&apos;s Find a Neighborhood
-            </button>
-            <button
-              onClick={onRefuse}
-              className="w-full bg-white/20 backdrop-blur-sm text-white border-2 border-white/40 py-3 px-6 rounded-xl font-semibold hover:bg-white/30 transition-all"
-            >
-              Not Quite Right - Try Again
-            </button>
-          </div>
+        {/* Why This City Section */}
+        <div className="w-full mb-8 p-6 bg-white/15 backdrop-blur-md rounded-2xl border border-white/30 shadow-2xl">
+          <h3 className="text-sm font-bold text-white/90 uppercase tracking-wider mb-4">
+            Why This City?
+          </h3>
+          <p className="text-white text-base leading-relaxed">
+            {cityMatch.explanation}
+          </p>
         </div>
 
-        {/* Fun fact or encouragement */}
-        <div className="text-center mt-6 text-sm text-white" style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.5)' }}>
-          <p>💡 Tip: Each answer shapes your perfect match!</p>
+        {/* Action Buttons */}
+        <div className="w-full space-y-4">
+          <button
+            onClick={onAccept}
+            className="w-full bg-white text-zillow-blue py-4 px-6 rounded-xl font-bold text-lg hover:bg-gray-100 transition-all shadow-xl hover:shadow-2xl hover:scale-105 transform"
+          >
+            ✓ Love It! Let&apos;s Find a Neighborhood
+          </button>
+          <button
+            onClick={onRefuse}
+            className="w-full bg-white/20 backdrop-blur-sm text-white border-2 border-white/50 py-3 px-6 rounded-xl font-semibold hover:bg-white/30 transition-all shadow-lg"
+          >
+            Not Quite Right - Try Again
+          </button>
         </div>
       </div>
-
-      {/* CSS Animations */}
-      <style>{`
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0px) rotate(0deg);
-          }
-          25% {
-            transform: translateY(-10px) rotate(0.5deg);
-          }
-          50% {
-            transform: translateY(-5px) rotate(-0.5deg);
-          }
-          75% {
-            transform: translateY(-15px) rotate(0.3deg);
-          }
-        }
-        
-        @keyframes glow {
-          0%, 100% {
-            box-shadow: 0 0 60px rgba(0, 116, 228, 0.6), 0 20px 40px rgba(0, 0, 0, 0.3), inset 0 -2px 10px rgba(255, 255, 255, 0.2);
-          }
-          50% {
-            box-shadow: 0 0 80px rgba(0, 116, 228, 0.8), 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 -2px 15px rgba(255, 255, 255, 0.3);
-          }
-        }
-        
-        @keyframes shimmer {
-          0% {
-            transform: translateX(-100%);
-          }
-          100% {
-            transform: translateX(100%);
-          }
-        }
-      `}</style>
     </div>
   );
 }

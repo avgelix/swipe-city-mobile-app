@@ -37,30 +37,80 @@ const CITIES = [
   { name: 'Miami', lat: 25.7617, lng: -80.1918 },
   { name: 'Boston', lat: 42.3601, lng: -71.0589 },
   { name: 'Chicago', lat: 41.8781, lng: -87.6298 },
-  { name: 'Los Angeles', lat: 34.0522, lng: -118.2437 }
+  { name: 'Los Angeles', lat: 34.0522, lng: -118.2437 },
+  { name: 'Denver', lat: 39.7392, lng: -104.9903 },
+  { name: 'Seattle', lat: 47.6062, lng: -122.3321 },
+  { name: 'Austin', lat: 30.2672, lng: -97.7431 },
+  { name: 'Portland', lat: 45.5152, lng: -122.6784 },
+  { name: 'Nashville', lat: 36.1627, lng: -86.7816 },
+  { name: 'Atlanta', lat: 33.7490, lng: -84.3880 },
+  { name: 'Phoenix', lat: 33.4484, lng: -112.0740 },
+  { name: 'San Diego', lat: 32.7157, lng: -117.1611 },
+  { name: 'Las Vegas', lat: 36.1699, lng: -115.1398 },
+  { name: 'Philadelphia', lat: 39.9526, lng: -75.1652 }
 ];
 
 // Find city coordinates by name (case-insensitive partial match)
-function findCityCoordinates(cityName) {
+// If not found in hardcoded list, use Mapbox Geocoding API fallback
+async function findCityCoordinates(cityName) {
   if (!cityName) return null;
+  
   const searchTerm = cityName.toLowerCase().trim();
+  
+  // First, try to find in our hardcoded list
   const found = CITIES.find(city => 
     city.name.toLowerCase().includes(searchTerm) || 
     searchTerm.includes(city.name.toLowerCase())
   );
-  console.log('🔍 Finding coordinates for:', cityName, '→', found || 'not found, using default');
-  return found || { name: cityName, lat: 40.7128, lng: -74.0060 }; // Default to NYC
+  
+  if (found) {
+    console.log('🔍 Found coordinates in cache:', cityName, '→', found);
+    return found;
+  }
+  
+  // If not found, use Mapbox Geocoding API to get coordinates
+  console.log('🌍 City not in cache, fetching from Mapbox Geocoding API:', cityName);
+  
+  try {
+    const mapboxToken = import.meta.env.VITE_MAPBOX_TOKEN;
+    const response = await fetch(
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(cityName)}.json?access_token=${mapboxToken}&types=place&limit=1`
+    );
+    
+    if (!response.ok) {
+      throw new Error(`Geocoding API error: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    
+    if (data.features && data.features.length > 0) {
+      const [lng, lat] = data.features[0].center;
+      const result = { name: cityName, lat, lng };
+      console.log('✅ Geocoding API success:', result);
+      return result;
+    }
+    
+    console.warn('⚠️ No results from Geocoding API for:', cityName);
+  } catch (error) {
+    console.error('❌ Geocoding API failed:', error);
+  }
+  
+  // Final fallback to a generic world view
+  console.log('🌎 Using world view fallback');
+  return { name: cityName, lat: 20, lng: 0 }; // World view centered
 }
 
 function MapBackground({ questionNumber, city }) {
   const mapRef = useRef(null);
   const [error, setError] = useState(null);
   const [mapKey, setMapKey] = useState(0); // Key to force remount for fade animation
+  const [currentCity, setCurrentCity] = useState(null);
+  const [isLoadingCoordinates, setIsLoadingCoordinates] = useState(false);
 
   // Get city coordinates - either from prop or cycling through list
   const getCityLocation = () => {
     if (city) {
-      return findCityCoordinates(city);
+      return city; // Return city name, will be resolved async
     }
     if (questionNumber !== undefined) {
       return CITIES[questionNumber % CITIES.length];
@@ -68,12 +118,10 @@ function MapBackground({ questionNumber, city }) {
     return CITIES[0];
   };
 
-  const currentCity = getCityLocation();
-
   // Viewport state for the map
   const [viewState, setViewState] = useState({
-    latitude: currentCity.lat,
-    longitude: currentCity.lng,
+    latitude: 20,
+    longitude: 0,
     zoom: 12,
     pitch: 0,
     bearing: 0
@@ -95,9 +143,32 @@ function MapBackground({ questionNumber, city }) {
     }
   }, []);
 
-  // Update map center when city changes
+  // Resolve city coordinates when city prop changes
   useEffect(() => {
-    if (currentCity) {
+    const resolveCity = async () => {
+      const cityLocation = getCityLocation();
+      
+      // If it's already an object with coordinates, use it directly
+      if (typeof cityLocation === 'object' && cityLocation.lat && cityLocation.lng) {
+        setCurrentCity(cityLocation);
+        return;
+      }
+      
+      // Otherwise, it's a string city name - resolve it
+      if (typeof cityLocation === 'string') {
+        setIsLoadingCoordinates(true);
+        const coordinates = await findCityCoordinates(cityLocation);
+        setCurrentCity(coordinates);
+        setIsLoadingCoordinates(false);
+      }
+    };
+    
+    resolveCity();
+  }, [city, questionNumber]);
+
+  // Update map center when currentCity changes
+  useEffect(() => {
+    if (currentCity && currentCity.lat && currentCity.lng) {
       console.log('📍 Moving map to:', currentCity.name, { lat: currentCity.lat, lng: currentCity.lng });
       setViewState(prev => ({
         ...prev,
@@ -108,7 +179,7 @@ function MapBackground({ questionNumber, city }) {
       // Update key to trigger fade animation
       setMapKey(prev => prev + 1);
     }
-  }, [currentCity.name]); // Only update when city name changes
+  }, [currentCity]);
 
   // Don't render map if there's no token
   if (error || !mapboxToken || mapboxToken === 'your_mapbox_token_here') {
@@ -134,7 +205,7 @@ function MapBackground({ questionNumber, city }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.6 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.8, ease: "easeInOut" }}
+        transition={{ duration: 0.2, ease: "easeInOut" }}
         className="absolute inset-0"
         style={{
           pointerEvents: 'none',
